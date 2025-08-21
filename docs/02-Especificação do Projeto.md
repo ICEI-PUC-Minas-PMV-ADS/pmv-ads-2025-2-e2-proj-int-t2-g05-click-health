@@ -63,22 +63,42 @@ Apresente aqui as histórias de usuário que são relevantes para o projeto de s
 
 ## Requisitos
 
-As tabelas que se seguem apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto.
+ Com base nos objetivos e nas histórias de usuários, definimos os requisitos do projeto divididos em funcionais e não funcionais. Os requisitos funcionais descrevem as funcionalidades que o sistema Click Health deve oferecer, enquanto os não funcionais dizem respeito a propriedades de qualidade, desempenho e restrições do sistema.
+
+ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto.
 
 ### Requisitos Funcionais
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| A aplicação deve permitir que o usuário avalie uma agência de intercâmbio com base na sua experiência| ALTA | 
-|RF-002| A aplicação deve permitir que o usuário inclua comentários ao fazer uma avaliação de uma agência de intercâmbio    | ALTA |
-|RF-003| A aplicação deve permitir que o usuário consulte todas as agências de intercâmbio cadastradas ordenando-as com base em suas notas | ALTA |
+|RF-001|Cadastrar, visualizar, atualizar e excluir (CRUD)* múltiplos pacientes por usuário, permitindo que um cuidador gerencie diversos perfis sob sua conta. | Alta | 
+|RF-002| Compartilhar o acesso de cada paciente com outros usuários e    | Alta |
+|RF-003| Permitir o usuário configurar permissões (somente leitura ou leitura/escrita) por paciente. | Alta  |
+|RF-004| Registrar compromissos de saúde (consultas, exames)  | Alta | 
+|RF-005|  Programar horários de medicação por paciente, com lembretes e alertas de compra de insumos.  | Alta  |
+|RF-006| Enviar notificações/alertas a cuidadores sobre eventos agendados, com lembretes configuráveis. | Alta |
+|RF-007| Registrar (CRUD)* histórico clínico por paciente: alterações de medicação (com data e responsável), resultados de exames, internações e anotações clínicas. | Alta | 
+|RF-008|  Exibir feed de atualizações por paciente, em ordem cronológica, com registro automático de ações.  | Alta |
+|RF-009| Manter trilha de auditoria (CRUD)* de operações em dados do paciente (quem, o que, quando, antes/depois). | Alta |
+|RF-010| Autenticar usuários com login seguro e gerenciar convites (CRUD) e revogação de acessos por paciente.| Alta | 
+|RF-011| Editar (CRUD)* dados cadastrais do paciente (nome, data de nascimento, contatos, informações médicas básicas), respeitando permissões.   | Média |
+|RF-012| Gerar relatórios / exportar dados do paciente (PDF/CSV/ZIP com anexos) para compartilhar com profissionais. | Média |
+
+*CRUD: criar, ler, atualizar ou excluir dados.
 
 ### Requisitos não Funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
-|RNF-001| A aplicação deve ser responsiva | MÉDIA | 
-|RNF-002| A aplicação deve processar requisições do usuário em no máximo 3s |  BAIXA | 
+|RNF-001| Segurança e Privacidade: O sistema deve proteger os dados sensíveis de saúde armazenados em conformidade com a LGPD (Lei Geral de Proteção de Dados).| Alta | 
+|RNF-002| Usabilidade e Acessibilidade: A interface do usuário deve ser intuitiva e de fácil navegação, considerando que muitos cuidadores não têm treinamento técnico. Devem ser seguidas diretrizes de design acessível (por exemplo, contraste adequado, fontes legíveis, suporte a leitores de tela) para atender também usuários com eventuais limitações visuais ou motoras. | Alta  | 
+|RNF-003| Disponibilidade: O sistema deve ter alta disponibilidade, visando estar acessível 24 horas por dia, 7 dias por semana, já que os cuidados de pacientes ocorrem continuamente. Manutenções programadas devem ser comunicadas antecipadamente e minimizadas para não prejudicar o acompanhamento dos pacientes. | Alta | 
+|RNF-004| Desempenho: As principais funções (carregar o perfil do paciente, atualizar o feed, salvar um novo registro) devem ocorrer com rapidez. O sistema deve suportar simultaneamente diversos cuidadores acessando informações de um mesmo paciente sem degradação perceptível de desempenho. | Média  | 
+|RNF-005| Escalabilidade: A solução deve ser desenvolvida com arquitetura escalável, capaz de suportar um aumento no número de usuários e de dados ao longo do tempo. Isso implica usar boas práticas de desenvolvimento para que o sistema mantenha desempenho adequado. | Média | 
+|RNF-006| Portabilidade e Facilidade de Acesso: O sistema deve ser acessível diretamente via navegador de internet, funcionando em computadores, smartphones e tablets, sem necessidade de instalação complexa, garantindo praticidade para cuidadores e pacientes. | Média  | 
+|RNF-007| Manutenibilidade e Evolutividade: O software deve ser desenvolvido seguindo padrões de código e arquitetura que facilitem sua manutenção e evolução. Isso inclui documentação clara, modularização de componentes e uso de frameworks conhecidos.  | Baixa | 
+|RNF-008| Confiabilidade dos Dados: Além da segurança, o sistema deve garantir integridade transacional – por exemplo, se dois usuários tentarem editar simultaneamente a mesma informação, deve haver controle de concorrência para evitar inconsistências. Os registros de auditoria não podem ser alterados indevidamente, assegurando confiabilidade em quem fez cada alteração. | Alta  | 
+|RNF-009| Backup e Recuperação de Dados: O sistema deve manter cópias de segurança periódicas das informações dos pacientes e possibilitar a restauração em caso de falha ou perda. | Alta |  
 
 Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
 
@@ -102,8 +122,12 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
 |01| O projeto deverá ser entregue até o final do semestre |
-|02| Não pode ser desenvolvido um módulo de backend        |
-
+|02| Não será desenvolvido um módulo de backend completo nesta fase; o sistema funcionará com armazenamento local (LocalStorage ou banco em nuvem simples).      |
+|03| O escopo inicial não contemplará integrações externas com sistemas de saúde        |
+|04| O sistema não deverá funcionar offline .        |
+|05| O design da interface deverá seguir padrões minimalistas e de fácil usabilidade.        |
+|06| O projeto deverá ser desenvolvido utilizando apenas tecnologias já dominadas pela equipe (HTML, CSS, C#).        |
+|07| A segurança será básica, com autenticação simples (e-mail e senha).        |
 
 Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
 

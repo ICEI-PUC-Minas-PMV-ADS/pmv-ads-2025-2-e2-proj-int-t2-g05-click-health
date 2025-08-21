@@ -1,23 +1,25 @@
-# TÍTULO DO PROJETO
+# CLICK HEALTH
 
-`CURSO`
+`ANÁLISE E DESENVOLVIMENTO DE SISTEMAS`
 
-`DISCIPLINA`
+`Projeto: Desenvolvimento de uma aplicação interativa`
 
-`SEMESTRE`
+`2 semestre de 2025 - Eixo 2`
 
 Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
 
 ## Integrantes
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
+Carolina Mariana Aparecida Ferreira de Almeida
+Eduardo Rodrigues Singulano
+Helen Lagares da Silva
+Karine Luara de Oliveira Xavier da Silva
+Marcos Antonio Pires De Souza
+Tainan Marques Gadelha
 
 ## Orientador
 
-* Nome completo do professor
+* José Wilson da Costa
 
 ## Instruções de Instalação, Execução e Acesso
 

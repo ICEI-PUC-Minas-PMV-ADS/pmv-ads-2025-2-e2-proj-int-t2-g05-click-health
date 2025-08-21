@@ -1,7 +1,8 @@
 # Referências
 
-Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho.
+CARVALHO, Beatrice Fátima da Silveira. Comunicação efetiva entre os profissionais de saúde e os pacientes idosos no atendimento ambulatorial. 2023. Dissertação (Mestrado Profissional em Saúde Coletiva) – Instituto de Medicina Social Hésio Cordeiro, Universidade do Estado do Rio de Janeiro, Rio de Janeiro, 2023. Aprovada em 19 de setembro de 2023. Disponível em: https://www.bdtd.uerj.br:8443/bitstream/1/21555/2/Dissertação%20-%20Beatrice%20Fátima%20da%20Silveira%20Carvalho%20-%202023%20-%20Completa.pdf. Acesso em: 17 de agosto de 2025.
+NAÇÕES UNIDAS. Transformando nosso mundo: a Agenda 2030 para o Desenvolvimento Sustentável. A/RES/70/1. Brasília: Ministério do Desenvolvimento Social, 59 p. Disponível em: https://www.mds.gov.br/webarquivos/publicacao/brasil_amigo_pesso_idosa/agenda2030.pdf. Acesso em: 17 de agosto de 2025.
 
-> **Links Úteis**:
-> - [Formato ABNT](https://www.normastecnicas.com/abnt/trabalhos-academicos/referencias/)
-> - [Referências Bibliográficas da ABNT](https://comunidade.rockcontent.com/referencia-bibliografica-abnt/)
+NASCIMENTO, Maria Glaucia Gonçalves do; SANTOS, Renata Candido dos. Envelhecimento populacional e a sobrecarga familiar no cuidado com a pessoa idosa em tempos neoliberais. 2024. Trabalho de Conclusão de Curso (TCC) – Universidade Federal da Paraíba, Centro de Ciências Humanas, Letras e Artes, Departamento de Serviço Social, João Pessoa, 2024. Disponível em: https://repositorio.ufpb.br/jspui/handle/123456789/35079. Acesso em: 17 de agosto de 2025.
+
+Organização Pan-Americana da Saúde. Financiamento de cuidados de longa duração: lições para contextos de baixa e média renda. Resumo de políticas públicas 10: Apoio para cuidadores informais que prestam cuidados de longa duração. Washington, D.C.: OPAS, 2025. 18 p. Disponível em: https://doi.org/10.37774/9789275729687. Acesso em: 17 de agosto de 2025.

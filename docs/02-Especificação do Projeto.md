@@ -6,6 +6,16 @@ Definição do problema e ideia de solução a partir da perspectiva do usuário
 
 Apresente uma visão geral do que será abordado nesta parte do documento, enumerando as técnicas e/ou ferramentas utilizadas para realizar a especificações do projeto
 
+O público-alvo do projeto abrange diversos perfis de usuários dentro do ecossistema de cuidado domiciliar de saúde:
+
+Cuidadores familiares principais: geralmente filhos, cônjuges ou outros parentes próximos que assumem a coordenação do cuidado de um paciente. São usuários que criarão as contas no sistema, cadastrarão os pacientes sob seus cuidados e gerenciarão as informações principais. Em muitos casos, podem ser indivíduos de meia-idade responsáveis por pais idosos, ou mães/pais de crianças com necessidades especiais de saúde. Esse perfil busca uma ferramenta para organizar todas as tarefas de cuidado, compartilhar responsabilidades com outros familiares e acompanhar de perto a situação de saúde do paciente.
+
+Cuidadores familiares secundários ou de apoio: incluem outros parentes, amigos próximos ou vizinhos que auxiliam no cuidado, porém não centralizam as decisões. Também engloba cuidadores informais que ajudam eventualmente (por exemplo, irmãos que revezam turnos de cuidado, netos auxiliando avós, etc.). Esse público necessita acessar informações atualizadas sobre o paciente, cumprir tarefas designadas (como levar a consultas ou administrar medicação em determinados horários) e comunicar aos demais qualquer observação relevante, mesmo que não estejam envolvidos no dia a dia constantemente.
+
+Cuidadores profissionais contratados: profissionais de saúde ou cuidadores formais (por exemplo, técnicos de enfermagem, home care) que são contratados pela família para prover assistência ao paciente em casa. Embora não sejam membros da família, eles precisam integrar-se ao Click Health do paciente. Para esses usuários, o sistema oferece acesso às rotinas e históricos médicos necessários para desempenhar seu trabalho de forma informada, além de permitir registro de ocorrências ou observações durante seus turnos (conforme as permissões concedidas pela família).
+
+Paciente (usuário indireto): o paciente em si, quando tiver condições cognitivas e físicas, também é beneficiário e potencial usuário indireto do sistema. Por exemplo, um idoso que use smartphones poderia consultar sua própria agenda de medicamentos e ser notificado, aumentando sua autonomia. Contudo, na maioria dos cenários o paciente será o sujeito do cuidado e não operará diretamente o sistema; ainda assim, todo o desenho da solução é centrado em melhorar a assistência e, portanto, o paciente é a figura central a ser beneficiada pelo uso coordenado da plataforma pelos cuidadores.
+
 ## Personas
 
 Identifique, em torno de, 5 personas. Para cada persona, lembre-se de descrever suas angústicas, frustrações e expectativas de vida relacionadas ao problema. Além disso, defina uma "aparência" para a persona. Para isso, você poderá utilizar sites como [https://this-person-does-not-exist.com/pt#google_vignette](https://this-person-does-not-exist.com/pt) ou https://thispersondoesnotexist.com/ 

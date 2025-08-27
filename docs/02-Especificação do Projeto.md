@@ -133,6 +133,8 @@ Com escopo e fronteiras definidos, o próximo passo é modelar os casos de uso q
 
 ## Diagrama de Casos de Uso
 
+<img width="1681" height="1310" alt="ClickHealth_ Diagrama de Caso de Uso" src="https://github.com/user-attachments/assets/3d3aa6e2-9a73-4e97-b347-22a4f7c64636" />
+
 ## 0) O que é um Diagrama de Casos de Uso (UML) e para que serve
 Um **Diagrama de Casos de Uso** modela o que o sistema oferece aos atores, mostrando funcionalidades observáveis e o limite do sistema. Ajuda a alinhar stakeholders, definir escopo e orientar testes de aceitação.
 **Como foi feito:** aplicamos essa definição ao contexto do Click Health para guiar escolhas de atores e casos.

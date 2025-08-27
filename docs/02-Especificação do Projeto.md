@@ -21,6 +21,59 @@ Cuidadores profissionais contratados: profissionais de saúde ou cuidadores form
 
 Paciente (usuário indireto): o paciente em si, quando tiver condições cognitivas e físicas, também é beneficiário e potencial usuário indireto do sistema. Por exemplo, um idoso que use smartphones poderia consultar sua própria agenda de medicamentos e ser notificado, aumentando sua autonomia. Contudo, na maioria dos cenários o paciente será o sujeito do cuidado e não operará diretamente o sistema; ainda assim, todo o desenho da solução é centrado em melhorar a assistência e, portanto, o paciente é a figura central a ser beneficiada pelo uso coordenado da plataforma pelos cuidadores.
 
+Foram levantadas as seguintes personas:
+
+
+|APARÊNCIA| NOME |DESCRIÇÃO                 |
+|--------------------|------------------------------------|----------------------------------------|
+|  |  Maria Clara Andrade          |   Maria Clara é uma mulher da geração Baby Boomer, simpática e muito ligada à família. Vive com o marido e depende do apoio dos filhos para a rotina de consultas e medicação. Apesar de usar o celular, sente dificuldade com tecnologias complexas.  <br>- Idade: 67 anos </br> - Profissão: Aposentada (professora) </br> - Localização: Belo Horizonte, MG</br> - Formação: Pedagogia </br> Objetivo: Ter suporte confiável no gerenciamento de medicamentos e consultas médicas.</br> |
+|<b> APARÊNCIA - DESCRIÇÃO| <b>DORES | <b> EXPECTATIVA           |
+| Mulher de cabelos grisalhos, pele clara, óculos discretos, sorriso gentil, estilo casual com blusa clara e colar simples. |  Medo de esquecer horários de medicamentos ou consultas.<br> Dificuldade de comunicação com todos os cuidadores, que trocam mensagens por canais diferentes.<br> Ansiedade por não saber quem está acompanhando suas necessidades diárias          |     Aplicativo simples e acessível, com lembretes claros. <br> Interface com botões grandes e mensagens fáceis de entender. <br> Tranquilidade em saber que seus filhos e netos estão coordenados em tempo real.         |
+
+|APARÊNCIA| NOME |DESCRIÇÃO                 |
+|--------------------|------------------------------------|----------------------------------------|
+|  |          |     <br>- Idade:  </br> - Profissão:  </br> - Localização: </br> - Formação:  </br> Objetivo: 
+</br> |
+|<b> APARÊNCIA - DESCRIÇÃO| <b>DORES | <b> EXPECTATIVA           |
+|  |  <br> 
+ <br>           |      <br>         |
+
+
+|APARÊNCIA| NOME |DESCRIÇÃO                 |
+|--------------------|------------------------------------|----------------------------------------|
+|  |          |     <br>- Idade:  </br> - Profissão:  </br> - Localização: </br> - Formação:  </br> Objetivo: 
+</br> |
+|<b> APARÊNCIA - DESCRIÇÃO| <b>DORES | <b> EXPECTATIVA           |
+|  |  <br> 
+ <br>           |      <br>         |
+
+ 
+|APARÊNCIA| NOME |DESCRIÇÃO                 |
+|--------------------|------------------------------------|----------------------------------------|
+|  |          |     <br>- Idade:  </br> - Profissão:  </br> - Localização: </br> - Formação:  </br> Objetivo: 
+</br> |
+|<b> APARÊNCIA - DESCRIÇÃO| <b>DORES | <b> EXPECTATIVA           |
+|  |  <br> 
+ <br>           |      <br>         |
+
+ 
+|APARÊNCIA| NOME |DESCRIÇÃO                 |
+|--------------------|------------------------------------|----------------------------------------|
+|  |          |     <br>- Idade:  </br> - Profissão:  </br> - Localização: </br> - Formação:  </br> Objetivo: 
+</br> |
+|<b> APARÊNCIA - DESCRIÇÃO| <b>DORES | <b> EXPECTATIVA           |
+|  |  <br> 
+ <br>           |      <br>         |
+
+ 
+|APARÊNCIA| NOME |DESCRIÇÃO                 |
+|--------------------|------------------------------------|----------------------------------------|
+|  |          |     <br>- Idade:  </br> - Profissão:  </br> - Localização: </br> - Formação:  </br> Objetivo: 
+</br> |
+|<b> APARÊNCIA - DESCRIÇÃO| <b>DORES | <b> EXPECTATIVA           |
+|  |  <br> 
+ <br>           |      <br>         |
+
 Utilize também como referência o exemplo abaixo:
 
 <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/IntApplicationProject-Template/blob/main/docs/img/AnaClara1.png" alt="Persona1"/>

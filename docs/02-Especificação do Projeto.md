@@ -26,27 +26,27 @@ Foram levantadas as seguintes personas:
 
 |APARÊNCIA| NOME |DESCRIÇÃO                 |
 |--------------------|------------------------------------|----------------------------------------|
-|  |  Maria Clara Andrade          |   Maria Clara é uma mulher da geração Baby Boomer, simpática e muito ligada à família. Vive com o marido e depende do apoio dos filhos para a rotina de consultas e medicação. Apesar de usar o celular, sente dificuldade com tecnologias complexas.  <br>- Idade: 67 anos </br> - Profissão: Aposentada (professora) </br> - Localização: Belo Horizonte, MG</br> - Formação: Pedagogia </br> Objetivo: Ter suporte confiável no gerenciamento de medicamentos e consultas médicas.</br> |
+| <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e2-proj-int-t2-g05-click-health/blob/473b4f87f55f0c0b494ea1095582e54d1a3f9792/docs/img/MARIA%20CLARA.png" alt="Maria Clara" style="display: block; margin: 0 auto;"> |  Maria Clara Andrade          |   Maria Clara é uma mulher da geração Baby Boomer, simpática e muito ligada à família. Vive com o marido e depende do apoio dos filhos para a rotina de consultas e medicação. Apesar de usar o celular, sente dificuldade com tecnologias complexas.  <br>- Idade: 67 anos </br> - Profissão: Aposentada (professora) </br> - Localização: Belo Horizonte, MG</br> - Formação: Pedagogia </br> Objetivo: Ter suporte confiável no gerenciamento de medicamentos e consultas médicas.</br> |
 |<b> APARÊNCIA - DESCRIÇÃO VISUAL| <b>DORES | <b> EXPECTATIVA           |
 | Mulher de cabelos grisalhos, pele clara, óculos discretos, sorriso gentil, estilo casual com blusa clara e colar simples. |  Medo de esquecer horários de medicamentos ou consultas.<br> Dificuldade de comunicação com todos os cuidadores, que trocam mensagens por canais diferentes.<br> Ansiedade por não saber quem está acompanhando suas necessidades diárias          |     Aplicativo simples e acessível, com lembretes claros. <br> Interface com botões grandes e mensagens fáceis de entender. <br> Tranquilidade em saber que seus filhos e netos estão coordenados em tempo real.         |
 
 |APARÊNCIA| NOME |DESCRIÇÃO                 |
 |--------------------|------------------------------------|----------------------------------------|
-|  |    Lucas Henrique Moura      |  Lucas é da geração Z, curioso e acostumado com tecnologia. Usa o celular para quase tudo e quer contribuir no cuidado do avô, organizando tarefas simples como acompanhar horários de medicação e alertar os cuidadores mais velhos.  <br>- Idade: 18 anos </br> - Profissão: Estudante  </br> - Localização: Rio de Janeiro, RJ </br> - Formação: Início da graduação em Administração  </br> Objetivo: Ajudar os pais no cuidado do avô com Alzheimer.</br> |
+| <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e2-proj-int-t2-g05-click-health/blob/473b4f87f55f0c0b494ea1095582e54d1a3f9792/docs/img/Lucas%20Henrique%20Moura.png" alt="Lucas" style="display: block; margin: 0 auto;"> |    Lucas Henrique Moura      |  Lucas é da geração Z, curioso e acostumado com tecnologia. Usa o celular para quase tudo e quer contribuir no cuidado do avô, organizando tarefas simples como acompanhar horários de medicação e alertar os cuidadores mais velhos.  <br>- Idade: 18 anos </br> - Profissão: Estudante  </br> - Localização: Rio de Janeiro, RJ </br> - Formação: Início da graduação em Administração  </br> Objetivo: Ajudar os pais no cuidado do avô com Alzheimer.</br> |
 |<b> APARÊNCIA - DESCRIÇÃO VISUAL| <b>DORES | <b> EXPECTATIVA           |
 | Rapaz jovem, pele morena, cabelo ondulado curto, camiseta preta, mochila esportiva e fone sem fio. | Falta de clareza sobre o que já foi feito pelos outros cuidadores. <br> Frustração com atrasos e falhas na comunicação em grupo. Ansiedade para contribuir de forma mais efetiva no cuidado familiar. <br>           |    Aplicativo moderno e intuitivo, com interface próxima das redes sociais.  <br>   Alertas e feedback visual sobre as tarefas realizadas.      |
 
 
 |APARÊNCIA| NOME |DESCRIÇÃO                 |
 |--------------------|------------------------------------|----------------------------------------|
-|  |     João Pedro Lima     |  João é da geração Millennial. Conectado, prático e multitarefa, trabalha em home office e organiza parte da rotina de saúde da mãe. É responsável pelos agendamentos e comunicação com profissionais de saúde.   <br>- Idade: 38 anos  </br> - Profissão: Engenheiro  </br> - Localização: São Paulo, SP </br> - Formação: Engenharia da Computação </br> Objetivo: Integrar tecnologia e organização para cuidar da mãe idosa.|
+| <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e2-proj-int-t2-g05-click-health/blob/473b4f87f55f0c0b494ea1095582e54d1a3f9792/docs/img/Jo%C3%A3o%20Pedro%20Lima.png" alt="João" style="display: block; margin: 0 auto;">   |     João Pedro Lima     |  João é da geração Millennial. Conectado, prático e multitarefa, trabalha em home office e organiza parte da rotina de saúde da mãe. É responsável pelos agendamentos e comunicação com profissionais de saúde.   <br>- Idade: 38 anos  </br> - Profissão: Engenheiro  </br> - Localização: São Paulo, SP </br> - Formação: Engenharia da Computação </br> Objetivo: Integrar tecnologia e organização para cuidar da mãe idosa.|
 |<b> APARÊNCIA - DESCRIÇÃO VISUAL| <b>DORES | <b> EXPECTATIVA           |
 | Homem jovem, cabelo castanho curto, pele clara, barba por fazer, camisa polo azul e smartwatch no pulso. | Falta de integração de informações em um único sistema. <br> Perda de tempo conferindo mensagens e e-mails em múltiplos canais. <br>  Ansiedade em caso de emergências quando não está fisicamente presente         |    Painel centralizado para organizar compromissos e alertas.  <br> Confiabilidade nas notificações e histórico atualizado em tempo real. <br>   Recursos que permitam monitorar tudo mesmo à distância.     |
 
  
 |APARÊNCIA| NOME |DESCRIÇÃO                 |
 |--------------------|------------------------------------|----------------------------------------|
-|  |      Gabriela Santos    |  Gabriela é da geração Millennial/Z. Empática, dedicada e organizada, atende até 8 pacientes diariamente. Precisa de ferramentas rápidas que facilitem o registro de informações clínicas durante os atendimentos.   <br>- Idade: 28 anos  </br> - Profissão: Enfermeira home care </br> - Localização: Belo Horizonte, MG </br> - Formação: Enfermagem  </br> Objetivo: Registrar informações de saúde de pacientes de forma prática e padronizada.
+| <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e2-proj-int-t2-g05-click-health/blob/473b4f87f55f0c0b494ea1095582e54d1a3f9792/docs/img/Gabriela%20Santos.jpeg" alt="Gabriela" style="display: block; margin: 0 auto;"> |      Gabriela Santos    |  Gabriela é da geração Millennial/Z. Empática, dedicada e organizada, atende até 8 pacientes diariamente. Precisa de ferramentas rápidas que facilitem o registro de informações clínicas durante os atendimentos.   <br>- Idade: 28 anos  </br> - Profissão: Enfermeira home care </br> - Localização: Belo Horizonte, MG </br> - Formação: Enfermagem  </br> Objetivo: Registrar informações de saúde de pacientes de forma prática e padronizada.
 </br> |
 |<b> APARÊNCIA - DESCRIÇÃO VISUAL| <b>DORES | <b> EXPECTATIVA           |
 | Mulher jovem, pele morena clara, cabelo castanho preso em coque, uniforme branco com jaleco limpo e estetoscópio no pescoço. | Falta de padronização na comunicação entre cuidadores da mesma família.  <br> Dificuldade para registrar e atualizar informações rapidamente no celular. <br>  Necessidade de histórico confiável para embasar decisões médicas.         |  Interface prática e rápida para registrar doses, sintomas e orientações médicas.    <br>   Histórico organizado e acessível para todos os cuidadores. <br>  Redução de falhas de comunicação entre profissionais e familiares.    |
@@ -54,35 +54,11 @@ Foram levantadas as seguintes personas:
  
 |APARÊNCIA| NOME |DESCRIÇÃO                 |
 |--------------------|------------------------------------|----------------------------------------|
-|  |  Helena Martins        |  Helena é da geração X, profissional, focada em resultados, mas com sensibilidade para lidar com idosos e famílias. Busca ferramentas seguras para acessar informações confiáveis sem burocracia.   <br>- Idade: 45 anos  </br> - Profissão: Médica </br> - Localização: Porto Alegre, RS </br> - Formação: Medicina, especialização em geriatria  </br> Objetivo: Acompanhar remotamente o histórico de saúde dos pacientes. </br> |
+| <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e2-proj-int-t2-g05-click-health/blob/473b4f87f55f0c0b494ea1095582e54d1a3f9792/docs/img/Helena%20Martins.png" alt="Helena" style="display: block; margin: 0 auto;"> |  Helena Martins        |  Helena é da geração X, profissional, focada em resultados, mas com sensibilidade para lidar com idosos e famílias. Busca ferramentas seguras para acessar informações confiáveis sem burocracia.   <br>- Idade: 45 anos  </br> - Profissão: Médica </br> - Localização: Porto Alegre, RS </br> - Formação: Medicina, especialização em geriatria  </br> Objetivo: Acompanhar remotamente o histórico de saúde dos pacientes. </br> |
 |<b> APARÊNCIA - DESCRIÇÃO VISUAL| <b>DORES | <b> EXPECTATIVA           |
 | Mulher de pele clara, cabelo castanho médio, jaleco branco elegante, óculos de grau, postura confiante.  | Dificuldade em consolidar informações enviadas por múltiplos cuidadores. <br> Perda de tempo pedindo dados ou atualizações por canais informais. <br>           |  Plataforma confiável com relatórios completos e exportáveis.    <br>    Interface simples para acesso rápido a históricos e atualizações.     |
 
- 
-|APARÊNCIA| NOME |DESCRIÇÃO                 |
-|--------------------|------------------------------------|----------------------------------------|
-|  |          |     <br>- Idade:  </br> - Profissão:  </br> - Localização: </br> - Formação:  </br> Objetivo: 
-</br> |
-|<b> APARÊNCIA - DESCRIÇÃO| <b>DORES | <b> EXPECTATIVA           |
-|  |  <br> 
- <br>           |      <br>         |
 
-Utilize também como referência o exemplo abaixo:
-
-<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/IntApplicationProject-Template/blob/main/docs/img/AnaClara1.png" alt="Persona1"/>
-
-Enumere e detalhe as personas da sua solução. Para tanto, baseie-se tanto nos documentos disponibilizados na disciplina e/ou nos seguintes links:
-
-> **Links Úteis**:
-> 
-> - [Rock Content](https://rockcontent.com/blog/personas/)
-> - [Hotmart](https://blog.hotmart.com/pt-br/como-criar-persona-negocio/)
-> - [O que é persona?](https://resultadosdigitais.com.br/blog/persona-o-que-e/)
-> - [Persona x Público-alvo](https://flammo.com.br/blog/persona-e-publico-alvo-qual-a-diferenca/)
-> - [Mapa de Empatia](https://resultadosdigitais.com.br/blog/mapa-da-empatia/)
-> - [Mapa de Stalkeholders](https://www.racecomunicacao.com.br/blog/como-fazer-o-mapeamento-de-stakeholders/)
->
-Lembre-se que você deve ser enumerar e descrever precisamente e personalizada todos os clientes ideais que sua solução almeja.
 
 ## Histórias de Usuários
 
@@ -100,12 +76,6 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 
 Apresente aqui as histórias de usuário que são relevantes para o projeto de sua solução. As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
 
-> **Links Úteis**:
-> - [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
-> - [Como escrever boas histórias de usuário (User Stories)](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
-> - [User Stories: requisitos que humanos entendem](https://www.luiztools.com.br/post/user-stories-descricao-de-requisitos-que-humanos-entendem/)
-> - [Histórias de Usuários: mais exemplos](https://www.reqview.com/doc/user-stories-example.html)
-> - [9 Common User Story Mistakes](https://airfocus.com/blog/user-story-mistakes/)
 
 ## Requisitos
 
@@ -146,21 +116,6 @@ Apresente aqui as histórias de usuário que são relevantes para o projeto de s
 |RNF-008| Confiabilidade dos Dados: Além da segurança, o sistema deve garantir integridade transacional – por exemplo, se dois usuários tentarem editar simultaneamente a mesma informação, deve haver controle de concorrência para evitar inconsistências. Os registros de auditoria não podem ser alterados indevidamente, assegurando confiabilidade em quem fez cada alteração. | Alta  | 
 |RNF-009| Backup e Recuperação de Dados: O sistema deve manter cópias de segurança periódicas das informações dos pacientes e possibilitar a restauração em caso de falha ou perda. | Alta |  
 
-Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
-
-- [Requisitos Funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos Não Funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-Lembre-se que cada requisito deve corresponder à uma e somente uma
-característica alvo da sua solução. Além disso, certifique-se de que
-todos os aspectos capturados nas Histórias de Usuário foram cobertos.
-
 ## Restrições
 
 O projeto está restrito pelos itens apresentados na tabela a seguir.
@@ -174,12 +129,6 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |05| O design da interface deverá seguir padrões minimalistas e de fácil usabilidade.        |
 |06| O projeto deverá ser desenvolvido utilizando apenas tecnologias já dominadas pela equipe (HTML, CSS, C#).        |
 |07| A segurança será básica, com autenticação simples (e-mail e senha).        |
-
-Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
-
-> **Links Úteis**:
-> - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
 
 ## Diagrama de Casos de Uso
 

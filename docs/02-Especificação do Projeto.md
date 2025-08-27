@@ -41,20 +41,20 @@ Foram levantadas as seguintes personas:
 
 |APARÊNCIA| NOME |DESCRIÇÃO                 |
 |--------------------|------------------------------------|----------------------------------------|
-|  |          |     <br>- Idade:  </br> - Profissão:  </br> - Localização: </br> - Formação:  </br> Objetivo: 
+|  |     João Pedro Lima     |  João é da geração Millennial. Conectado, prático e multitarefa, trabalha em home office e organiza parte da rotina de saúde da mãe. É responsável pelos agendamentos e comunicação com profissionais de saúde.   <br>- Idade: 38 anos  </br> - Profissão: Engenheiro  </br> - Localização: São Paulo, SP </br> - Formação: Engenharia da Computação </br> Objetivo: Integrar tecnologia e organização para cuidar da mãe idosa.
 </br> |
 |<b> APARÊNCIA - DESCRIÇÃO| <b>DORES | <b> EXPECTATIVA           |
-|  |  <br> 
- <br>           |      <br>         |
+| Homem jovem, cabelo castanho curto, pele clara, barba por fazer, camisa polo azul e smartwatch no pulso. | Falta de integração de informações em um único sistema. <br> Perda de tempo conferindo mensagens e e-mails em múltiplos canais.
+ <br>  Ansiedade em caso de emergências quando não está fisicamente presente         |    Painel centralizado para organizar compromissos e alertas.  <br> Confiabilidade nas notificações e histórico atualizado em tempo real. <br>   Recursos que permitam monitorar tudo mesmo à distância.     |
 
  
 |APARÊNCIA| NOME |DESCRIÇÃO                 |
 |--------------------|------------------------------------|----------------------------------------|
-|  |          |     <br>- Idade:  </br> - Profissão:  </br> - Localização: </br> - Formação:  </br> Objetivo: 
+|  |      Gabriela Santos    |  Gabriela é da geração Millennial/Z. Empática, dedicada e organizada, atende até 8 pacientes diariamente. Precisa de ferramentas rápidas que facilitem o registro de informações clínicas durante os atendimentos.   <br>- Idade: 28 anos  </br> - Profissão: Enfermeira home care </br> - Localização: Belo Horizonte, MG </br> - Formação: Enfermagem  </br> Objetivo: Registrar informações de saúde de pacientes de forma prática e padronizada.
 </br> |
 |<b> APARÊNCIA - DESCRIÇÃO| <b>DORES | <b> EXPECTATIVA           |
-|  |  <br> 
- <br>           |      <br>         |
+| Mulher jovem, pele morena clara, cabelo castanho preso em coque, uniforme branco com jaleco limpo e estetoscópio no pescoço. | Falta de padronização na comunicação entre cuidadores da mesma família.  <br> Dificuldade para registrar e atualizar informações rapidamente no celular.
+ <br>  Necessidade de histórico confiável para embasar decisões médicas.         |  Interface prática e rápida para registrar doses, sintomas e orientações médicas.    <br>   Histórico organizado e acessível para todos os cuidadores. <br>  Redução de falhas de comunicação entre profissionais e familiares.    |
 
  
 |APARÊNCIA| NOME |DESCRIÇÃO                 |

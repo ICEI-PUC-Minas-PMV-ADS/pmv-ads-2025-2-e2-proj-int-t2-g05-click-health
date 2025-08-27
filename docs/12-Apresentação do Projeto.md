@@ -27,7 +27,7 @@ O grupo deve distribuir de forma coerente o conteúdo a ser apresentado, dentro 
 
 ## Vídeo de apresentação - Etapa 01
 
-Inclua aqui o vídeo de APRESENTAÇÃO INICIAL do projeto produzido na Etapa 01.
+
 
 ## Vídeo de apresentação - Etapa 05
 

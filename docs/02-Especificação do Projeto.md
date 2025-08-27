@@ -27,23 +27,20 @@ Foram levantadas as seguintes personas:
 |APARÊNCIA| NOME |DESCRIÇÃO                 |
 |--------------------|------------------------------------|----------------------------------------|
 |  |  Maria Clara Andrade          |   Maria Clara é uma mulher da geração Baby Boomer, simpática e muito ligada à família. Vive com o marido e depende do apoio dos filhos para a rotina de consultas e medicação. Apesar de usar o celular, sente dificuldade com tecnologias complexas.  <br>- Idade: 67 anos </br> - Profissão: Aposentada (professora) </br> - Localização: Belo Horizonte, MG</br> - Formação: Pedagogia </br> Objetivo: Ter suporte confiável no gerenciamento de medicamentos e consultas médicas.</br> |
-|<b> APARÊNCIA - DESCRIÇÃO| <b>DORES | <b> EXPECTATIVA           |
+|<b> APARÊNCIA - DESCRIÇÃO VISUAL| <b>DORES | <b> EXPECTATIVA           |
 | Mulher de cabelos grisalhos, pele clara, óculos discretos, sorriso gentil, estilo casual com blusa clara e colar simples. |  Medo de esquecer horários de medicamentos ou consultas.<br> Dificuldade de comunicação com todos os cuidadores, que trocam mensagens por canais diferentes.<br> Ansiedade por não saber quem está acompanhando suas necessidades diárias          |     Aplicativo simples e acessível, com lembretes claros. <br> Interface com botões grandes e mensagens fáceis de entender. <br> Tranquilidade em saber que seus filhos e netos estão coordenados em tempo real.         |
 
 |APARÊNCIA| NOME |DESCRIÇÃO                 |
 |--------------------|------------------------------------|----------------------------------------|
-|  |          |     <br>- Idade:  </br> - Profissão:  </br> - Localização: </br> - Formação:  </br> Objetivo: 
-</br> |
-|<b> APARÊNCIA - DESCRIÇÃO| <b>DORES | <b> EXPECTATIVA           |
-|  |  <br> 
- <br>           |      <br>         |
+|  |    Lucas Henrique Moura      |  Lucas é da geração Z, curioso e acostumado com tecnologia. Usa o celular para quase tudo e quer contribuir no cuidado do avô, organizando tarefas simples como acompanhar horários de medicação e alertar os cuidadores mais velhos.  <br>- Idade: 18 anos </br> - Profissão: Estudante  </br> - Localização: Rio de Janeiro, RJ </br> - Formação: Início da graduação em Administração  </br> Objetivo: Ajudar os pais no cuidado do avô com Alzheimer.</br> |
+|<b> APARÊNCIA - DESCRIÇÃO VISUAL| <b>DORES | <b> EXPECTATIVA           |
+| Rapaz jovem, pele morena, cabelo ondulado curto, camiseta preta, mochila esportiva e fone sem fio. | Falta de clareza sobre o que já foi feito pelos outros cuidadores. <br> Frustração com atrasos e falhas na comunicação em grupo. Ansiedade para contribuir de forma mais efetiva no cuidado familiar. <br>           |    Aplicativo moderno e intuitivo, com interface próxima das redes sociais.  <br>   Alertas e feedback visual sobre as tarefas realizadas.      |
 
 
 |APARÊNCIA| NOME |DESCRIÇÃO                 |
 |--------------------|------------------------------------|----------------------------------------|
-|  |     João Pedro Lima     |  João é da geração Millennial. Conectado, prático e multitarefa, trabalha em home office e organiza parte da rotina de saúde da mãe. É responsável pelos agendamentos e comunicação com profissionais de saúde.   <br>- Idade: 38 anos  </br> - Profissão: Engenheiro  </br> - Localização: São Paulo, SP </br> - Formação: Engenharia da Computação </br> Objetivo: Integrar tecnologia e organização para cuidar da mãe idosa.
-</br> |
-|<b> APARÊNCIA - DESCRIÇÃO| <b>DORES | <b> EXPECTATIVA           |
+|  |     João Pedro Lima     |  João é da geração Millennial. Conectado, prático e multitarefa, trabalha em home office e organiza parte da rotina de saúde da mãe. É responsável pelos agendamentos e comunicação com profissionais de saúde.   <br>- Idade: 38 anos  </br> - Profissão: Engenheiro  </br> - Localização: São Paulo, SP </br> - Formação: Engenharia da Computação </br> Objetivo: Integrar tecnologia e organização para cuidar da mãe idosa.|
+|<b> APARÊNCIA - DESCRIÇÃO VISUAL| <b>DORES | <b> EXPECTATIVA           |
 | Homem jovem, cabelo castanho curto, pele clara, barba por fazer, camisa polo azul e smartwatch no pulso. | Falta de integração de informações em um único sistema. <br> Perda de tempo conferindo mensagens e e-mails em múltiplos canais.
  <br>  Ansiedade em caso de emergências quando não está fisicamente presente         |    Painel centralizado para organizar compromissos e alertas.  <br> Confiabilidade nas notificações e histórico atualizado em tempo real. <br>   Recursos que permitam monitorar tudo mesmo à distância.     |
 
@@ -52,18 +49,16 @@ Foram levantadas as seguintes personas:
 |--------------------|------------------------------------|----------------------------------------|
 |  |      Gabriela Santos    |  Gabriela é da geração Millennial/Z. Empática, dedicada e organizada, atende até 8 pacientes diariamente. Precisa de ferramentas rápidas que facilitem o registro de informações clínicas durante os atendimentos.   <br>- Idade: 28 anos  </br> - Profissão: Enfermeira home care </br> - Localização: Belo Horizonte, MG </br> - Formação: Enfermagem  </br> Objetivo: Registrar informações de saúde de pacientes de forma prática e padronizada.
 </br> |
-|<b> APARÊNCIA - DESCRIÇÃO| <b>DORES | <b> EXPECTATIVA           |
+|<b> APARÊNCIA - DESCRIÇÃO VISUAL| <b>DORES | <b> EXPECTATIVA           |
 | Mulher jovem, pele morena clara, cabelo castanho preso em coque, uniforme branco com jaleco limpo e estetoscópio no pescoço. | Falta de padronização na comunicação entre cuidadores da mesma família.  <br> Dificuldade para registrar e atualizar informações rapidamente no celular.
  <br>  Necessidade de histórico confiável para embasar decisões médicas.         |  Interface prática e rápida para registrar doses, sintomas e orientações médicas.    <br>   Histórico organizado e acessível para todos os cuidadores. <br>  Redução de falhas de comunicação entre profissionais e familiares.    |
 
  
 |APARÊNCIA| NOME |DESCRIÇÃO                 |
 |--------------------|------------------------------------|----------------------------------------|
-|  |          |     <br>- Idade:  </br> - Profissão:  </br> - Localização: </br> - Formação:  </br> Objetivo: 
-</br> |
-|<b> APARÊNCIA - DESCRIÇÃO| <b>DORES | <b> EXPECTATIVA           |
-|  |  <br> 
- <br>           |      <br>         |
+|  |  Helena Martins        |  Helena é da geração X, profissional, focada em resultados, mas com sensibilidade para lidar com idosos e famílias. Busca ferramentas seguras para acessar informações confiáveis sem burocracia.   <br>- Idade: 45 anos  </br> - Profissão: Médica </br> - Localização: Porto Alegre, RS </br> - Formação: Medicina, especialização em geriatria  </br> Objetivo: Acompanhar remotamente o histórico de saúde dos pacientes. </br> |
+|<b> APARÊNCIA - DESCRIÇÃO VISUAL| <b>DORES | <b> EXPECTATIVA           |
+| Mulher de pele clara, cabelo castanho médio, jaleco branco elegante, óculos de grau, postura confiante.  | Dificuldade em consolidar informações enviadas por múltiplos cuidadores. <br> Perda de tempo pedindo dados ou atualizações por canais informais. <br>           |  Plataforma confiável com relatórios completos e exportáveis.    <br>    Interface simples para acesso rápido a históricos e atualizações.     |
 
  
 |APARÊNCIA| NOME |DESCRIÇÃO                 |

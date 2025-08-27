@@ -1,27 +1,11 @@
 # Especificações do Projeto
 
-<span style="color:red">Pré-requisitos: <a href="1-Documentação de Contexto.md"> Documentação de Contexto</a></span>
-
-Definição do problema e ideia de solução a partir da perspectiva do usuário. É composta pela definição do  diagrama de personas, histórias de usuários, requisitos funcionais e não funcionais além das restrições do projeto.
-
-Apresente uma visão geral do que será abordado nesta parte do documento, enumerando as técnicas e/ou ferramentas utilizadas para realizar a especificações do projeto
+Esta seção detalha como a solução Click Health foi especificada a partir da perspectiva do usuário. Partimos da Documentação de Contexto para decompor o problema em artefatos de análise e desenho centrados no usuário: personas, histórias de usuários, requisitos funcionais e não funcionais, restrições e casos de uso. O objetivo é garantir alinhamento entre necessidades reais (familiares, cuidadores e profissionais de saúde) e o escopo de implementação da primeira versão do sistema.
 
 
 ## Personas
 
-Identifique, em torno de, 5 personas. Para cada persona, lembre-se de descrever suas angústicas, frustrações e expectativas de vida relacionadas ao problema. Além disso, defina uma "aparência" para a persona. Para isso, você poderá utilizar sites como [https://this-person-does-not-exist.com/pt#google_vignette](https://this-person-does-not-exist.com/pt) ou https://thispersondoesnotexist.com/ 
-
-O público-alvo do projeto abrange diversos perfis de usuários dentro do ecossistema de cuidado domiciliar de saúde:
-
-Cuidadores familiares principais: geralmente filhos, cônjuges ou outros parentes próximos que assumem a coordenação do cuidado de um paciente. São usuários que criarão as contas no sistema, cadastrarão os pacientes sob seus cuidados e gerenciarão as informações principais. Em muitos casos, podem ser indivíduos de meia-idade responsáveis por pais idosos, ou mães/pais de crianças com necessidades especiais de saúde. Esse perfil busca uma ferramenta para organizar todas as tarefas de cuidado, compartilhar responsabilidades com outros familiares e acompanhar de perto a situação de saúde do paciente.
-
-Cuidadores familiares secundários ou de apoio: incluem outros parentes, amigos próximos ou vizinhos que auxiliam no cuidado, porém não centralizam as decisões. Também engloba cuidadores informais que ajudam eventualmente (por exemplo, irmãos que revezam turnos de cuidado, netos auxiliando avós, etc.). Esse público necessita acessar informações atualizadas sobre o paciente, cumprir tarefas designadas (como levar a consultas ou administrar medicação em determinados horários) e comunicar aos demais qualquer observação relevante, mesmo que não estejam envolvidos no dia a dia constantemente.
-
-Cuidadores profissionais contratados: profissionais de saúde ou cuidadores formais (por exemplo, técnicos de enfermagem, home care) que são contratados pela família para prover assistência ao paciente em casa. Embora não sejam membros da família, eles precisam integrar-se ao Click Health do paciente. Para esses usuários, o sistema oferece acesso às rotinas e históricos médicos necessários para desempenhar seu trabalho de forma informada, além de permitir registro de ocorrências ou observações durante seus turnos (conforme as permissões concedidas pela família).
-
-Paciente (usuário indireto): o paciente em si, quando tiver condições cognitivas e físicas, também é beneficiário e potencial usuário indireto do sistema. Por exemplo, um idoso que use smartphones poderia consultar sua própria agenda de medicamentos e ser notificado, aumentando sua autonomia. Contudo, na maioria dos cenários o paciente será o sujeito do cuidado e não operará diretamente o sistema; ainda assim, todo o desenho da solução é centrado em melhorar a assistência e, portanto, o paciente é a figura central a ser beneficiada pelo uso coordenado da plataforma pelos cuidadores.
-
-Foram levantadas as seguintes personas:
+As personas abaixo representam grupos típicos de usuários do ecossistema de cuidado domiciliar: cuidadores familiares principais, cuidadores de apoio, cuidadores profissionais e o paciente (usuário indireto). Cada persona descreve angústias, frustrações e expectativas diretamente relacionadas ao problema de organizar e compartilhar o cuidado. Também definimos uma aparência verossímil (imagem ilustrativa) para facilitar empatia e tomada de decisão de design.
 
 
 |APARÊNCIA| NOME |DESCRIÇÃO                 |
@@ -58,10 +42,21 @@ Foram levantadas as seguintes personas:
 |<b> APARÊNCIA - DESCRIÇÃO VISUAL| <b>DORES | <b> EXPECTATIVA           |
 | Mulher de pele clara, cabelo castanho médio, jaleco branco elegante, óculos de grau, postura confiante.  | Dificuldade em consolidar informações enviadas por múltiplos cuidadores. <br> Perda de tempo pedindo dados ou atualizações por canais informais. <br>           |  Plataforma confiável com relatórios completos e exportáveis.    <br>    Interface simples para acesso rápido a históricos e atualizações.     |
 
+Combase nas personas apresentadas podemos identificar o público-alvo do projeto abrange diversos perfis de usuários dentro do ecossistema de cuidado domiciliar de saúde, sendo eles:
+
+Cuidadores familiares principais: geralmente filhos, cônjuges ou outros parentes próximos que assumem a coordenação do cuidado de um paciente. São usuários que criarão as contas no sistema, cadastrarão os pacientes sob seus cuidados e gerenciarão as informações principais. Em muitos casos, podem ser indivíduos de meia-idade responsáveis por pais idosos, ou mães/pais de crianças com necessidades especiais de saúde. Esse perfil busca uma ferramenta para organizar todas as tarefas de cuidado, compartilhar responsabilidades com outros familiares e acompanhar de perto a situação de saúde do paciente.
+
+Cuidadores familiares secundários ou de apoio: incluem outros parentes, amigos próximos ou vizinhos que auxiliam no cuidado, porém não centralizam as decisões. Também engloba cuidadores informais que ajudam eventualmente (por exemplo, irmãos que revezam turnos de cuidado, netos auxiliando avós, etc.). Esse público necessita acessar informações atualizadas sobre o paciente, cumprir tarefas designadas (como levar a consultas ou administrar medicação em determinados horários) e comunicar aos demais qualquer observação relevante, mesmo que não estejam envolvidos no dia a dia constantemente.
+
+Cuidadores profissionais contratados: profissionais de saúde ou cuidadores formais (por exemplo, técnicos de enfermagem, home care) que são contratados pela família para prover assistência ao paciente em casa. Embora não sejam membros da família, eles precisam integrar-se ao Click Health do paciente. Para esses usuários, o sistema oferece acesso às rotinas e históricos médicos necessários para desempenhar seu trabalho de forma informada, além de permitir registro de ocorrências ou observações durante seus turnos (conforme as permissões concedidas pela família).
+
+Paciente (usuário indireto): o paciente em si, quando tiver condições cognitivas e físicas, também é beneficiário e potencial usuário indireto do sistema. Por exemplo, um idoso que use smartphones poderia consultar sua própria agenda de medicamentos e ser notificado, aumentando sua autonomia. Contudo, na maioria dos cenários o paciente será o sujeito do cuidado e não operará diretamente o sistema; ainda assim, todo o desenho da solução é centrado em melhorar a assistência e, portanto, o paciente é a figura central a ser beneficiada pelo uso coordenado da plataforma pelos cuidadores.
 
 
 ## Histórias de Usuários
 
+As histórias de usuários traduzem as necessidades das personas em funcionalidades observáveis.
+Essas histórias servem como ponte entre o problema e os requisitos do sistema, permitindo refinar critérios de aceite, dependências e riscos. 
 Com base na análise das personas forma identificadas as seguintes histórias de usuários:
 
 |EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
@@ -79,9 +74,10 @@ Apresente aqui as histórias de usuário que são relevantes para o projeto de s
 
 ## Requisitos
 
- Com base nos objetivos e nas histórias de usuários, definimos os requisitos do projeto divididos em funcionais e não funcionais. Os requisitos funcionais descrevem as funcionalidades que o sistema Click Health deve oferecer, enquanto os não funcionais dizem respeito a propriedades de qualidade, desempenho e restrições do sistema.
+Com base nas histórias de usuários foram definidos os requisitos funcionais e não funcionais para elaboração do sistema. Os requisitos funcionais definem o que o Click Health deve fazer (cadastros, agenda, notificações, histórico, feed, auditoria, autenticação e exportações). Os requisitos não funcionais definem como essas funções devem se comportar (segurança/LGPD, usabilidade/acessibilidade, desempenho, disponibilidade, escalabilidade e confiabilidade).
+As priorizações seguem o critério Alta / Média / Baixa e foram orientadas pelas personas e histórias com maior impacto na primeira versão — em especial organização do cuidado, comunicação entre cuidadores e segurança da informação.
 
- As tabelas que se seguem apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto.
+As tabelas que se seguem apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto.
 
 ### Requisitos Funcionais
 
@@ -116,7 +112,10 @@ Apresente aqui as histórias de usuário que são relevantes para o projeto de s
 |RNF-008| Confiabilidade dos Dados: Além da segurança, o sistema deve garantir integridade transacional – por exemplo, se dois usuários tentarem editar simultaneamente a mesma informação, deve haver controle de concorrência para evitar inconsistências. Os registros de auditoria não podem ser alterados indevidamente, assegurando confiabilidade em quem fez cada alteração. | Alta  | 
 |RNF-009| Backup e Recuperação de Dados: O sistema deve manter cópias de segurança periódicas das informações dos pacientes e possibilitar a restauração em caso de falha ou perda. | Alta |  
 
+Além do escopo desejado, o projeto observa restrições de prazo, tecnologia e integração que limitam a solução nesta fase.
 ## Restrições
+
+As restrições delimitam o que não será feito nesta versão, considerando tempo, equipe e tecnologias disponíveis. Elas ajudam a alinhar expectativas, orientar decisões de arquitetura e reduzir riscos. As restrições listadas a seguir podem ser reavaliadas em ciclos posteriores, conforme maturidade do produto, feedback e disponibilidade de recursos.
 
 O projeto está restrito pelos itens apresentados na tabela a seguir.
 
@@ -129,6 +128,8 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |05| O design da interface deverá seguir padrões minimalistas e de fácil usabilidade.        |
 |06| O projeto deverá ser desenvolvido utilizando apenas tecnologias já dominadas pela equipe (HTML, CSS, C#).        |
 |07| A segurança será básica, com autenticação simples (e-mail e senha).        |
+
+Com escopo e fronteiras definidos, o próximo passo é modelar os casos de uso que conectam atores (perfis) às funcionalidades principais.
 
 ## Diagrama de Casos de Uso
 

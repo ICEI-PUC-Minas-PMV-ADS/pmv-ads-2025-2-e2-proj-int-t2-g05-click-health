@@ -28,8 +28,8 @@ O grupo deve distribuir de forma coerente o conteúdo a ser apresentado, dentro 
 ## Vídeo de apresentação - Etapa 01
 
 
+https://github.com/user-attachments/assets/bb3ad827-73ce-4214-a5e3-785242c0b07f
 
-Uploading copy_1BA38912-8636-491B-91B9-2412CD222FB8 (1).mp4…
 
 
 

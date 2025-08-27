@@ -10,12 +10,12 @@ Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo de
 
 ## Integrantes
 
-Carolina Mariana Aparecida Ferreira de Almeida
-Eduardo Rodrigues Singulano
-Helen Lagares da Silva
-Karine Luara de Oliveira Xavier da Silva
-Marcos Antonio Pires De Souza
-Tainan Marques Gadelha
+<li>Carolina Mariana Aparecida Ferreira de Almeida</li>
+<li>Eduardo Rodrigues Singulano</li>
+<li>Helen Lagares da Silva</li>
+<li>Karine Luara de Oliveira Xavier da Silva</li>
+<li>Marcos Antonio Pires De Souza</li>
+<li>Tainan Marques Gadelha</li>
 
 ## Orientador
 

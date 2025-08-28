@@ -136,6 +136,3 @@ Com escopo e fronteiras definidos, o próximo passo é modelar os casos de uso q
 <img width="3152" height="2456" alt="ClickHealth_ Diagrama de Caso de Uso (1)" src="https://github.com/user-attachments/assets/466de9d6-17fd-4477-98d5-aff41b780640" />
 
 
-
-<img width="1681" height="1310" alt="ClickHealth_ Diagrama de Caso de Uso" src="https://github.com/user-attachments/assets/3d3aa6e2-9a73-4e97-b347-22a4f7c64636" />
-

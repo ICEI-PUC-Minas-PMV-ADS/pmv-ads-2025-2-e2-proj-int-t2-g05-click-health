@@ -7,6 +7,8 @@ Descreva aqui a metodologia de trabalho do grupo para atacar o problema. Defini�
 
 ## Controle de Versão
 
+A equipe adotou o Git como sistema de controle de versão, utilizando o GitHub para hospedagem do repositório.
+
 A ferramenta de controle de versão adotada no projeto foi o
 [Git](https://git-scm.com/), sendo que o [Github](https://github.com)
 foi utilizado para hospedagem do repositório.
@@ -38,6 +40,16 @@ Discuta como a configuração do projeto foi feita na ferramenta de versionament
 ## Gerenciamento de Projeto
 
 ### Divisão de Papéis
+
+O grupo utilizou práticas do Scrum para organização do trabalho.
+
+Product Owner (PO): responsável por priorizar o backlog e alinhar os objetivos do projeto às necessidades do usuário.
+
+Scrum Master: garante que os rituais sejam cumpridos, remove impedimentos e assegura a adoção da metodologia ágil.
+
+Time de Desenvolvimento: cada membro contribui com programação, testes, documentação e revisão de código.
+
+Time de Design: responsável pela prototipação, criação de wireframes, fluxos de navegação e identidade visual.
 
 Apresente a divisão de papéis entre os membros do grupo.
 

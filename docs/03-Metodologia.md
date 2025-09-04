@@ -41,17 +41,32 @@ Discuta como a configuração do projeto foi feita na ferramenta de versionament
 
 ### Divisão de Papéis
 
-O grupo utilizou práticas do Scrum para organização do trabalho.
+A metodologia ágil escolhida para o desenvolvimento e organização do trabalho foi o SCRUM, pois ele permite um desenvolvimento iterativo e colaborativo, garantindo maior flexibilidade e entrega contínua de valor. De acordo com Amaral, Fleury e Isoni (2019, p. 68), essa abordagem proporciona:
+
+“visão clara dos resultados a entregar; ritmo e disciplina necessários à execução; definição de papéis e responsabilidades dos integrantes do projeto (Scrum Owner, Scrum Master e Team); empoderamento dos membros da equipe de projetos para atingir o desafio; conhecimento distribuído e compartilhado de forma colaborativa; ambiência favorável para crítica às ideias e não às pessoas.”
+
+A aplicação do SCRUM será estruturada em Sprints, nos quais as funcionalidades serão priorizadas e entregues de forma incremental. A equipe seguirá as cerimônias do framework, incluindo planejamento de Sprint, reuniões, revisões e retrospectivas, garantindo transparência e melhoria contínua ao longo do projeto.
+
+A seguir destaca-se os papeis e responsabilidades de cada membro da equipe conforme a metodologia definida.
 
 Product Owner (PO): responsável por priorizar o backlog e alinhar os objetivos do projeto às necessidades do usuário.
 
 Scrum Master: garante que os rituais sejam cumpridos, remove impedimentos e assegura a adoção da metodologia ágil.
 
+Karine Luara de Oliveira Xavier da Silva
+
 Time de Desenvolvimento: cada membro contribui com programação, testes, documentação e revisão de código.
+
+Carolina Mariana Aparecida Ferreira de Almeida
+Eduardo Rodrigues Singulano
+Helen Lagares da Silva
+Karine Luara de Oliveira Xavier da Silva
+Marcos Antonio Pires De Souza
+Tainan Marques Gadelha
 
 Time de Design: responsável pela prototipação, criação de wireframes, fluxos de navegação e identidade visual.
 
-Apresente a divisão de papéis entre os membros do grupo.
+
 
 > **Links Úteis**:
 > - [11 Passos Essenciais para Implantar Scrum no seu 

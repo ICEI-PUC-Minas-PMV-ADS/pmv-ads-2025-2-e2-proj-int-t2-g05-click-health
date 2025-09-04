@@ -10,11 +10,6 @@ Atualmente, observa-se um crescimento significativo do número de cuidadores fam
 
  A utilização de tecnologias digitais em saúde tem um grande potencial para melhorar esse cenário, facilitando a coordenação do cuidado e ampliando a continuidade assistencial. Nesse contexto, o projeto Click Health busca suprir a lacuna por uma ferramenta centralizada e segura onde múltiplos cuidadores possam colaborar no cuidado de um ou mais pacientes, promovendo uma assistência mais eficiente, humanizada e alinhada às melhores práticas de saúde.
 
-> **Links Úteis**:
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-> - [Matriz Certezas, Suposições e Dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-> - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
-
 ## Objetivos
 
 Desenvolver um sistema back end voltado para gestão colaborativa de cuidados, que permita a famílias e cuidadores coordenarem de forma eficaz o acompanhamento de pacientes, assegurando continuidade do cuidado, comunicação transparente entre os envolvidos e melhoria na qualidade da atenção prestada.
@@ -28,8 +23,6 @@ Objetivos específicos
 3. Centralizar as informações do paciente em uma única plataforma, permitindo que cuidadores cadastrem e acessem dados como ficha médica, lista de medicamentos, e contatos de emergência, diminuindo a falha na comunicação na troca de cuidadores e auxiliando os familiares e entes queridos que desejam estar atualizados a respeito das condições médicas daquele paciente.
 
 4. Garantir a privacidade e a segurança dos dados de saúde, através da implementação de um sistema de convites e permissões que possibilita o cuidador principal aprovar ou negar as solicitações de acesso de outros cuidadores ao perfil do paciente.
-> **Links Úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
 
 ## Justificativa
 
@@ -47,11 +40,6 @@ Objetivos específicos
  Em suma, o Click Health  justifica-se por abordar um problema real e crescente na área da saúde, utilizando recursos tecnológicos para oferecer uma solução inovadora que beneficia diretamente a saúde e a qualidade de vida da população, em consonância com as recomendações da OMS e os objetivos do desenvolvimento sustentável em saúde.
 
 
-**Relacione o problema aos Objetivos de Desenvolvimento Sustentável (ODS), indicando quais ODS e subobjetivos são atendidos e descrevendo como o projeto contribui para cada um deles, garantindo coerência entre o impacto mensurado e as metas selecionadas.**
-
-> **Links Úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
-
 ## Público-Alvo
 
 O público-alvo do projeto abrange diversos perfis de usuários dentro do ecossistema de cuidado domiciliar de saúde:
@@ -65,9 +53,3 @@ Cuidadores profissionais contratados: profissionais de saúde ou cuidadores form
 
 
 Paciente (usuário indireto): o paciente em si, quando tiver condições cognitivas e físicas, também é beneficiário e potencial usuário indireto do sistema. Por exemplo, um idoso que use smartphones poderia consultar sua própria agenda de medicamentos e ser notificado, aumentando sua autonomia. Contudo, na maioria dos cenários o paciente será o sujeito do cuidado e não operará diretamente o sistema; ainda assim, todo o desenho da solução é centrado em melhorar a assistência e, portanto, o paciente é a figura central a ser beneficiada pelo uso coordenado da plataforma pelos cuidadores.
-
-> **Links Úteis**:
-> - [Público-alvo](https://blog.hotmart.com/pt-br/publico-alvo/)
-> - [Como definir o público alvo](https://exame.com/pme/5-dicas-essenciais-para-definir-o-publico-alvo-do-seu-negocio/)
-> - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
-> - [Qual a diferença entre público-alvo e persona?](https://rockcontent.com/blog/diferenca-publico-alvo-e-persona/)

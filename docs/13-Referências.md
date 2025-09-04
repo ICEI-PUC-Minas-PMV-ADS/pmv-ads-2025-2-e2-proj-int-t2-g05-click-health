@@ -1,5 +1,7 @@
 # Referências
 
+AMARAL, Daniel; FLEURY, André Luiz Zambalde; ISONI, Tania Cristina. Gestão ágil de projetos: práticas modernas para aumentar resultados. 2. ed. São Paulo: Atlas, 2019.
+
 CARVALHO, Beatrice Fátima da Silveira. Comunicação efetiva entre os profissionais de saúde e os pacientes idosos no atendimento ambulatorial. 2023. Dissertação (Mestrado Profissional em Saúde Coletiva) – Instituto de Medicina Social Hésio Cordeiro, Universidade do Estado do Rio de Janeiro, Rio de Janeiro, 2023. Aprovada em 19 de setembro de 2023. Disponível em: https://www.bdtd.uerj.br:8443/bitstream/1/21555/2/Dissertação%20-%20Beatrice%20Fátima%20da%20Silveira%20Carvalho%20-%202023%20-%20Completa.pdf. Acesso em: 17 de agosto de 2025.
 NAÇÕES UNIDAS. Transformando nosso mundo: a Agenda 2030 para o Desenvolvimento Sustentável. A/RES/70/1. Brasília: Ministério do Desenvolvimento Social, 59 p. Disponível em: https://www.mds.gov.br/webarquivos/publicacao/brasil_amigo_pesso_idosa/agenda2030.pdf. Acesso em: 17 de agosto de 2025.
 

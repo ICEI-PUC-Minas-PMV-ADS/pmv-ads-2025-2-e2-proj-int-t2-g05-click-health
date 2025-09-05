@@ -51,6 +51,8 @@ A seguir destaca-se os papeis e responsabilidades de cada membro da equipe confo
 
 Product Owner (PO): responsável por priorizar o backlog e alinhar os objetivos do projeto às necessidades do usuário.
 
+Carolina Mariana Aparecida Ferreira de Almeida
+
 Scrum Master: garante que os rituais sejam cumpridos, remove impedimentos e assegura a adoção da metodologia ágil.
 
 Karine Luara de Oliveira Xavier da Silva
@@ -66,12 +68,10 @@ Tainan Marques Gadelha
 
 Time de Design: responsável pela prototipação, criação de wireframes, fluxos de navegação e identidade visual.
 
-
-
-> **Links Úteis**:
-> - [11 Passos Essenciais para Implantar Scrum no seu 
-> Projeto](https://mindmaster.com.br/scrum-11-passos/)
-> - [Scrum em 9 minutos](https://www.youtube.com/watch?v=XfvQWnRgxG0)
+Eduardo Rodrigues Singulano
+Helen Lagares da Silva
+Marcos Antonio Pires De Souza
+Tainan Marques Gadelha
 
 ### Processo
 

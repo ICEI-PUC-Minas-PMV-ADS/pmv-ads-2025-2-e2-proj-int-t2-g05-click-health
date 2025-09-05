@@ -9,8 +9,7 @@ Descreva aqui a metodologia de trabalho do grupo para atacar o problema. Defini�
 
 A equipe adotou o Git como sistema de controle de versão, utilizando o GitHub para hospedagem do repositório.
 
-A ferramenta de controle de versão adotada no projeto foi o
-[Git](https://git-scm.com/), sendo que o [Github](https://github.com)
+A ferramenta de controle de versão adotada no projeto foi o [Git](https://git-scm.com/), sendo que o [Github](https://github.com)
 foi utilizado para hospedagem do repositório.
 
 O projeto segue a seguinte convenção para o nome de branches:
@@ -30,12 +29,6 @@ etiquetas:
 
 Discuta como a configuração do projeto foi feita na ferramenta de versionamento escolhida. Exponha como a gerência de tags, merges, commits e branchs é realizada. Discuta como a gerência de issues foi realizada.
 
-> **Links Úteis**:
-> - [Tutorial GitHub](https://guides.github.com/activities/hello-world/)
-> - [Git e Github](https://www.youtube.com/playlist?list=PLHz_AreHm4dm7ZULPAmadvNhH6vk9oNZA)
->  - [Comparando fluxos de trabalho](https://www.atlassian.com/br/git/tutorials/comparing-workflows)
-> - [Understanding the GitHub flow](https://guides.github.com/introduction/flow/)
-> - [The gitflow workflow - in less than 5 mins](https://www.youtube.com/watch?v=1SXpE08hvGs)
 
 ## Gerenciamento de Projeto
 
@@ -75,30 +68,38 @@ Tainan Marques Gadelha
 
 ### Processo
 
-Coloque  informações sobre detalhes da implementação do Scrum seguido pelo grupo. O grupo poderá fazer uso de ferramentas on-line para acompanhar o andamento do projeto, a execução das tarefas e o status de desenvolvimento da solução.
- 
-> **Links Úteis**:
-> - [Project management, made simple](https://github.com/features/project-management/)
-> - [Sobre quadros de projeto](https://docs.github.com/pt/github/managing-your-work-on-github/about-project-boards)
-> - [Como criar Backlogs no Github](https://www.youtube.com/watch?v=RXEy6CFu9Hk)
-> - [Tutorial Slack](https://slack.com/intl/en-br/)
+O grupo adotou um Scrum adaptado para ambiente acadêmico, com os seguintes elementos:
+
+Sprint: duração de 2 a 4 semanas.
+
+Planejamento de Sprint: definição das tarefas com base no backlog priorizado.
+
+Daily Meeting: reuniões rápidas no início das atividades (ou atualizações assíncronas via Teams e Whatsapp).
+
+Review: ao final de cada sprint, apresentação das funcionalidades implementadas.
+
+Retrospectiva: avaliação do que funcionou bem e o que pode ser melhorado.
+
+Backlog: organizado no GitHub Projects (quadros Kanban com colunas To Do, In Progress, Testing, Done).
 
 ### Ferramentas
 
-As ferramentas empregadas no projeto são:
+A escolha das ferramentas foi feita com base em integração, praticidade e familiaridade da equipe:
 
-- Editor de código.
-- Ferramentas de comunicação
-- Ferramentas de desenho de tela (_wireframing_)
+Editor de código: Visual Studio Code → integração nativa com GitHub e suporte a múltiplas linguagens (HTML, CSS, JS, C#).
 
-O editor de código foi escolhido porque ele possui uma integração com o
-sistema de versão. As ferramentas de comunicação utilizadas possuem
-integração semelhante e por isso foram selecionadas. Por fim, para criar
-diagramas utilizamos essa ferramenta por melhor captar as
-necessidades da nossa solução.
+Controle de versão: Git/GitHub → colaboração em tempo real, versionamento distribuído, rastreabilidade.
 
-Liste quais ferramentas foram empregadas no desenvolvimento do projeto, justificando a escolha delas, sempre que possível.
- 
-> **Possíveis Ferramentas que auxiliarão no gerenciamento**: 
-> - [Slack](https://slack.com/)
-> - [Github](https://github.com/)
+Gestão do projeto: GitHub Projects e Issues → acompanhamento do backlog, tarefas e milestones.
+
+Comunicação: WhatsApp → grupo exclusivo da equipe para alinhamentos rápidos e comunicação ágil.
+
+Microsoft Teams → ferramenta oficial de comunicação do grupo, utilizada para reuniões síncronas (chamadas de vídeo e áudio).
+
+Google Drive → compartilhamento de arquivos do projeto.
+
+Videoconferências: Meet Teams → para reuniões semanais de alinhamento e revisão de sprints.
+
+Wireframing/Prototipação: Figma → criação de telas, fluxos e testes de usabilidade.
+
+Diagramas UML: Diagrams.net e PlantUML → construção de casos de uso, classes e fluxos.

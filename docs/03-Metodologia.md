@@ -42,15 +42,15 @@ A aplicação do SCRUM será estruturada em Sprints, nos quais as funcionalidade
 
 A seguir destaca-se os papeis e responsabilidades de cada membro da equipe conforme a metodologia definida.
 
-Product Owner (PO): responsável por priorizar o backlog e alinhar os objetivos do projeto às necessidades do usuário.
+<b>Product Owner (PO) : </b> responsável por priorizar o backlog e alinhar os objetivos do projeto às necessidades do usuário.
 
 Carolina Mariana Aparecida Ferreira de Almeida
 
-Scrum Master: garante que os rituais sejam cumpridos, remove impedimentos e assegura a adoção da metodologia ágil.
+<b>Scrum Master:</b> garante que os rituais sejam cumpridos, remove impedimentos e assegura a adoção da metodologia ágil.
 
 Karine Luara de Oliveira Xavier da Silva
 
-Time de Desenvolvimento: cada membro contribui com programação, testes, documentação e revisão de código.
+<b>Time de Desenvolvimento: </b> cada membro contribui com programação, testes, documentação e revisão de código.
 
 Carolina Mariana Aparecida Ferreira de Almeida
 Eduardo Rodrigues Singulano
@@ -59,7 +59,7 @@ Karine Luara de Oliveira Xavier da Silva
 Marcos Antonio Pires De Souza
 Tainan Marques Gadelha
 
-Time de Design: responsável pela prototipação, criação de wireframes, fluxos de navegação e identidade visual.
+<b>Time de Design: </b> responsável pela prototipação, criação de wireframes, fluxos de navegação e identidade visual.
 
 Eduardo Rodrigues Singulano
 Helen Lagares da Silva
@@ -70,36 +70,36 @@ Tainan Marques Gadelha
 
 O grupo adotou um Scrum adaptado para ambiente acadêmico, com os seguintes elementos:
 
-Sprint: duração de 2 a 4 semanas.
+<b> Sprint:</b> duração de 2 a 4 semanas.
 
-Planejamento de Sprint: definição das tarefas com base no backlog priorizado.
+<b> Planejamento de Sprint:</b> definição das tarefas com base no backlog priorizado.
 
-Daily Meeting: reuniões rápidas no início das atividades (ou atualizações assíncronas via Teams e Whatsapp).
+<b> Daily Meeting:</b> reuniões rápidas no início das atividades (ou atualizações assíncronas via Teams e Whatsapp).
 
-Review: ao final de cada sprint, apresentação das funcionalidades implementadas.
+<b> Review:</b> ao final de cada sprint, apresentação das funcionalidades implementadas.
 
-Retrospectiva: avaliação do que funcionou bem e o que pode ser melhorado.
+<b> Retrospectiva:</b> avaliação do que funcionou bem e o que pode ser melhorado.
 
-Backlog: organizado no GitHub Projects (quadros Kanban com colunas To Do, In Progress, Testing, Done).
+<b> Backlog:</b> organizado no GitHub Projects (quadros Kanban com colunas To Do, In Progress, Testing, Done).
 
 ### Ferramentas
 
 A escolha das ferramentas foi feita com base em integração, praticidade e familiaridade da equipe:
 
-Editor de código: Visual Studio Code → integração nativa com GitHub e suporte a múltiplas linguagens (HTML, CSS, JS, C#).
+<b>Editor de código: </b> Visual Studio Code → integração nativa com GitHub e suporte a múltiplas linguagens (HTML, CSS, JS, C#).
 
-Controle de versão: Git/GitHub → colaboração em tempo real, versionamento distribuído, rastreabilidade.
+<b> Controle de versão: </b> Git/GitHub → colaboração em tempo real, versionamento distribuído, rastreabilidade.
 
-Gestão do projeto: GitHub Projects e Issues → acompanhamento do backlog, tarefas e milestones.
+<b> Gestão do projeto: </b> GitHub Projects e Issues → acompanhamento do backlog, tarefas e milestones.
 
-Comunicação: WhatsApp → grupo exclusivo da equipe para alinhamentos rápidos e comunicação ágil.
+<b> Comunicação: </b> WhatsApp → grupo exclusivo da equipe para alinhamentos rápidos e comunicação ágil.
 
 Microsoft Teams → ferramenta oficial de comunicação do grupo, utilizada para reuniões síncronas (chamadas de vídeo e áudio).
 
 Google Drive → compartilhamento de arquivos do projeto.
 
-Videoconferências: Meet Teams → para reuniões semanais de alinhamento e revisão de sprints.
+<b> Videoconferências:</b> Meet Teams → para reuniões semanais de alinhamento e revisão de sprints.
 
-Wireframing/Prototipação: Figma → criação de telas, fluxos e testes de usabilidade.
+<b> Wireframing/Prototipação:</b> Figma → criação de telas, fluxos e testes de usabilidade.
 
-Diagramas UML: Diagrams.net e PlantUML → construção de casos de uso, classes e fluxos.
+<b> Diagramas UML:</b> Diagrams.net e PlantUML → construção de casos de uso, classes e fluxos.

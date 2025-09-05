@@ -100,6 +100,6 @@ Google Drive → compartilhamento de arquivos do projeto.
 
 <b> Videoconferências:</b> Meet Teams → para reuniões semanais de alinhamento e revisão de sprints.
 
-<b> Wireframing/Prototipação:</b> Figma → criação de telas, fluxos e testes de usabilidade.
+<b> Wireframing/Prototipação:</b> Figma e Canva → criação de telas, fluxos e testes de usabilidade.
 
 <b> Diagramas UML:</b> Diagrams.net e PlantUML → construção de casos de uso, classes e fluxos.

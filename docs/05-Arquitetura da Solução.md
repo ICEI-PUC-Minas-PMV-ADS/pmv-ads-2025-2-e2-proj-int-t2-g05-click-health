@@ -49,8 +49,7 @@ Protótipos e Wireframes: Figma / Mermaid.
 
 Diagramas: Lucidchart, Bizagi, Canva.
 
-
-Apresente também uma figura explicando como as tecnologias estão relacionadas ou como uma interação do usuário com o sistema vai ser conduzida, por onde ela passa até retornar uma resposta ao usuário.
+<img src= "https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e2-proj-int-t2-g05-click-health/blob/9da4750dbfce38836785c469ae1d224c3f4c260f/docs/img/intereacoes_clickhealth.png">
 
 ## Hospedagem
 

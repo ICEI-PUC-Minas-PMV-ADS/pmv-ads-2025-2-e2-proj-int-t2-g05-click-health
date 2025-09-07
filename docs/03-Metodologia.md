@@ -44,7 +44,7 @@ A seguir destaca-se os papeis e responsabilidades de cada membro da equipe confo
 
 <b>Product Owner (PO) : </b> responsável por priorizar o backlog e alinhar os objetivos do projeto às necessidades do usuário.
 
-Carolina Mariana Aparecida Ferreira de Almeida
+<li>Carolina Mariana Aparecida Ferreira de Almeida</li>
 
 <b>Scrum Master:</b> garante que os rituais sejam cumpridos, remove impedimentos e assegura a adoção da metodologia ágil.
 
@@ -52,19 +52,19 @@ Karine Luara de Oliveira Xavier da Silva
 
 <b>Time de Desenvolvimento: </b> cada membro contribui com programação, testes, documentação e revisão de código.
 
-Carolina Mariana Aparecida Ferreira de Almeida
-Eduardo Rodrigues Singulano
-Helen Lagares da Silva
-Karine Luara de Oliveira Xavier da Silva
-Marcos Antonio Pires De Souza
-Tainan Marques Gadelha
+<li>Carolina Mariana Aparecida Ferreira de Almeida</li>
+<li>Eduardo Rodrigues Singulano</li>
+<li>Helen Lagares da Silva</li>
+<li>Karine Luara de Oliveira Xavier da Silva</li>
+<li>Marcos Antonio Pires De Souza</li>
+<li>Tainan Marques Gadelha</li>
 
 <b>Time de Design: </b> responsável pela prototipação, criação de wireframes, fluxos de navegação e identidade visual.
 
-Eduardo Rodrigues Singulano
-Helen Lagares da Silva
-Marcos Antonio Pires De Souza
-Tainan Marques Gadelha
+<li>Eduardo Rodrigues Singulano</li>
+<li>Helen Lagares da Silva</li>
+<li>Marcos Antonio Pires De Souza</li>
+<li>Tainan Marques Gadelha</li>
 
 ### Processo
 

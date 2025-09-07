@@ -8,6 +8,8 @@ O diagrama de classes representa graficamente a estrutura lógica do software, d
 
 As classes modeladas incluem elementos como Usuário, Paciente, Plano de Cuidado, Agenda, Histórico Clínico e Notificações, refletindo as principais entidades do sistema. Os relacionamentos explicitam como essas entidades interagem para viabilizar a experiência de cuidado colaborativo.
 
+<img src= "https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e2-proj-int-t2-g05-click-health/blob/89da45d34cb23d8c1643d2743da836ac8c2cede0/docs/img/Classe%20UML-%20click%20health.png">
+
 ## Modelo ER (Projeto Conceitual)
 
 O Modelo Entidade-Relacionamento (ER) traduz a estrutura conceitual dos dados, representando entidades (Usuário, Paciente, Exame, Medicação etc.) e seus relacionamentos (ex.: “Usuário gerencia Paciente”, “Paciente possui Exames”).

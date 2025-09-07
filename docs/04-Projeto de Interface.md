@@ -1,24 +1,27 @@
 
 # Projeto de Interface
 
-<span style="color:red">Pré-requisitos: <a href="2-Especificação do Projeto.md"> Documentação de Especificação</a></span>
+O projeto de interface do sistema Click Health busca traduzir os requisitos funcionais, não funcionais e as histórias de usuário em telas intuitivas e acessíveis. A proposta foi elaborada a partir das personas levantadas (usuário familiar principal, cuidador de apoio, cuidador profissional e paciente), de modo a garantir que cada perfil consiga interagir com a plataforma de acordo com suas necessidades, expectativas e limitações.
 
-Visão geral da interação do usuário pelas telas do sistema e protótipo interativo das telas com as funcionalidades que fazem parte do sistema (wireframes).
+A interface foi pensada para ser:
 
- Apresente as principais interfaces da plataforma. Discuta como ela foi elaborada de forma a atender os requisitos funcionais, não funcionais e histórias de usuário abordados nas <a href="2-Especificação do Projeto.md"> Documentação de Especificação</a>.
+Clara e acessível, com botões grandes, cores contrastantes e tipografia legível;
+
+Consistente, mantendo padrões de navegação, menus e atalhos iguais em todas as páginas;
+
+Funcional, cobrindo as principais operações levantadas nos requisitos (CRUD de pacientes, agenda, registro de histórico, notificações, exportações etc.);
+
+Escalável, permitindo que novos módulos (ex.: integração com sistemas de saúde) possam ser incorporados sem perda de usabilidade.
 
 ## Diagrama de Fluxo
 
-O diagrama apresenta o estudo do fluxo de interação do usuário com o sistema interativo e  muitas vezes sem a necessidade do desenho do design das telas da interface. Isso permite que o design das interações seja bem planejado e gere impacto na qualidade no design do wireframe interativo que será desenvolvido logo em seguida.
+Para estruturar a experiência do usuário, elaborou-se um diagrama de fluxo que apresenta o caminho de interação desde o login até as funcionalidades principais.
 
-O diagrama de fluxo pode ser desenvolvido com “boxes” que possuem internamente a indicação dos principais elementos de interface - tais como menus e acessos - e funcionalidades, tais como editar, pesquisar, filtrar, configurar - e a conexão entre esses boxes a partir do processo de interação. Você pode ver mais explicações e exemplos https://www.lucidchart.com/blog/how-to-make-a-user-flow-diagram.
+O diagrama não representa o design visual das telas, mas sim a arquitetura das interações. Cada “box” indica uma tela ou elemento da interface (menus, botões, seções), e as conexões demonstram como o usuário pode navegar entre eles.
 
-![Exemplo de Diagrama de Fluxo](img/diagramafluxo2.jpg)
+<img src= "https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e2-proj-int-t2-g05-click-health/blob/5715828c8c9373e6c0939ac7159cdc6da1225d5d/docs/img/fluxousuarioclickhealth.png">
 
-As referências abaixo irão auxiliá-lo na geração do artefato “Diagramas de Fluxo”.
-
-> **Links Úteis**:
-> - [Fluxograma online: seis sites para fazer gráfico sem instalar nada | Produtividade | TechTudo](https://www.techtudo.com.br/listas/2019/03/fluxograma-online-seis-sites-para-fazer-grafico-sem-instalar-nada.ghtml)
+Com esse fluxo mapeado, foi possível planejar as telas do wireframe e verificar se todas as histórias de usuário têm suporte no design de interface.
 
 ## Wireframes
 

@@ -9,6 +9,8 @@ O diagrama de classes representa graficamente a estrutura lógica do software, d
 As classes modeladas incluem elementos como Usuário, Paciente, Plano de Cuidado, Agenda, Histórico Clínico e Notificações, refletindo as principais entidades do sistema. Os relacionamentos explicitam como essas entidades interagem para viabilizar a experiência de cuidado colaborativo.
 
 <img src= "https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e2-proj-int-t2-g05-click-health/blob/89da45d34cb23d8c1643d2743da836ac8c2cede0/docs/img/Classe%20UML-%20click%20health.png">
+<img width="960" height="309" alt="diagrama_monitoramento - clickhealth" src="https://github.com/user-attachments/assets/83cf2ed6-f3ee-4922-9475-d02ae3591958" />
+
 
 ## Modelo ER (Projeto Conceitual)
 

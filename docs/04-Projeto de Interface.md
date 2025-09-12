@@ -19,7 +19,7 @@ Para estruturar a experiência do usuário, elaborou-se um diagrama de fluxo que
 
 O diagrama não representa o design visual das telas, mas sim a arquitetura das interações. Cada “box” indica uma tela ou elemento da interface (menus, botões, seções), e as conexões demonstram como o usuário pode navegar entre eles.
 
-<img src= "https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e2-proj-int-t2-g05-click-health/blob/5715828c8c9373e6c0939ac7159cdc6da1225d5d/docs/img/fluxousuarioclickhealth.png">
+<img src= "https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e2-proj-int-t2-g05-click-health/blob/ffc4a1e28a8f30aa4943fe285e85b8be76f5b816/docs/img/fluxo%20de%20usu%C3%A1rio.png">
 
 Com esse fluxo mapeado, foi possível planejar as telas do wireframe e verificar se todas as histórias de usuário têm suporte no design de interface.
 

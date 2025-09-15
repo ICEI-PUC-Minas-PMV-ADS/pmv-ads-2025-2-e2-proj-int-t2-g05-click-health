@@ -57,11 +57,8 @@ A imagem abaixo apresenta a interação das tecnologias utilizadas para o desenv
 
 ## Hospedagem
 
-A hospedagem do sistema será realizada em ambiente GitHub Pages para o protótipo frontend, permitindo acesso público direto via navegador.
-Para futuras evoluções, prevê-se a migração para plataformas com suporte a backend.
-> **Links Úteis**:
->
-> - [Website com GitHub Pages](https://pages.github.com/)
-> - [Programação colaborativa com Repl.it](https://repl.it/)
-> - [Getting Started with Heroku](https://devcenter.heroku.com/start)
-> - [Publicando Seu Site No Heroku](http://pythonclub.com.br/publicando-seu-hello-world-no-heroku.html)
+A hospedagem do sistema Click Health será realizada inicialmente em ambiente GitHub Pages, permitindo a publicação direta do protótipo frontend e o acesso público ao sistema por meio de qualquer navegador, sem necessidade de instalação local. Essa escolha garante simplicidade de implantação, custo zero e integração nativa com o repositório GitHub, facilitando o versionamento contínuo e a disponibilização de novas versões para testes e validações.
+
+Como o GitHub Pages suporta apenas aplicações estáticas, o backend nesta fase será simulado por meio do LocalStorage do navegador ou por um banco de dados em nuvem simples, adequado para prototipagem e demonstrações.
+
+Para futuras evoluções, poderá ser considerado a migração para plataformas que ofereçam suporte a aplicações com backend dinâmico, possibilitando a implementação de APIs, autenticação robusta e persistência de dados em bancos de dados relacionais ou não relacionais. Essa estratégia garante que a solução possa começar de forma ágil e enxuta, mas com potencial de escalabilidade para atender cenários reais de uso.

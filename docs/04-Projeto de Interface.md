@@ -91,7 +91,7 @@ Gerenciar Paciente
 
 
 
-Link para visualização do design no Figma:
+Link para visualização do design no Figma:<br>
 https://www.figma.com/design/Lpb9STAZ08ybVftCUv020Z/ClickHealth-Wireframe-Interativo?node-id=0-1&t=IQBMxdpx7bDmfQQG-1
 
 
@@ -115,11 +115,3 @@ Os wireframes são protótipos utilizados no design de interfaces para represent
 
 Nesta seção, é FUNDAMENTAL indicar, para cada tela/wireframe proposto, quais requisitos do projeto estão sendo contemplados por aquela tela.
  
-> **Links Úteis**:
-> - [Protótipos vs Wireframes](https://www.nngroup.com/videos/prototypes-vs-wireframes-ux-projects/)
-> - [Ferramentas de Wireframes](https://rockcontent.com/blog/wireframes/)
-> - [MarvelApp](https://marvelapp.com/developers/documentation/tutorials/)
-> - [Figma](https://www.figma.com/)
-> - [Adobe XD](https://www.adobe.com/br/products/xd.html#scroll)
-> - [Axure](https://www.axure.com/edu) (Licença Educacional)
-> - [InvisionApp](https://www.invisionapp.com/) (Licença Educacional)

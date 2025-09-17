@@ -14,14 +14,8 @@ As classes modeladas incluem elementos como Usuário, Paciente, Plano de Cuidado
 
 ## Modelo ER (Projeto Conceitual)
 
-O Modelo Entidade-Relacionamento (ER) traduz a estrutura conceitual dos dados, representando entidades (Usuário, Paciente, Exame, Medicação etc.) e seus relacionamentos (ex.: “Usuário gerencia Paciente”, “Paciente possui Exames”).
 
-Esse artefato serve de ponte entre a modelagem orientada a objetos e a modelagem de banco de dados, assegurando que os dados necessários às funcionalidades sejam corretamente estruturados.
-O Modelo ER representa através de um diagrama como as entidades (coisas, objetos) se relacionam entre si na aplicação interativa.
-
-Sugestão de ferramentas para geração deste artefato: LucidChart e Draw.io.
-
-A referência abaixo irá auxiliá-lo na geração do artefato “Modelo ER”.
+<img width="3840" height="1549" alt="Untitled diagram _ Mermaid Chart-2025-09-17-215446" src="https://github.com/user-attachments/assets/11c99a03-d6f1-4c2e-b3f7-9349320b20cb" />
 
 > - [Como fazer um diagrama entidade relacionamento | Lucidchart](https://www.lucidchart.com/pages/pt/como-fazer-um-diagrama-entidade-relacionamento)
 

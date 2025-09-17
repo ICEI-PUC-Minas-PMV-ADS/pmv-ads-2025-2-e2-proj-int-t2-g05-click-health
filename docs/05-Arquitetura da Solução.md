@@ -25,9 +25,61 @@ A referência abaixo irá auxiliá-lo na geração do artefato “Modelo ER”.
 
 > - [Como fazer um diagrama entidade relacionamento | Lucidchart](https://www.lucidchart.com/pages/pt/como-fazer-um-diagrama-entidade-relacionamento)
 
-## Projeto da Base de Dados
+# Projeto da Base de Dados - Click Health
 
-O projeto da base de dados corresponde à representação das entidades e relacionamentos identificadas no Modelo ER, no formato de tabelas, com colunas e chaves primárias/estrangeiras necessárias para representar corretamente as restrições de integridade.
+O Projeto da Base de Dados tem como finalidade converter o Modelo Entidade-Relacionamento (ER) em um Modelo Relacional, mantendo a coerência com o Diagrama de Classes elaborado anteriormente.
+Nesse processo, cada entidade identificada no modelo conceitual é descrita em forma de tabela, com a definição de colunas, chaves primárias (PK), chaves estrangeiras (FK) e restrições de integridade. Essa estrutura garante consistência entre os dados, reduz redundâncias e assegura a integridade referencial do sistema.
+
+### Tabela: **Usuario**
+| Coluna | Tipo | Restrições |
+|--------|------|-------------|
+| id_usuario | INT | PK, AUTO_INCREMENT |
+| email | VARCHAR(100) | UNIQUE, NOT NULL |
+| senha_hash | VARCHAR(255) | NOT NULL |
+| estado | VARCHAR(20) | CHECK (estado IN ('ativo','inativo')) |
+| created_at | DATETIME | DEFAULT CURRENT_TIMESTAMP |
+| updated_at | DATETIME | ON UPDATE CURRENT_TIMESTAMP |
+
+
+### Tabela: **Paciente**
+| Coluna | Tipo | Restrições |
+|--------|------|-------------|
+| id_paciente | INT | PK, AUTO_INCREMENT |
+| id_usuario | INT | FK → Usuario(id_usuario), NOT NULL |
+| condicoes_medicas | TEXT |  |
+| dados_pessoais | TEXT |  |
+
+
+### Tabela: **Cuidador**
+| Coluna | Tipo | Restrições |
+|--------|------|-------------|
+| id_cuidador | INT | PK, AUTO_INCREMENT |
+| id_usuario | INT | FK → Usuario(id_usuario), NOT NULL |
+| tipo | VARCHAR(50) | CHECK (tipo IN ('familiar','profissional','apoio')) |
+| informacoes_experiencia | TEXT |  |
+
+
+### Tabela: **HistoricoMedico**
+| Coluna | Tipo | Restrições |
+|--------|------|-------------|
+| id_historico | INT | PK, AUTO_INCREMENT |
+| id_paciente | INT | FK → Paciente(id_paciente), NOT NULL |
+| diagnosticos_passados | TEXT |  |
+| alergias | TEXT |  |
+| intervencoes | TEXT |  |
+| procedimentos | TEXT |  |
+| atualizado_em | DATETIME | DEFAULT CURRENT_TIMESTAMP |
+
+
+### Tabela: **Medicacao**
+| Coluna | Tipo | Restrições |
+|--------|------|-------------|
+| id_medicacao | INT | PK, AUTO_INCREMENT |
+| id_paciente | INT | FK → Paciente(id_paciente), NOT NULL |
+| nome | VARCHAR(100) | NOT NULL |
+| dosagem | VARCHAR(50) | NOT NULL |
+| frequencia | VARCHAR(50) |  |
+| horario_administracao | DATETIME |  |
  
 ### Tabela: **MonitoramentoSaude**
 | Coluna | Tipo | Restrições |

@@ -93,11 +93,11 @@ Os cenários representam tarefas reais que os usuários executam no sistema. Nes
 
 | **Métrica**                  | **Descrição**                                                                 |
 |-----------------------------|------------------------------------------------------------------------------|
-| ✅ Taxa de Sucesso           | % de usuários que concluíram cada tarefa com sucesso                        |
-| ⏱ Tempo por Tarefa          | Tempo médio para completar cada cenário                                     |
-| ⚠️ Número de Erros           | Cliques errados, confusões, campos ignorados                                |
-| 😊 Nível de Satisfação       | Avaliação subjetiva (Escala de 1 a 5 ou emojis) após cada tarefa            |
-| 📝 Comentários e Dificuldades| Observações qualitativas durante a execução das tarefas             
+|  Taxa de Sucesso           | % de usuários que concluíram cada tarefa com sucesso                        |
+|  Tempo por Tarefa          | Tempo médio para completar cada cenário                                     |
+|  Número de Erros           | Cliques errados, confusões, campos ignorados                                |
+|  Nível de Satisfação       | Avaliação subjetiva (Escala de 1 a 5 ou emojis) após cada tarefa            |
+|  Comentários e Dificuldades| Observações qualitativas durante a execução das tarefas             
 
 
 **Ferramentas Utilizadas** 

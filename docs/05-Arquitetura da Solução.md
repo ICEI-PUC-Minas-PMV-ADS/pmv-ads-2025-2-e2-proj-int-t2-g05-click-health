@@ -29,7 +29,68 @@ A referência abaixo irá auxiliá-lo na geração do artefato “Modelo ER”.
 
 O projeto da base de dados corresponde à representação das entidades e relacionamentos identificadas no Modelo ER, no formato de tabelas, com colunas e chaves primárias/estrangeiras necessárias para representar corretamente as restrições de integridade.
  
-Para mais informações, consulte o microfundamento "Modelagem de Dados".
+### Tabela: **MonitoramentoSaude**
+| Coluna | Tipo | Restrições |
+|--------|------|-------------|
+| id_monitoramento | INT | PK, AUTO_INCREMENT |
+| id_paciente | INT | FK → Paciente(id_paciente), NOT NULL |
+| frequencia_cardiaca | INT |  |
+| pressao_arterial | VARCHAR(20) |  |
+| temperatura | DECIMAL(4,1) |  |
+| glicose | DECIMAL(5,2) |  |
+| data_hora | DATETIME | NOT NULL |
+| id_dispositivo | INT | FK → Dispositivo(id_dispositivo) |
+
+
+### Tabela: **Dispositivo**
+| Coluna | Tipo | Restrições |
+|--------|------|-------------|
+| id_dispositivo | INT | PK, AUTO_INCREMENT |
+| tipo_dispositivo | VARCHAR(100) | NOT NULL |
+| identificacao | VARCHAR(100) | UNIQUE |
+| status_conexao | BOOLEAN | DEFAULT TRUE |
+
+
+### Tabela: **Alerta**
+| Coluna | Tipo | Restrições |
+|--------|------|-------------|
+| id_alerta | INT | PK, AUTO_INCREMENT |
+| id_paciente | INT | FK → Paciente(id_paciente), NOT NULL |
+| tipo_emergencia | VARCHAR(100) | NOT NULL |
+| data_hora | DATETIME | NOT NULL |
+| localizacao | VARCHAR(255) |  |
+| status | VARCHAR(50) | CHECK (status IN ('aberto','encerrado')) |
+
+
+### Tabela: **SessaoUsuario**
+| Coluna | Tipo | Restrições |
+|--------|------|-------------|
+| id_sessao | INT | PK, AUTO_INCREMENT |
+| id_usuario | INT | FK → Usuario(id_usuario), NOT NULL |
+| token_sessao | VARCHAR(255) | UNIQUE, NOT NULL |
+| data_inicio | DATETIME | NOT NULL |
+| data_fim | DATETIME |  |
+
+
+### Tabela: **TentativaLogin**
+| Coluna | Tipo | Restrições |
+|--------|------|-------------|
+| id_tentativa | INT | PK, AUTO_INCREMENT |
+| id_usuario | INT | FK → Usuario(id_usuario), NOT NULL |
+| data_hora | DATETIME | NOT NULL |
+| resultado | VARCHAR(20) | CHECK (resultado IN ('sucesso','falha')) |
+| ip_origem | VARCHAR(50) |  |
+
+
+### Tabela: **LogAuditoria**
+| Coluna | Tipo | Restrições |
+|--------|------|-------------|
+| id_log | INT | PK, AUTO_INCREMENT |
+| id_usuario | INT | FK → Usuario(id_usuario), NOT NULL |
+| acao | VARCHAR(100) | NOT NULL |
+| data_hora | DATETIME | NOT NULL |
+| descricao | TEXT |  |
+
 
 ## ATENÇÃO!!!
 

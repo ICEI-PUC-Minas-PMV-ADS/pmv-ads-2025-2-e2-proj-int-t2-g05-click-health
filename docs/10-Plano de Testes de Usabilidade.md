@@ -6,21 +6,30 @@ Um plano de teste de usabilidade deverá conter:
 
 ## Definição do(s) objetivo(s)
 
-Antes de iniciar os testes, é essencial definir o que se deseja avaliar na usabilidade do sistema. 
-Alguns exemplos de objetivos são:
+Os testes de usabilidade visam:
+
 - Verificar se os usuários conseguem concluir tarefas essenciais sem dificuldades.
 - Identificar barreiras na navegação e interação com o sistema.
 - Avaliar a eficiência e a satisfação do usuário ao utilizar a interface.
 - Testar a acessibilidade para diferentes perfis de usuários.
 
+---
+
 ## Seleção dos participantes
 
 Para garantir que o teste reflita o uso real do sistema, escolha participantes representativos do público-alvo.
 
+- Cuidadores experientes e iniciantes no sistema.
+- Familiares com diferentes níveis de familiaridade tecnológica.
+- Usuários com deficiência visual leve ou motora (para testes de acessibilidade).
+
 **Critérios para selecionar participantes:**
-- Perfis variados (experientes e iniciantes no sistema).
-- Diferentes níveis de familiaridade com tecnologia.
-- Pessoas com necessidades especiais (se aplicável).
+
+| Critério                         | Detalhes                                                        |
+|----------------------------------|------------------------------------------------------------------|
+| Experiência com tecnologia       | Alta, média e baixa                                              |
+| Papel do usuário no sistema      | Cuidador, familiar, administrador                               |
+| Necessidades especiais           | Pelo menos 1 participante com baixa visão ou limitação motora   |
 
 **Quantidade recomendada:**
 Mínimo: 5 participantes.

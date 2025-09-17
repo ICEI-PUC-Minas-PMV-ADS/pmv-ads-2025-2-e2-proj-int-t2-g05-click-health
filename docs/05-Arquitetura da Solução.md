@@ -91,6 +91,48 @@ O projeto da base de dados corresponde à representação das entidades e relaci
 | data_hora | DATETIME | NOT NULL |
 | descricao | TEXT |  |
 
+Comentários sobre as Tabelas - Projeto da Base de Dados
+
+
+Tabela Usuario
+A tabela Usuario concentra as informações básicas de autenticação e controle de acesso.
+- id_usuario: chave primária que identifica unicamente cada usuário.
+- email: usado para login; precisa ser único.
+- senha_hash: senha criptografada para garantir segurança.
+- estado: indica se o usuário está ativo ou inativo no sistema.
+- created_at e updated_at: permitem rastrear quando o cadastro foi feito e atualizado.
+
+
+Tabela Paciente
+A tabela Paciente representa usuários cadastrados como pacientes.
+- id_paciente: chave primária.
+- id_usuario: chave estrangeira que conecta o paciente ao usuário da tabela Usuario.
+- condicoes_medicas: histórico geral de condições médicas.
+- dados_pessoais: informações como endereço, telefone ou outros dados relevantes.
+
+
+Tabela Cuidador
+A tabela Cuidador identifica usuários que têm papel de cuidado.
+- id_cuidador: chave primária.
+- id_usuario: chave estrangeira ligada à tabela Usuario.
+- tipo: define se o cuidador é familiar, profissional ou de apoio.
+- informacoes_experiencia: registra qualificações ou experiências prévias do cuidador.
+
+
+Tabela HistoricoMedico
+Armazena informações clínicas detalhadas do paciente.
+- id_historico: chave primária.
+- id_paciente: chave estrangeira que relaciona o histórico ao paciente.
+- diagnosticos_passados, alergias, intervencoes, procedimentos: registros clínicos importantes.
+- atualizado_em: data da última atualização do histórico.
+
+
+Tabela Medicacao
+Registra os medicamentos associados ao paciente.
+- id_medicacao: chave primária.
+- id_paciente: chave estrangeira conectada ao paciente.
+- nome, dosagem e frequencia: detalhes da prescrição médica.
+- horario_administracao: horário previsto de administração do medicamento.
 
 ## ATENÇÃO!!!
 

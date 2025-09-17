@@ -186,6 +186,59 @@ Registra os medicamentos associados ao paciente.
 - nome, dosagem e frequencia: detalhes da prescrição médica.
 - horario_administracao: horário previsto de administração do medicamento.
 
+
+Tabela MonitoramentoSaude
+Guarda os dados vitais monitorados periodicamente.
+- id_monitoramento: chave primária.
+- id_paciente: chave estrangeira que liga o registro ao paciente.
+- frequencia_cardiaca, pressao_arterial, temperatura, glicose: variáveis de saúde monitoradas.
+- data_hora: momento em que a medição foi registrada.
+- id_dispositivo: chave estrangeira ligada ao dispositivo responsável pela coleta.
+
+
+Tabela Dispositivo
+Lista os equipamentos usados para monitoramento.
+- id_dispositivo: chave primária.
+- tipo_dispositivo: tipo de aparelho (pulseira, monitor de glicose etc.).
+- identificacao: código único de identificação do dispositivo.
+- status_conexao: indica se o dispositivo está ativo ou inativo.
+
+
+Tabela Alerta
+Registra situações de emergência vinculadas a pacientes.
+- id_alerta: chave primária.
+- id_paciente: chave estrangeira.
+- tipo_emergencia: descreve o tipo de ocorrência (queda, crise etc.).
+- data_hora: horário do evento.
+- localizacao: posição do paciente no momento do alerta.
+- status: indica se o alerta está em aberto ou já foi encerrado.
+
+
+Tabela SessaoUsuario
+Controla as sessões de login dos usuários.
+- id_sessao: chave primária.
+- id_usuario: chave estrangeira.
+- token_sessao: identificador único da sessão.
+- data_inicio e data_fim: marcam a duração da sessão ativa.
+
+
+Tabela TentativaLogin
+Armazena tentativas de acesso ao sistema.
+- id_tentativa: chave primária.
+- id_usuario: chave estrangeira ligada ao usuário que tentou logar.
+- data_hora: horário da tentativa.
+- resultado: se o login foi um sucesso ou falhou.
+- ip_origem: IP de onde a tentativa foi feita.
+
+
+Tabela LogAuditoria
+Registra todas as ações relevantes executadas no sistema.
+- id_log: chave primária.
+- id_usuario: chave estrangeira vinculada ao usuário responsável.
+- acao: descreve qual operação foi realizada (ex.: inclusão de paciente).
+- data_hora: momento da ação.
+- descricao: detalhes complementares do evento.
+
 ## ATENÇÃO!!!
 
 Os três artefatos — **Diagrama de Classes, Modelo ER e Projeto da Base de Dados** — devem ser desenvolvidos de forma sequencial e integrada, garantindo total coerência e compatibilidade entre eles. O diagrama de classes orienta a estrutura e o comportamento do software; o modelo ER traduz essa estrutura para o nível conceitual dos dados; e o projeto da base de dados materializa essas definições no formato físico (tabelas, colunas, chaves e restrições). A construção isolada ou desconexa desses elementos pode gerar inconsistências, dificultar a implementação e comprometer a qualidade do sistema.

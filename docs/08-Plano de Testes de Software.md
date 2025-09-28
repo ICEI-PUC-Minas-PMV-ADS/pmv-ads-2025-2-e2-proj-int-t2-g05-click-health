@@ -27,26 +27,33 @@ Por exemplo:
 
 
 
+<img width="1366" height="728" alt="Login" src="https://github.com/user-attachments/assets/6983b712-cc01-4ddf-8683-78c20eb07d7a" />
 
-# Plano de Testes de Software – Requisitos Não Funcionais
+<img width="1366" height="728" alt="cadastro" src="https://github.com/user-attachments/assets/83240ac4-2183-4506-9512-e30a4dd80bf4" />
+
+<img width="1366" height="728" alt="Pacientes" src="https://github.com/user-attachments/assets/dbf13145-aa8d-4f49-b548-7a2d376561cd" />
+
+<img width="1366" height="760" alt="novo paciente" src="https://github.com/user-attachments/assets/e3ba95f8-f94c-4acb-b93d-a12ccf67fb8e" />
+
+<img width="1366" height="728" alt="dados" src="https://github.com/user-attachments/assets/a9811b2c-dfb8-4899-931c-de04ec885b04" />
+
+<img width="1366" height="728" alt="agenda" src="https://github.com/user-attachments/assets/865c297f-8724-4707-94b6-7843445bd344" />
+
+ <img width="1366" height="728" alt="medicação" src="https://github.com/user-attachments/assets/7fb6ca04-19ef-4825-89d6-aa7c638d18b2" />
+
+<img width="1366" height="728" alt="historico" src="https://github.com/user-attachments/assets/74d95fa4-7fe9-4e2f-8800-997f38d6c888" />
+
+<img width="1366" height="728" alt="feed" src="https://github.com/user-attachments/assets/8a479e78-5ea8-4e86-96cb-dd73b0803960" />
+
+<img width="1366" height="728" alt="feedcompartilhamento" src="https://github.com/user-attachments/assets/086a8a2e-e2fd-4dca-866f-6e43f7e10189" />
+
+<img width="1366" height="728" alt="excluir paciente" src="https://github.com/user-attachments/assets/91e00ac1-fbde-428b-98ce-c6532a258e79" />
 
 
-| **Caso de Teste** | **Requisito Associado** | **Objetivo do Teste** | **Passos** | **Critério de Êxito** |
-|-------------------|--------------------------|------------------------|------------|------------------------|
-| CT-RNF-001 | RNF-001 – Segurança e Privacidade | Verificar se os dados sensíveis de saúde estão protegidos conforme a LGPD. | 1. Tentar acessar dados sem login.<br>2. Verificar criptografia dos dados em repouso e em trânsito.<br>3. Validar controle de acesso por perfil (admin, cuidador, etc). | O acesso a dados é bloqueado para usuários não autenticados.<br>Dados sensíveis estão criptografados.<br>Perfis têm permissões adequadas. |
-| CT-RNF-002 | RNF-002 – Usabilidade e Acessibilidade | Avaliar se a interface é intuitiva, acessível e fácil de usar por cuidadores sem formação técnica. | 1. Navegar sem treinamento pelas funções principais.<br>2. Avaliar contraste de cores e tamanho da fonte.<br>3. Testar uso com leitores de tela (ex: NVDA). | Usuário navega com facilidade.<br>Contraste e legibilidade atendem às diretrizes WCAG.<br>Leitor de tela lê corretamente os elementos da interface. |
-| CT-RNF-003 | RNF-003 – Disponibilidade | Verificar se o sistema mantém alta disponibilidade (24/7) e comunica manutenções com antecedência. | 1. Monitorar o uptime por 7 dias.<br>2. Verificar presença de aviso de manutenção programada.<br>3. Testar comportamento do sistema durante e após a manutenção. | O sistema mantém disponibilidade acima de 99,5%.<br>Usuários são informados previamente sobre manutenções.<br>Serviço retorna ao normal sem falhas. |
-| CT-RNF-004 | RNF-004 – Desempenho | Garantir que as funções principais tenham tempo de resposta rápido, mesmo com múltiplos usuários. | 1. Medir tempo para carregar perfil, atualizar feed e salvar novo registro.<br>2. Simular múltiplos cuidadores acessando simultaneamente. | Todas as funções críticas respondem em menos de 2 segundos.<br>O sistema não apresenta lentidão perceptível sob carga. |
-| CT-RNF-005 | RNF-005 – Escalabilidade | Verificar se o sistema suporta aumento de usuários e dados sem comprometer o desempenho. | 1. Simular crescimento gradual de usuários (ex: 100, 500, 1000).<br>2. Avaliar resposta do sistema e tempo de carregamento.<br>3. Verificar uso eficiente de recursos. | O sistema continua operando com desempenho aceitável em diferentes cargas.<br>Não ocorrem falhas ou lentidão excessiva. |
-| CT-RNF-006 | RNF-006 – Portabilidade e Facilidade de Acesso | Validar acesso ao sistema via navegador em diferentes dispositivos, sem necessidade de instalação. | 1. Acessar o sistema em diferentes navegadores (Chrome, Firefox, Safari).<br>2. Testar acesso via desktop, smartphone e tablet.<br>3. Avaliar responsividade do layout. | O sistema funciona corretamente em todos os navegadores e dispositivos testados.<br>Layout se adapta bem a diferentes telas.<br>Sem instalação adicional necessária. |
-| CT-RNF-007 | RNF-007 – Manutenibilidade e Evolutividade | Avaliar se o código-fonte é estruturado para fácil manutenção e evolução. | 1. Analisar documentação técnica e comentários no código.<br>2. Verificar modularização e separação de responsabilidades.<br>3. Identificar uso de frameworks e padrões conhecidos. | O código é modular, bem documentado e segue boas práticas.<br>Facilidade de adicionar novas funcionalidades sem afetar o sistema existente. |
-| CT-RNF-008 | RNF-008 – Confiabilidade dos Dados | Verificar integridade dos dados, controle de concorrência e confiabilidade dos registros de auditoria. | 1. Simular edição simultânea da mesma informação por dois usuários.<br>2. Verificar consistência após salvamento.<br>3. Auditar logs de alterações. | Sistema lida corretamente com conflitos de edição.<br>Dados não apresentam inconsistências.<br>Registros de auditoria são imutáveis e rastreáveis. |
-| CT-RNF-009 | RNF-009 – Backup e Recuperação de Dados | Garantir que os dados sejam salvos periodicamente e possam ser restaurados em caso de falha. | 1. Verificar política de backup (frequência, local de armazenamento).<br>2. Simular perda de dados.<br>3. Realizar restauração a partir de um backup recente. | Backups são realizados automaticamente em intervalos definidos.<br>Restauração é concluída com sucesso.<br>Dados são recuperados sem perdas ou erros. |
-
-
-
-
+**Link para visualização**
+https://www.figma.com/make/YPo0dePEQeianSUiy62teD/ClickHealth?node-id=0-1&p=f&t=iNQcjheUeWspvHSk-0&fullscreen=1 
  
+
 > **Links Úteis**:
 > - [IBM - Criação e Geração de Planos de Teste](https://www.ibm.com/developerworks/br/local/rational/criacao_geracao_planos_testes_software/index.html)
 > - [Práticas e Técnicas de Testes Ágeis](http://assiste.serpro.gov.br/serproagil/Apresenta/slides.pdf)

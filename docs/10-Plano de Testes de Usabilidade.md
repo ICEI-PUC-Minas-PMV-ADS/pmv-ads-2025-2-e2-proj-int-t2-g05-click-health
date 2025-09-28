@@ -81,13 +81,80 @@ Os cenários representam tarefas reais que os usuários executam no sistema. Nes
 
  
  **1**  Acessar "Histórico Clínico".
-**2** Registrar nova medicação e resultado de exame.
+ **2** Registrar nova medicação e resultado de exame.
 
 
 - **Critério de Sucesso:**
   - Dados salvos corretamente.
   - Informações exibidas corretamente no feed.
 
+
+  **Cenário 4**
+  
+**Objetivo:** Avaliar a eficiência e clareza da funcionalidade de exportação de dados do paciente para diferentes formatos.
+
+**Contexto:** Um cuidador precisa gerar um relatório completo de um paciente para compartilhar com um médico especialista ou para arquivamento pessoal.
+
+**Tarefas:**
+
+ **1** Fazer login.
+
+ **2** Acessar o perfil de um paciente que contenha histórico de medicações, compromissos e anotações.
+
+ **3** Selecionar a opção "Exportar Dados".
+
+ **4** Escolher o formato PDF e iniciar o download.
+
+ **5** Escolher o formato CSV e iniciar o download.
+
+ **6** Abrir os arquivos exportados e verificar se o conteúdo está completo e organizado.
+
+**Critério de Sucesso:**
+
+- Os arquivos são gerados e baixados com sucesso para os formatos PDF e CSV.
+
+- O conteúdo dos arquivos reflete todos os dados relevantes do paciente (histórico, medicações, compromissos).
+
+- A interface de exportação é intuitiva e o processo é concluído sem erros.
+
+**Cenário 5**
+
+**Objetivo:** Verificar a usabilidade e a precisão da trilha de auditoria para monitorar ações críticas do cuidador.
+
+**Contexto:** Um cuidador realiza uma alteração importante nos dados cadastrais de um paciente e precisa confirmar que essa ação foi devidamente registrada para fins de conformidade ou verificação posterior.
+
+**Tarefas:**
+
+**1** Fazer login.
+
+**2** Acessar o perfil de um paciente.
+
+**3** Editar um dado cadastral básico (ex: mudar o sobrenome ou a data de nascimento) e salvar a alteração.
+
+**4** Navegar até a área de "Trilha de Auditoria" ou "Logs de Atividade" (localizada, por exemplo, nas configurações ou em uma seção de administração).
+
+**5** Localizar o registro da alteração recém-realizada.
+
+**6** Verificar os detalhes do registro, incluindo quem fez, o que foi alterado, quando e os valores antes e depois da modificação.
+
+**Critério de Sucesso:**
+
+- A alteração nos dados do paciente é salva corretamente.
+
+- Um registro detalhado da ação aparece na trilha de auditoria.
+
+- O registro contém o nome do usuário que realizou a ação, a data/hora, o tipo de ação e os valores antigo e novo do dado modificado.
+
+- A trilha de auditoria é de fácil acesso e compreensão.
+
+
+<img width="1366" height="728" alt="dados" src="https://github.com/user-attachments/assets/eeed85c4-2f16-49c6-a3de-d05716eb0f01" />
+
+<img width="1366" height="760" alt="novo paciente" src="https://github.com/user-attachments/assets/9bb42d2d-9140-4337-8b96-f82cc2aec963" />
+
+<img width="1366" height="728" alt="feed" src="https://github.com/user-attachments/assets/90c578b6-bb4a-4c93-8ccb-b4588f72ede1" />
+
+<img width="1366" height="728" alt="dados" src="https://github.com/user-attachments/assets/f717db58-26b6-47d5-84b0-73cfc45003c5" />
 
 ## Métodos de coleta de dados
 

@@ -1,0 +1,398 @@
+
+/* ---------- Reset & base ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root{
+  --bg:#F0F2F5;
+  --surface:#FFFFFF;
+  --ink:#1F2937;          /* cinza 800 */
+  --muted:#6B7280;        /* cinza 500 */
+  --line:#E5E7EB;         /* cinza 200 */
+  --brand:#2563EB;        /* azul primário */
+  --brand-weak:#DCE8FF;   /* azul clarinho para hovers */
+  --success:#10B981;
+  --warn:#F59E0B;
+  --danger:#EF4444;
+  --radius:14px;
+  --shadow: 0 1px 2px rgba(16,24,40,.06), 0 1px 3px rgba(16,24,40,.10);
+}
+
+html, body { height: 100%; }
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* --------------------------HEADER ----------------------------- */
+header {
+    background-color: #FFFFFF;
+    height: 70px;
+    width: 100%;
+    border-bottom: 1px solid #E0E0E0;
+    display: flex;
+    align-items: center;
+    padding: 0 60px;
+}
+.header-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-left {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+}
+.header-center {
+    font-size: 16px;
+    color: #555555;
+}
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+.sino {
+    width: 24px;
+    height: 24px;
+    color: #555555;
+}
+.perfil-usuario {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.circulo-avatar {
+    width: 36px;
+    height: 36px;
+    background-color: #D8D8D8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    color: #666;
+    overflow: hidden;
+}
+.perfil-usuario span {
+    font-size: 14px;
+    color: #333333;
+}
+.header-container img { max-width: 100%; height: auto; display: block; }
+.circulo-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.header-left img { height: 65px; }
+
+/* ---------- App Shell (menu lateral + conteúdo) ---------- */
+.app-shell {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 24px;
+  padding: 24px 32px;
+}
+
+/* Menu lateral */
+.sidebar {
+  position: sticky;
+  top: 86px; /* header (70) + margem */
+  align-self: start;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 12px;
+}
+.sidebar .nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.sidebar .nav a {
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 500;
+  padding: 10px 12px;
+  border-radius: 10px;
+  display: block;
+}
+.sidebar .nav a:hover{ background: #F7F9FF; }
+.sidebar .nav a.active{
+  background: #EEF3FF;
+  color: #1D4ED8;
+}
+
+/* Conteúdo principal */
+.main {
+  min-height: calc(100vh - 70px - 48px);
+}
+
+/* ---------- Títulos, breadcrumbs e seções ---------- */
+.page-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.page-subtitle {
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+/* ---------- Cards & blocos ---------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+.card + .card { margin-top: 12px; }
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.item {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+/* ---------- Componentes de formulário ---------- */
+.label { display:block; font-weight:600; margin-bottom:8px; color:#374151; }
+.input, .select, .textarea {
+  width: 100%;
+  background: #FAFAFA;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font: inherit;
+  color: var(--ink);
+}
+.input:focus, .select:focus, .textarea:focus {
+  outline: 3px solid #E4EEFF;
+  border-color: #BFD3FF;
+  background: #FFFFFF;
+}
+.textarea { min-height: 120px; resize: vertical; }
+
+/* Botões */
+.btn {
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-primary {
+  background: var(--brand);
+  color: #fff;
+}
+.btn-primary:hover { filter: brightness(0.96); }
+.btn-ghost {
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+.btn-ghost:hover { background: #F9FAFB; }
+
+/* Pills (chips) de atalho abaixo do textarea) */
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid #BFD3FF;
+  background: #F5F9FF;
+  color: #1E40AF;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+.pill:hover { background:#EEF5FF; }
+
+/* ---------- Registro de Atividades (área superior da página) ---------- */
+.note-box {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+.note-box .textarea {
+  background: #FFFFFF;
+  border-color: var(--line);
+}
+.section-divider {
+  height: 1px;
+  background: var(--line);
+  margin: 20px 0;
+}
+
+/* Lista de “Últimos Registros” */
+.feed {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.feed-item {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+.feed-item .meta {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+/* ---------- Timeline (Histórico Clínico) ---------- */
+.timeline {
+  position: relative;
+  padding-left: 28px; /* espaço para a linha e os pontos */
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  background: #D7DFEA;
+  border-radius: 2px;
+}
+.timeline-group {
+  margin-bottom: 22px;
+}
+.timeline-date {
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #111827;
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 12px;
+}
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: 16px;
+  width: 10px;
+  height: 10px;
+  background: #3B82F6; /* ponto azul */
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px #D7DFEA; /* aro sobre a linha */
+}
+.timeline-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: var(--shadow);
+}
+.timeline-card .title {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.timeline-card .desc { color: #4B5563; }
+
+/* ---------- Modal (Novo Registro Clínico) ---------- */
+.modal-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(15, 23, 42, .35);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 50;
+}
+.modal-backdrop.open { display: flex; }
+
+.modal {
+  width: 100%;
+  max-width: 720px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(2,8,23,.18);
+  overflow: hidden;
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line);
+}
+.modal-header h3 { font-size: 22px; }
+.modal-body { padding: 20px; }
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 20px;
+  border-top: 1px solid var(--line);
+}
+
+/* Grid de formulário no modal */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 16px;
+}
+.form-grid .full { grid-column: 1 / -1; }
+
+/* Área de upload (drag & drop) */
+.dropzone {
+  border: 2px dashed #D1D5DB;
+  background: #FAFAFA;
+  border-radius: 14px;
+  padding: 22px;
+  text-align: center;
+  color: #6B7280;
+}
+.dropzone.dragover {
+  background: #F3F7FF;
+  border-color: #A7C4FF;
+}
+
+/* ---------- Avatares e ícones circulares (lista/cartões) ---------- */
+.avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: #E5E7EB; display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 700; color: #555;
+}
+
+/* ---------- Utilidades ---------- */
+.mt-8{ margin-top: 8px; } .mt-12{ margin-top:12px; } .mt-16{ margin-top:16px; }
+.mb-8{ margin-bottom: 8px; } .mb-12{ margin-bottom:12px; } .mb-16{ margin-bottom:16px; }
+
+.flex{ display:flex; } .items-center{ align-items:center; } .justify-between{ justify-content:space-between; }
+.gap-8{ gap:8px; } .gap-12{ gap:12px; } .gap-16{ gap:16px; }
+
+/* ---------- Responsividade ---------- */
+@media (max-width: 1100px){
+  .app-shell { grid-template-columns: 220px 1fr; padding: 20px; }
+}
+@media (max-width: 900px){
+  .app-shell { grid-template-columns: 1fr; }
+  .sidebar { position: relative; top: 0; }
+}
+@media (max-width: 640px){
+  header { padding: 0 20px; }
+  .modal { max-width: 94vw; }
+  .form-grid { grid-template-columns: 1fr; }
+}

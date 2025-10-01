@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Click Health • Registro de Atividades</title>
+  <!-- Fonte Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Estilo global -->
+  <link rel="stylesheet" href="./style.css" />
+  <style>.hidden{display:none!important}</style>
+</head>
+<body>
+  <!-- Header (mantém as classes e estrutura do seu CSS) -->
+  <header>
+    <div class="header-container">
+      <div class="header-left">
+        <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/googlepodcasts.svg" alt="Logo" />
+      </div>
+      <div class="header-center">Click Health</div>
+      <div class="header-right">
+        <div class="sino" aria-label="Notificações" title="Notificações">🔔</div>
+        <div class="perfil-usuario">
+          <div class="circulo-avatar" aria-hidden="true">🙂</div>
+          <span id="usernameLabel">Usuário</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-shell">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <nav class="nav">
+        <a href="#">Visão Geral</a>
+        <a href="#">Agenda</a>
+        <a href="#">Medicamentos</a>
+        <a href="#">Histórico Clínico</a>
+        <a href="#">Feed de Atividades</a>
+        <a href="#" class="active">Registro de Atividades</a>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+      <!-- Barra de Acessibilidade -->
+      <div class="card mb-12" style="display:flex;align-items:center;gap:8px;justify-content:space-between;">
+        <div class="page-subtitle">Acessibilidade</div>
+        <div class="flex items-center gap-12">
+          <div class="flex items-center gap-8">
+            <button id="fsDec" class="btn btn-ghost" type="button" title="Diminuir fonte">A−</button>
+            <span id="fsVal" class="page-subtitle">100%</span>
+            <button id="fsInc" class="btn btn-ghost" type="button" title="Aumentar fonte">A+</button>
+          </div>
+          <div class="flex items-center gap-8">
+            <label class="page-subtitle" for="zoomSel">Zoom</label>
+            <select id="zoomSel" class="select">
+              <option value="1">100%</option>
+              <option value="1.1">110%</option>
+              <option value="1.25">125%</option>
+              <option value="1.5">150%</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <h1 class="page-title">Registro de Atividades</h1>
+      <p class="page-subtitle">Anote aqui, de forma simples, o que foi feito ou observado no seu turno.</p>
+
+      <!-- Caixa de anotação livre -->
+      <section class="note-box mb-16">
+        <label class="label" for="freeText">Campo livre</label>
+        <div class="flex items-center gap-8 mb-8">
+          <textarea id="freeText" class="textarea" placeholder="Digite suas observações ou use o microfone para ditar..."></textarea>
+          <button id="btnMicFree" class="btn btn-ghost" type="button" title="Ditado por voz">🎙️ Ditado</button>
+        </div>
+
+        <!-- Atalhos (pills) -->
+        <div class="pills" role="tablist" aria-label="Tipos de registro">
+          <button class="pill" data-target="#secMeds" type="button">Medicação administrada</button>
+          <button class="pill" data-target="#secHigiene" type="button">Higiene</button>
+          <button class="pill" data-target="#secAlim" type="button">Alimentação</button>
+          <button class="pill" data-target="#secSint" type="button">Sintoma observado</button>
+        </div>
+      </section>
+
+      <!-- Seções específicas (sempre ocultas até clicar) -->
+      <section id="secMeds" class="card mb-16 hidden" aria-hidden="true">
+        <h2 class="page-title" style="font-size:22px; margin-bottom:8px;">1) Administração de Medicamentos</h2>
+        <p class="page-subtitle">Preencha de forma simples. Se não souber algo, deixe em branco.</p>
+
+        <div class="form-grid mb-16">
+          <div class="full">
+            <label class="label" for="medCount">Quantos medicamentos foram administrados?</label>
+            <input id="medCount" class="input" type="number" min="1" step="1" placeholder="Ex.: 1, 2, 3..." />
+            <small class="page-subtitle">Ao informar o número, os campos abaixo serão criados automaticamente.</small>
+          </div>
+        </div>
+
+        <!-- Lista dinâmica de medicamentos -->
+        <div id="medsRepeater" class="card-list"></div>
+
+        <!-- Datalist (medicamentos do paciente) -->
+        <datalist id="dlPatientMeds"></datalist>
+      </section>
+
+      <section id="secHigiene" class="card mb-16 hidden" aria-hidden="true">
+        <h2 class="page-title" style="font-size:22px; margin-bottom:8px;">2) Higiene e Cuidados Pessoais</h2>
+        <div class="form-grid">
+          <div class="full">
+            <span class="label">Banho</span>
+            <div class="flex gap-12 items-center">
+              <label><input type="radio" name="banho" value="realizado"> Realizado</label>
+              <label><input type="radio" name="banho" value="parcial"> Parcial</label>
+              <label class="flex items-center gap-8"><input type="radio" name="banho" value="nao"> Não realizado</label>
+              <input id="banhoMotivo" class="input hidden" placeholder="Informe o motivo" />
+            </div>
+          </div>
+
+          <div class="full">
+            <span class="label">Higiene da boca</span>
+            <div class="flex gap-12 items-center">
+              <label><input type="radio" name="higieneOral" value="realizada"> Realizada</label>
+              <label><input type="radio" name="higieneOral" value="nao"> Não realizada</label>
+              <input id="higieneMotivo" class="input hidden" placeholder="Informe o motivo" />
+            </div>
+          </div>
+
+          <div class="full">
+            <label class="label" for="eliminacao">Eliminação (urina/evacuação)</label>
+            <input id="eliminacao" class="input" placeholder="Ex.: Urina presente, evacuação ausente" />
+          </div>
+
+          <div class="full">
+            <label class="label" for="obsHigiene">Observações</label>
+            <div class="flex items-center gap-8">
+              <textarea id="obsHigiene" class="textarea" placeholder="Algum detalhe a mais?"></textarea>
+              <button data-mic="obsHigiene" class="btn btn-ghost" type="button">🎙️ Ditado</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="secAlim" class="card mb-16 hidden" aria-hidden="true">
+        <h2 class="page-title" style="font-size:22px; margin-bottom:8px;">3) Alimentação</h2>
+        <div class="form-grid">
+          <div>
+            <span class="label">Tipo de dieta</span>
+            <div class="flex gap-12 items-center">
+              <label><input type="radio" name="dieta" value="oral"> Oral</label>
+              <label><input type="radio" name="dieta" value="sonda"> Sonda</label>
+              <label><input type="radio" name="dieta" value="parenteral"> Parenteral</label>
+            </div>
+          </div>
+          <div>
+            <span class="label">Aceitação</span>
+            <div class="flex gap-12 items-center">
+              <label><input type="radio" name="aceitacao" value="completa"> Completa</label>
+              <label><input type="radio" name="aceitacao" value="parcial"> Parcial</label>
+              <label><input type="radio" name="aceitacao" value="recusa"> Recusa</label>
+            </div>
+          </div>
+          <div class="full">
+            <label class="label" for="obsAlim">Observações</label>
+            <div class="flex items-center gap-8">
+              <textarea id="obsAlim" class="textarea" placeholder="Ex.: Comeu metade do almoço, sem náuseas"></textarea>
+              <button data-mic="obsAlim" class="btn btn-ghost" type="button">🎙️ Ditado</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="secSint" class="card mb-16 hidden" aria-hidden="true">
+        <h2 class="page-title" style="font-size:22px; margin-bottom:8px;">4) Sintomas Observados</h2>
+        <div class="form-grid">
+          <div>
+            <label class="label" for="horaSint">Horário</label>
+            <input id="horaSint" class="input" type="time" />
+          </div>
+          <div>
+            <label class="label" for="temp">Temperatura (°C)</label>
+            <input id="temp" class="input" type="number" step="0.1" placeholder="Ex.: 36.8" />
+          </div>
+          <div>
+            <label class="label" for="paS">Pressão (mmHg)</label>
+            <div class="flex items-center gap-8">
+              <input id="paS" class="input" type="number" min="50" max="300" placeholder="Sistólica" />
+              <span>/</span>
+              <input id="paD" class="input" type="number" min="30" max="200" placeholder="Diastólica" />
+            </div>
+          </div>
+          <div>
+            <span class="label">Dor</span>
+            <div class="flex gap-12 items-center">
+              <label><input type="radio" name="dor" value="nao"> Não</label>
+              <label><input type="radio" name="dor" value="sim"> Sim</label>
+              <input id="dorInt" class="input" type="number" min="0" max="10" placeholder="Intensidade 0 a 10" />
+            </div>
+          </div>
+          <div>
+            <span class="label">Náusea/Vômito</span>
+            <div class="flex gap-12 items-center">
+              <label><input type="radio" name="nv" value="nao"> Não</label>
+              <label><input type="radio" name="nv" value="sim"> Sim</label>
+            </div>
+          </div>
+          <div class="full">
+            <label class="label" for="outrosSint">Outros sintomas</label>
+            <div class="flex items-center gap-8">
+              <textarea id="outrosSint" class="textarea" placeholder="Ex.: Tosse, falta de ar, tontura..."></textarea>
+              <button data-mic="outrosSint" class="btn btn-ghost" type="button">🎙️ Ditado</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ações -->
+      <div class="flex gap-12 mb-16">
+        <button id="btnSave" class="btn btn-primary" type="button">Salvar registro</button>
+        <button id="btnClear" class="btn btn-ghost" type="button">Limpar</button>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- Lista de últimos registros -->
+      <section class="mt-16">
+        <h2 class="page-title" style="font-size:24px;">Últimos Registros</h2>
+        <div id="feed" class="feed mt-12"></div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+  // ======= Util / Sessão =======
+  const currentUser = (() => {
+    try{ return JSON.parse(localStorage.getItem('ch_user')) || { id: 'user-demo', name: 'Usuário Demo' }; }
+    catch{ return { id: 'user-demo', name: 'Usuário Demo' }; }
+  })();
+  document.getElementById('usernameLabel').textContent = currentUser.name || 'Usuário';
+
+  const patientId = new URLSearchParams(location.search).get('pid') || 'paciente-demo';
+  const STORAGE_KEY = `ch_activities_${patientId}`;
+  const MEDS_KEY = `ch_patient_meds_${patientId}`;
+
+  // Carrega lista de medicamentos do paciente (mock/fallback)
+  function loadPatientMeds(){
+    let meds = [];
+    try { meds = JSON.parse(localStorage.getItem(MEDS_KEY)) || []; } catch{}
+    if(!Array.isArray(meds) || meds.length === 0){
+      meds = ['Losartana 50mg','Metformina 850mg','Dipirona 500mg/mL','Omeprazol 20mg','Paracetamol 750mg'];
+    }
+    const dl = document.getElementById('dlPatientMeds');
+    dl.innerHTML = meds.map(m => `<option value="${m}"></option>`).join('');
+  }
+  loadPatientMeds();
+
+  // ======= Acessibilidade: Fonte e Zoom =======
+  const fsVal = document.getElementById('fsVal');
+  const fsInc = document.getElementById('fsInc');
+  const fsDec = document.getElementById('fsDec');
+  const zoomSel = document.getElementById('zoomSel');
+
+  function getFS(){ return parseInt(localStorage.getItem('ch_a11y_fs')||'100',10); }
+  function setFS(v){ v = Math.min(200, Math.max(80, v)); document.body.style.fontSize = v + '%'; fsVal.textContent = v + '%'; localStorage.setItem('ch_a11y_fs', String(v)); }
+  function applyZoom(v){
+    const supported = 'zoom' in document.body.style;
+    if(supported){ document.body.style.zoom = v; }
+    else{ // fallback: aumenta a fonte proporcional
+      setFS(Math.round(v*100));
+    }
+    localStorage.setItem('ch_a11y_zoom', String(v));
+  }
+
+  setFS(getFS());
+  const savedZoom = parseFloat(localStorage.getItem('ch_a11y_zoom')||'1');
+  zoomSel.value = String(savedZoom);
+  applyZoom(savedZoom);
+
+  fsInc.onclick = () => setFS(getFS()+10);
+  fsDec.onclick = () => setFS(getFS()-10);
+  zoomSel.onchange = () => applyZoom(parseFloat(zoomSel.value));
+
+  // Polyfill para NodeList.forEach em navegadores que não suportam
+  try{ if(window.NodeList && !NodeList.prototype.forEach){ NodeList.prototype.forEach = Array.prototype.forEach; } }catch(e){}
+
+  // ======= Abrir seções via pills (sempre ocultas por padrão) =======
+  function hideAllSections(){
+    ['secMeds','secHigiene','secAlim','secSint'].forEach(id => {
+      const s = document.getElementById(id);
+      s.classList.add('hidden');
+      s.setAttribute('aria-hidden','true');
+    });
+  }
+
+  document.querySelectorAll('.pill').forEach(btn => {
+    btn.setAttribute('aria-pressed','false');
+    btn.addEventListener('click', () => {
+      const target = document.querySelector(btn.dataset.target);
+      if(!target) return;
+      // alterna apenas a seção clicada (permite múltiplas abertas)
+      const willOpen = target.classList.contains('hidden');
+      target.classList.toggle('hidden');
+      target.setAttribute('aria-hidden', String(!willOpen));
+      btn.setAttribute('aria-pressed', String(willOpen));
+      if(willOpen){
+        // se abrir Medicação e já houver número informado, gerar blocos
+        if(target.id === 'secMeds'){
+          const n = parseInt(document.getElementById('medCount').value || '0', 10);
+          if(n>0){
+            const medsRepeater = document.getElementById('medsRepeater');
+            medsRepeater.innerHTML = '';
+            for(let i=0;i<n;i++){ medsRepeater.appendChild(buildMedBlock(i+1)); }
+          }
+        }
+        const first = target.querySelector('input, select, textarea, button');
+        if(first) first.focus({ preventScroll:false });
+        target.scrollIntoView({ behavior:'smooth', block:'start' });
+      }
+    });
+  });
+
+  // ======= Ditado por voz (Web Speech API) — usa apenas resultados finais para evitar duplicação =======
+  function attachMic(button, textarea){
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if(!SR){ button.disabled = true; button.title = 'Ditado não suportado neste navegador'; return; }
+    const rec = new SR();
+    rec.lang = 'pt-BR';
+    rec.interimResults = true; // permitimos, mas só gravamos finais
+    rec.continuous = false;
+
+    let listening = false;
+    button.addEventListener('click', () => {
+      if(!listening){ rec.start(); button.textContent = '🛑 Parar'; }
+      else { rec.stop(); button.textContent = '🎙️ Ditado'; }
+      listening = !listening;
+    });
+
+    rec.onresult = (e) => {
+      let finalText = '';
+      for(let i=e.resultIndex; i<e.results.length; i++){
+        const res = e.results[i];
+        if(res.isFinal){ finalText += res[0].transcript + ' '; }
+      }
+      if(finalText){ textarea.value = (textarea.value + ' ' + finalText).trim(); }
+    };
+    rec.onend = () => { listening = false; button.textContent = '🎙️ Ditado'; };
+  }
+
+  attachMic(document.getElementById('btnMicFree'), document.getElementById('freeText'));
+  document.querySelectorAll('[data-mic]').forEach(btn => {
+    const target = document.getElementById(btn.dataset.mic);
+    if(target) attachMic(btn, target);
+  });
+
+  // ======= Dinâmica de medicamentos =======
+  const medCountEl = document.getElementById('medCount');
+  const medsRepeater = document.getElementById('medsRepeater');
+
+  medCountEl.addEventListener('input', () => {
+    const n = Math.max(0, parseInt(medCountEl.value || '0', 10));
+    medsRepeater.innerHTML = '';
+    for(let i=0; i<n; i++){
+      medsRepeater.appendChild(buildMedBlock(i+1));
+    }
+  });
+
+  function buildMedBlock(idx){
+    const wrap = document.createElement('div');
+    wrap.className = 'item';
+    wrap.innerHTML = `
+      <div class=\"form-grid\">
+        <div>
+          <label class=\"label\" for=\"medHora_${idx}\">Horário</label>
+          <input id=\"medHora_${idx}\" class=\"input\" type=\"time\" />
+        </div>
+        <div class=\"full\">
+          <label class=\"label\" for=\"medNome_${idx}\">Medicamento</label>
+          <input id=\"medNome_${idx}\" class=\"input\" list=\"dlPatientMeds\" placeholder=\"Escolha na lista ou digite o nome\" />
+        </div>
+        <div>
+          <label class=\"label\" for=\"medDose_${idx}\">Dose</label>
+          <div class=\"flex items-center gap-8\">
+            <input id=\"medDose_${idx}\" class=\"input\" type=\"number\" min=\"0\" step=\"0.1\" placeholder=\"Quantidade\" />
+            <select id=\"medUn_${idx}\" class=\"select\">
+              <option value=\"comprimidos\">comprimidos</option>
+              <option value=\"gotas\">gotas</option>
+              <option value=\"mL\">mL</option>
+              <option value=\"mg\">mg</option>
+              <option value=\"UI\">UI</option>
+              <option value=\"outro\">outro</option>
+            </select>
+          </div>
+          <input id=\"medUnOut_${idx}\" class=\"input mt-8 hidden\" placeholder=\"Qual unidade?\" />
+        </div>
+        <div class=\"full\">
+          <span class=\"label\">Via</span>
+          <div class=\"flex gap-12 items-center\">
+            <label><input type=\"radio\" name=\"medVia_${idx}\" value=\"Oral\"> Via oral</label>
+            <label><input type=\"radio\" name=\"medVia_${idx}\" value=\"SC\"> Subcutânea</label>
+            <label><input type=\"radio\" name=\"medVia_${idx}\" value=\"IM\"> Intramuscular</label>
+            <label><input type=\"radio\" name=\"medVia_${idx}\" value=\"EV\"> Endovenosa (na veia)</label>
+            <label class=\"flex items-center gap-8\"><input type=\"radio\" name=\"medVia_${idx}\" value=\"Outros\"> Outros</label>
+          </div>
+          <input id=\"medViaOut_${idx}\" class=\"input mt-8 hidden\" placeholder=\"Qual via?\" />
+        </div>
+        <div class=\"full\">
+          <label class=\"label\" for=\"medObs_${idx}\">Observações (ex.: reação, recusa, atraso)</label>
+          <div class=\"flex items-center gap-8\">
+            <textarea id=\"medObs_${idx}\" class=\"textarea\" placeholder=\"Escreva se algo diferente aconteceu...\"></textarea>
+            <button data-mic=\"medObs_${idx}\" class=\"btn btn-ghost\" type=\"button\">🎙️ Ditado</button>
+          </div>
+        </div>
+      </div>
+    `;
+    // anexar mic ao novo textarea
+    const micBtn = wrap.querySelector('[data-mic]');
+    const target = wrap.querySelector('textarea');
+    if(micBtn && target) attachMic(micBtn, target);
+    // seta horário padrão = agora
+    const hora = wrap.querySelector(`#medHora_${idx}`);
+    if(hora){
+      const now = new Date();
+      hora.value = new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit', hour12:false }).format(now);
+    }
+    // listeners: unidade "outro" e via "Outros"
+    const unSel = wrap.querySelector(`#medUn_${idx}`);
+    const unOut = wrap.querySelector(`#medUnOut_${idx}`);
+    unSel.addEventListener('change', () => {
+      if(unSel.value === 'outro'){ unOut.classList.remove('hidden'); unOut.focus(); }
+      else { unOut.classList.add('hidden'); unOut.value=''; }
+    });
+
+    wrap.querySelectorAll(`input[name="medVia_${idx}"]`).forEach(r => {
+      r.addEventListener('change', () => {
+        const viaOut = wrap.querySelector(`#medViaOut_${idx}`);
+        if(r.value === 'Outros' && r.checked){ viaOut.classList.remove('hidden'); viaOut.focus(); }
+        else if(r.checked){ viaOut.classList.add('hidden'); viaOut.value=''; }
+      });
+    });
+    return wrap;
+  }
+
+  // Motivo de banho e higiene: mostra apenas quando selecionado "não"
+  document.querySelectorAll('input[name="banho"]').forEach(r => r.addEventListener('change', () => {
+    const mot = document.getElementById('banhoMotivo');
+    if(r.value === 'nao' && r.checked){ mot.classList.remove('hidden'); mot.focus(); }
+    else if(r.checked){ mot.classList.add('hidden'); mot.value=''; }
+  }));
+  document.querySelectorAll('input[name="higieneOral"]').forEach(r => r.addEventListener('change', () => {
+    const mot = document.getElementById('higieneMotivo');
+    if(r.value === 'nao' && r.checked){ mot.classList.remove('hidden'); mot.focus(); }
+    else if(r.checked){ mot.classList.add('hidden'); mot.value=''; }
+  }));
+
+  // Pré-preenche hora em sintomas
+  (function presetHoraSint(){
+    const el = document.getElementById('horaSint');
+    if(!el) return;
+    const now = new Date();
+    el.value = new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit', hour12:false }).format(now);
+  })();
+
+  // ======= Salvar / Editar registros =======
+  let editingId = null; // quando não nulo, estamos editando
+
+  function readForm(){
+    const data = { freeText: document.getElementById('freeText').value?.trim() || '' };
+
+    // 1) Medicamentos
+    const medsSec = document.getElementById('secMeds');
+    if(!medsSec.classList.contains('hidden')){
+      const n = parseInt(document.getElementById('medCount').value || '0', 10);
+      const meds = [];
+      for(let i=1; i<=n; i++){
+        const viaSel = (document.querySelector(`input[name=medVia_${i}]:checked`)?.value) || '';
+        meds.push({
+          hora: document.getElementById(`medHora_${i}`)?.value || '',
+          nome: document.getElementById(`medNome_${i}`)?.value || '',
+          dose: document.getElementById(`medDose_${i}`)?.value || '',
+          unidade: (document.getElementById(`medUn_${i}`)?.value === 'outro' ? (document.getElementById(`medUnOut_${i}`)?.value || 'outro') : document.getElementById(`medUn_${i}`)?.value) || '',
+          via: (viaSel === 'Outros' ? (document.getElementById(`medViaOut_${i}`)?.value || 'Outros') : viaSel),
+          obs: document.getElementById(`medObs_${i}`)?.value || ''
+        });
+      }
+      if(meds.length) data.medicamentos = meds;
+    }
+
+    // 2) Higiene
+    const higSec = document.getElementById('secHigiene');
+    if(!higSec.classList.contains('hidden')){
+      data.higiene = {
+        banho: (document.querySelector('input[name="banho"]:checked')?.value) || '',
+        banhoMotivo: document.getElementById('banhoMotivo').classList.contains('hidden') ? '' : (document.getElementById('banhoMotivo').value || ''),
+        higieneOral: (document.querySelector('input[name="higieneOral"]:checked')?.value) || '',
+        higieneMotivo: document.getElementById('higieneMotivo').classList.contains('hidden') ? '' : (document.getElementById('higieneMotivo').value || ''),
+        eliminacao: document.getElementById('eliminacao').value || '',
+        observacoes: document.getElementById('obsHigiene').value || ''
+      };
+    }
+
+    // 3) Alimentação
+    const aliSec = document.getElementById('secAlim');
+    if(!aliSec.classList.contains('hidden')){
+      data.alimentacao = {
+        dieta: (document.querySelector('input[name="dieta"]:checked')?.value) || '',
+        aceitacao: (document.querySelector('input[name="aceitacao"]:checked')?.value) || '',
+        observacoes: document.getElementById('obsAlim').value || ''
+      };
+    }
+
+    // 4) Sintomas
+    const sinSec = document.getElementById('secSint');
+    if(!sinSec.classList.contains('hidden')){
+      data.sintomas = {
+        hora: document.getElementById('horaSint').value || '',
+        temperatura: document.getElementById('temp').value || '',
+        paS: document.getElementById('paS').value || '',
+        paD: document.getElementById('paD').value || '',
+        dor: (document.querySelector('input[name="dor"]:checked')?.value) || 'nao',
+        dorIntensidade: document.getElementById('dorInt').value || '',
+        nauseasVomitos: (document.querySelector('input[name="nv"]:checked')?.value) || 'nao',
+        outros: document.getElementById('outrosSint').value || ''
+      };
+    }
+
+    return data;
+  }
+
+  function saveEntry(){
+    const data = readForm();
+    const nowIso = new Date().toISOString();
+
+    const hasSections = data.medicamentos || data.higiene || data.alimentacao || data.sintomas;
+    if(!hasSections && !data.freeText){
+      alert('Preencha o campo livre ou selecione uma das opções (Medicação, Higiene, Alimentação, Sintomas).');
+      return;
+    }
+
+    const store = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    if(editingId){
+      const idx = store.findIndex(x => x.id === editingId);
+      if(idx >= 0){
+        if(store[idx].ownerId !== currentUser.id){
+          alert('Apenas quem registrou pode editar.');
+          return;
+        }
+        store[idx] = { ...store[idx], data, updatedAt: nowIso };
+      }
+    } else {
+      const entry = {
+        id: 'act_' + Math.random().toString(36).slice(2,9),
+        patientId,
+        ownerId: currentUser.id,
+        ownerName: currentUser.name,
+        createdAt: nowIso,
+        data
+      };
+      store.unshift(entry);
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+    editingId = null;
+    renderFeed();
+    clearForm();
+  }
+
+  document.getElementById('btnSave').addEventListener('click', saveEntry);
+  document.getElementById('btnClear').addEventListener('click', () => { editingId = null; clearForm(); });
+
+  function clearForm(){
+    document.getElementById('freeText').value = '';
+    hideAllSections();
+    document.getElementById('medCount').value = '';
+    medsRepeater.innerHTML = '';
+    ['banho','higieneOral','dieta','aceitacao','dor','nv'].forEach(name => {
+      document.querySelectorAll(`input[name="${name}"]`).forEach(i => i.checked = false);
+    });
+    ['banhoMotivo','higieneMotivo','eliminacao','obsHigiene','obsAlim','horaSint','temp','paS','paD','dorInt','outrosSint']
+      .forEach(id => { const el = document.getElementById(id); if(el){ el.value = ''; el.classList.add('hidden'); } });
+    // reativa hora
+    (function presetHoraSint(){
+      const el = document.getElementById('horaSint');
+      if(!el) return;
+      const now = new Date();
+      el.value = new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit', hour12:false }).format(now);
+    })();
+  }
+
+  // ======= Render de feed (mais recente primeiro) =======
+  function renderFeed(){
+    const feed = document.getElementById('feed');
+    let store = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    store.sort((a,b) => new Date(b.updatedAt || b.createdAt) - new Date(a.updatedAt || a.createdAt));
+    if(store.length === 0){ feed.innerHTML = '<div class="page-subtitle">Sem registros ainda.</div>'; return; }
+
+    feed.innerHTML = store.map(item => {
+      const when = new Date(item.updatedAt || item.createdAt);
+      const br = when.toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit', year:'numeric'}) + ' ' +
+                 when.toLocaleTimeString('pt-BR', { hour:'2-digit', minute:'2-digit'});
+      const hasMeds = !!item.data.medicamentos;
+      const hasHig = !!item.data.higiene;
+      const hasAli = !!item.data.alimentacao;
+      const hasSin = !!item.data.sintomas;
+      const tags = [hasMeds && 'Medicação', hasHig && 'Higiene', hasAli && 'Alimentação', hasSin && 'Sintomas']
+                    .filter(Boolean).join(' · ');
+      const canEdit = item.ownerId === currentUser.id;
+      const edited = item.updatedAt ? ' (editado)' : '';
+
+      return `
+        <article class="feed-item">
+          <div class="flex justify-between items-center">
+            <div><strong>${item.ownerName}</strong> · <span class="page-subtitle">${br}${edited}</span></div>
+            <div class="page-subtitle">${tags || 'Anotação livre'}</div>
+          </div>
+          ${item.data.freeText ? `<p class="mt-8">${escapeHtml(item.data.freeText)}</p>` : ''}
+          ${hasMeds ? renderMedsSummary(item.data.medicamentos) : ''}
+          ${hasHig ? renderHigSummary(item.data.higiene) : ''}
+          ${hasAli ? renderAliSummary(item.data.alimentacao) : ''}
+          ${hasSin ? renderSinSummary(item.data.sintomas) : ''}
+          ${canEdit ? `<div class="mt-12"><button class="btn btn-ghost" data-edit="${item.id}">Editar</button></div>` : ''}
+        </article>
+      `;
+    }).join('');
+
+    // bind edit
+    feed.querySelectorAll('[data-edit]').forEach(btn => {
+      btn.addEventListener('click', () => startEdit(btn.dataset.edit));
+    });
+  }
+
+  function escapeHtml(str){ return (str || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[m])); }
+
+  function renderMedsSummary(meds){
+    const lines = meds.map(m => `${m.hora || '--:--'} · ${escapeHtml(m.nome || 'Medicamento')} · ${m.dose || '?'} ${m.unidade || ''} · ${m.via || ''}`);
+    return `<div class="item mt-8">${lines.map(l => `<div>${l}</div>`).join('')}</div>`;
+  }
+  function renderHigSummary(h){
+    const b = h.banho ? `Banho: ${h.banho}${h.banho==='nao' && h.banhoMotivo? ' (motivo: '+escapeHtml(h.banhoMotivo)+')':''}` : '';
+    const ho = h.higieneOral ? `Higiene oral: ${h.higieneOral}${h.higieneOral==='nao' && h.higieneMotivo? ' (motivo: '+escapeHtml(h.higieneMotivo)+')':''}` : '';
+    const o = h.observacoes ? `<div>Obs.: ${escapeHtml(h.observacoes)}</div>` : '';
+    return `<div class="item mt-8">${[b, ho, `Eliminação: ${escapeHtml(h.eliminacao||'')}`].filter(Boolean).map(x=>`<div>${x}</div>`).join('')}${o}</div>`;
+  }
+  function renderAliSummary(a){
+    return `<div class="item mt-8">Dieta: ${a.dieta||''} · Aceitação: ${a.aceitacao||''}${a.observacoes?` · Obs.: ${escapeHtml(a.observacoes)}`:''}</div>`;
+  }
+  function renderSinSummary(s){
+    const pa = (s.paS||s.paD) ? ` · PA: ${s.paS||'?'} / ${s.paD||'?'} mmHg` : '';
+    const dor = s.dor==='sim' ? ` · Dor: sim (int. ${s.dorIntensidade||'?'})` : ' · Dor: não';
+    const nv = s.nauseasVomitos==='sim'? ' · Náusea/Vômito: sim' : ' · Náusea/Vômito: não';
+    const outros = s.outros ? ` · ${escapeHtml(s.outros)}` : '';
+    return `<div class="item mt-8">${s.hora||'--:--'} · Temp.: ${s.temperatura||'?'}°C${pa}${dor}${nv}${outros}</div>`;
+  }
+
+  function startEdit(id){
+    const store = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    const it = store.find(x => x.id === id);
+    if(!it) return;
+    if(it.ownerId !== currentUser.id){ alert('Apenas quem registrou pode editar.'); return; }
+
+    editingId = id;
+
+    document.getElementById('freeText').value = it.data.freeText || '';
+
+    hideAllSections();
+
+    if(it.data.medicamentos){
+      const sec = document.getElementById('secMeds');
+      sec.classList.remove('hidden'); sec.setAttribute('aria-hidden','false');
+      document.getElementById('medCount').value = it.data.medicamentos.length;
+      medsRepeater.innerHTML = '';
+      it.data.medicamentos.forEach((m, idx) => {
+        const block = buildMedBlock(idx+1);
+        medsRepeater.appendChild(block);
+        document.getElementById(`medHora_${idx+1}`).value = m.hora || '';
+        document.getElementById(`medNome_${idx+1}`).value = m.nome || '';
+        document.getElementById(`medDose_${idx+1}`).value = m.dose || '';
+        document.getElementById(`medUn_${idx+1}`).value = (['comprimidos','gotas','mL','mg','UI'].includes(m.unidade) ? m.unidade : 'outro');
+        if(document.getElementById(`medUn_${idx+1}`).value === 'outro'){
+          const el = document.getElementById(`medUnOut_${idx+1}`); el.classList.remove('hidden'); el.value = m.unidade || '';
+        }
+        const via = m.via || '';
+        const r = block.querySelector(`input[type=radio][name=medVia_${idx+1}][value="${via}"]`);
+        if(r) r.checked = true; else {
+          const rOut = block.querySelector(`input[type=radio][name=medVia_${idx+1}][value="Outros"]`);
+          if(rOut){ rOut.checked = true; const el = document.getElementById(`medViaOut_${idx+1}`); el.classList.remove('hidden'); el.value = via; }
+        }
+        document.getElementById(`medObs_${idx+1}`).value = m.obs || '';
+      });
+    }
+
+    if(it.data.higiene){
+      const sec = document.getElementById('secHigiene');
+      sec.classList.remove('hidden'); sec.setAttribute('aria-hidden','false');
+      const b = it.data.higiene;
+      if(b.banho){ const r = document.querySelector(`input[name=banho][value=${b.banho}]`); if(r) r.checked = true; }
+      if(b.banho === 'nao'){ const el = document.getElementById('banhoMotivo'); el.classList.remove('hidden'); el.value = b.banhoMotivo || ''; }
+      if(b.higieneOral){ const r2 = document.querySelector(`input[name=higieneOral][value=${b.higieneOral}]`); if(r2) r2.checked = true; }
+      if(b.higieneOral === 'nao'){ const el = document.getElementById('higieneMotivo'); el.classList.remove('hidden'); el.value = b.higieneMotivo || ''; }
+      document.getElementById('eliminacao').value = b.eliminacao || '';
+      document.getElementById('obsHigiene').value = b.observacoes || '';
+    }
+
+    if(it.data.alimentacao){
+      const sec = document.getElementById('secAlim');
+      sec.classList.remove('hidden'); sec.setAttribute('aria-hidden','false');
+      const a = it.data.alimentacao;
+      if(a.dieta){ const r = document.querySelector(`input[name=dieta][value=${a.dieta}]`); if(r) r.checked = true; }
+      if(a.aceitacao){ const r2 = document.querySelector(`input[name=aceitacao][value=${a.aceitacao}]`); if(r2) r2.checked = true; }
+      document.getElementById('obsAlim').value = a.observacoes || '';
+    }
+
+    if(it.data.sintomas){
+      const sec = document.getElementById('secSint');
+      sec.classList.remove('hidden'); sec.setAttribute('aria-hidden','false');
+      const s = it.data.sintomas;
+      document.getElementById('horaSint').value = s.hora || '';
+      document.getElementById('temp').value = s.temperatura || '';
+      document.getElementById('paS').value = s.paS || '';
+      document.getElementById('paD').value = s.paD || '';
+      if(s.dor){ const r = document.querySelector(`input[name=dor][value=${s.dor}]`); if(r) r.checked = true; }
+      document.getElementById('dorInt').value = s.dorIntensidade || '';
+      if(s.nauseasVomitos){ const r2 = document.querySelector(`input[name=nv][value=${s.nauseasVomitos}]`); if(r2) r2.checked = true; }
+      document.getElementById('outrosSint').value = s.outros || '';
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Inicializa: garante tudo oculto até escolha do usuário e carrega feed
+  hideAllSections();
+  renderFeed();
+  </script>
+</body>
+</html>

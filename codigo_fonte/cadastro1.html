@@ -1,0 +1,328 @@
+<!--
+  cadastro1.html
+  Tela: Criar Conta (Click Health)
+  Objetivo:
+    - Página centrada, sem barra de rolagem;
+    - Uploader de avatar (círculo) com preview, remover e drag&drop;
+    - Campos: Nome, E-mail, Senha, Confirmar;
+    - Botão "Cadastrar" e link para Login.
+
+  Observações:
+    - Este arquivo é "single-file" (CSS e JS inline) para facilitar a apresentação.
+    - Após a apresentação, mova o CSS para /css/ e o JS para /js/ se preferir.
+-->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <!-- Metas básicas e responsividade -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Click Health — Criar Conta</title>
+
+  <!-- Fonte Inter (Design System) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       1) Tema & Reset — definimos variáveis e removemos rolagens
+       ============================================================ */
+    :root{
+      --bg:#E9EEF6; --text:#111827; --muted:#6B7280;
+      --primary:#4A90E2; --danger:#EF4444;
+      --shadow:0 10px 25px rgba(0,0,0,.05);
+    }
+    *{ box-sizing:border-box }
+    html, body { height:100%; width:100% }
+    body{
+      margin:0; font-family:Inter, sans-serif; color:var(--text); background:var(--bg);
+      overflow:hidden; /* sem barra de rolagem para a apresentação */
+      overscroll-behavior:none;
+    }
+
+    /* ============================================================
+       2) Layout básico — centraliza tudo vertical/horizontal
+       ============================================================ */
+    .container{
+      min-height:100svh; /* considera barra do navegador no mobile */
+      display:flex; align-items:center; justify-content:center;
+      padding:16px;
+    }
+    .card{
+      width:min(100%, 420px);
+      background:#fff; border-radius:12px; box-shadow:var(--shadow);
+      padding:24px; text-align:center;
+    }
+
+    /* Logo e título */
+    .logo{ width:88px;height:88px; margin:0 auto 12px; display:block }
+    h1{ margin:0 0 12px; font:700 32px/1 Inter, sans-serif; color:#333 }
+
+    /* ============================================================
+       3) Uploader de Avatar — círculo com preview/remover/drag&drop
+       ============================================================ */
+    .avatar-uploader-wrap{ display:flex; justify-content:center; margin-bottom:16px }
+    .avatar-uploader{
+      width:100px; height:100px; border-radius:999px;
+      border:1px dashed #CCC; background:#E8E8E8;
+      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+      color:#666; text-align:center; user-select:none; position:relative; overflow:hidden; cursor:pointer;
+    }
+    .avatar-uploader svg{ width:18px; height:18px }
+    .avatar-uploader span{ font:400 12px/1 Inter, sans-serif; white-space:nowrap }
+    /* Destaque quando arrasta um arquivo por cima */
+    .avatar-uploader.dragover{ border-color:#4A90E2; background:#E6F0FB }
+    /* Preview recortado no círculo */
+    .avatar-preview{
+      position:absolute; inset:0; width:100%; height:100%;
+      object-fit:cover; border-radius:50%; display:none;
+    }
+    /* Esconde ícone/texto quando há imagem */
+    .avatar-uploader.has-image svg, .avatar-uploader.has-image span{ display:none }
+    .avatar-uploader.has-image .avatar-preview{ display:block }
+    /* Botão “×” de remover (aparece só com imagem) */
+    .avatar-remove{
+      position:absolute; top:-6px; right:-6px; width:24px; height:24px;
+      border-radius:999px; border:1px solid #E5E7EB; background:#fff;
+      box-shadow:0 4px 10px rgba(0,0,0,.12);
+      color:#B91C1C; font-weight:700; display:none; align-items:center; justify-content:center;
+    }
+    .avatar-uploader.has-image .avatar-remove{ display:flex }
+    .avatar-remove:hover{ background:#FEE2E2 }
+    .avatar-remove:focus-visible{ outline:2px solid #FECACA; outline-offset:2px }
+
+    /* ============================================================
+       4) Formulário — campos e botão
+       ============================================================ */
+    .field{ margin-bottom:12px; text-align:left }
+    .field label{ display:block; margin:0 0 6px; font:400 14px/1 Inter, sans-serif }
+    .field input{
+      width:100%; height:42px; padding:10px 14px;
+      background:#F8F8F8; border:1px solid #CCC; border-radius:10px;
+      font:400 14px/1 Inter, sans-serif; outline:none;
+    }
+    .field input:focus{ border-color:var(--primary); box-shadow:0 0 0 3px rgba(74,144,226,.22) }
+
+    .btn{
+      width:100%; height:48px; display:flex; align-items:center; justify-content:center;
+      border:none; border-radius:12px; background:var(--primary); color:#fff;
+      font:700 16px/1 Inter, sans-serif; cursor:pointer; transition:.2s;
+    }
+    .btn:hover{ filter:brightness(.95) }
+
+    .help{ margin-top:12px; color:#4A90E2; text-align:center; font:400 14px/1 Inter, sans-serif }
+    .help a{ color:#4A90E2; font-weight:700; text-decoration:none }
+
+    /* ============================================================
+       5) Compactação por altura — garante que caiba sem scroll
+       ============================================================ */
+    @media (max-height: 740px){
+      .card{ padding:16px }
+      .logo{ width:72px;height:72px;margin-bottom:8px }
+      h1{ font-size:26px;margin-bottom:8px }
+      .field input{ height:38px; padding:8px 12px }
+      .btn{ height:44px }
+      .help{ margin-top:10px }
+    }
+    @media (max-height: 640px){
+      .card{ padding:14px }
+      .logo{ width:64px;height:64px;margin-bottom:6px }
+      h1{ font-size:24px }
+      .avatar-uploader{ width:90px;height:90px }
+      .avatar-uploader svg{ width:16px;height:16px }
+      .avatar-uploader span{ font-size:11px }
+      .btn{ height:40px }
+      .help{ margin-top:8px }
+    }
+    @media (max-height: 560px){
+      .card{ transform:scale(.94); transform-origin:center top }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <!-- Logo do projeto (ajuste o caminho se necessário) -->
+      <img src="images/clickhealth-logo.png" alt="Logo Click Health" class="logo" />
+      <!-- Título principal -->
+      <h1>Crie sua Conta</h1>
+
+      <!-- ========================================================
+           Uploader de Avatar — HTML (círculo clicável + input file)
+           ======================================================== -->
+      <div id="cadastro1-avatar" class="avatar-uploader-wrap">
+        <div class="avatar-uploader" role="button" tabindex="0" aria-label="Adicionar foto">
+          <!-- Ícone de câmera (opcional) -->
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3l2-3h8l2 3h3a2 2 0 0 1 2 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+          <span>Adicionar foto</span>
+          <img class="avatar-preview" alt="Foto selecionada" />
+          <button type="button" class="avatar-remove" aria-label="Remover foto">×</button>
+        </div>
+        <!-- Input de arquivo (fica oculto e é disparado por clique/teclado no círculo) -->
+        <input type="file" class="avatar-input"
+               accept="image/jpeg,image/png,image/webp,image/*"
+               capture="environment" hidden />
+      </div>
+
+      <!-- Formulário de cadastro -->
+      <form>
+        <div class="field">
+          <label for="name">Nome Completo</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="field">
+          <label for="password">Senha</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <div class="field">
+          <label for="confirm">Confirmar Senha</label>
+          <input type="password" id="confirm" name="confirm" required />
+        </div>
+        <button type="submit" class="btn">Cadastrar</button>
+      </form>
+
+      <!-- Link para login (ajuste o href para o nome real da sua página de login) -->
+      <p class="help">Já tem uma conta? <a href="./login.html">Entre</a></p>
+    </div>
+  </div>
+
+  <script>
+    /* ============================================================
+       JS — Uploader de Avatar (com comentários didáticos)
+       Como funciona:
+         - Clique/Enter/Espaço no círculo → abre seletor de arquivo;
+         - Validação de tipo (JPG/PNG/WEBP) e tamanho (10MB);
+         - Preview recortado no círculo (DataURL);
+         - Drag & drop com destaque visual;
+         - Botão “×” remove a foto e limpa o input.
+       ============================================================ */
+
+    // Captura o wrapper do componente (pode haver mais de um na página)
+    const wrap = document.getElementById('cadastro1-avatar');
+    const ui = wrap.querySelector('.avatar-uploader');
+    const input = wrap.querySelector('.avatar-input');
+    const preview = wrap.querySelector('.avatar-preview');
+    const removeBtn = wrap.querySelector('.avatar-remove');
+
+    // Configurações reusáveis
+    const ACCEPT = ['image/jpeg','image/png','image/webp']; // formatos suportados
+    const MAX_MB = 10;
+    const MAX_BYTES = MAX_MB * 1024 * 1024;
+
+    // Abre o seletor nativo
+    function openPicker(){ input && input.click(); }
+
+    // Lê e valida o arquivo escolhido
+    function handleFile(file){
+      if(!file) return;
+      if(ACCEPT.length && !ACCEPT.includes(file.type)){
+        alert('Formato não suportado. Use JPG, PNG ou WEBP.');
+        return;
+      }
+      if(file.size > MAX_BYTES){
+        alert(`Arquivo muito grande. Limite: ${MAX_MB} MB.`);
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        preview.src = e.target.result;  // DataURL
+        ui.classList.add('has-image');  // troca para o estado "com imagem"
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Acessibilidade: teclado (Enter/Espaço)
+    ui.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault(); openPicker();
+      }
+    });
+
+    // Clique no círculo abre o seletor (exceto se clicar no “×”)
+    ui.addEventListener('click', (ev)=>{
+      if(ev.target.closest('.avatar-remove')) return; // não reabrir ao clicar no "×"
+      openPicker();
+    });
+
+    // Input file: quando selecionar, carrega
+    input.addEventListener('change', ()=>{
+      handleFile(input.files && input.files[0]);
+    });
+
+    // Drag & drop: impede comportamento padrão e destaca área
+    const prevent = (e)=>{ e.preventDefault(); e.stopPropagation(); };
+    ['dragenter','dragover'].forEach(evt => ui.addEventListener(evt, e => { prevent(e); ui.classList.add('dragover'); }));
+    ['dragleave','drop'].forEach(evt => ui.addEventListener(evt, e => { prevent(e); ui.classList.remove('dragover'); }));
+    ui.addEventListener('drop', e => { const f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]; handleFile(f); });
+
+    // Remover foto com confirmação
+    removeBtn.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      if(confirm('Remover a foto?')){
+        ui.classList.remove('has-image'); preview.removeAttribute('src'); input.value = '';
+      }
+    });
+  </script>
+  <script>
+    /**
+     * Validação nativa em PT-BR para inputs/textarea/select.
+     * Usa data-label (ou <label> ou name) para montar mensagens amigáveis.
+     */
+    function setupPtValidation(scope = document) {
+      const controls = scope.querySelectorAll('input, textarea, select');
+    
+      controls.forEach((el) => {
+        // Descobre um nome amigável para o campo
+        const label =
+          el.dataset.label ||
+          (el.labels && el.labels[0] && el.labels[0].innerText.trim()) ||
+          el.getAttribute('aria-label') ||
+          el.name ||
+          'Este campo';
+    
+        // Limpa mensagens customizadas ao digitar
+        el.addEventListener('input', () => el.setCustomValidity(''));
+    
+        // Intercepta a validação nativa para aplicar mensagens em PT-BR
+        el.addEventListener('invalid', (e) => {
+          e.preventDefault(); // evita a mensagem padrão em inglês
+          let msg = '';
+    
+          if (el.validity.valueMissing) {
+            msg = `${label} é obrigatório(a).`;
+          } else if (el.validity.typeMismatch && el.type === 'email') {
+            msg = `Digite um e-mail válido.`;
+          } else if (el.validity.tooShort) {
+            msg = `${label} deve ter ao menos ${el.minLength} caracteres.`;
+          } else if (el.validity.patternMismatch) {
+            msg = `${label} está em um formato inválido.`;
+          } else if (el.validity.rangeUnderflow || el.validity.rangeOverflow) {
+            msg = `${label} está fora do intervalo permitido.`;
+          } else if (el.validity.stepMismatch) {
+            msg = `${label} não respeita o passo permitido.`;
+          } else if (el.validity.badInput) {
+            msg = `${label} possui um valor inválido.`;
+          }
+    
+          el.setCustomValidity(msg);
+          el.reportValidity(); // mostra o balão nativo do browser
+        });
+      });
+    }
+    
+    // Inicializa quando o DOM estiver pronto
+    document.addEventListener('DOMContentLoaded', () => {
+      setupPtValidation(document);
+    });
+    </script>
+    
+</body>
+</html>

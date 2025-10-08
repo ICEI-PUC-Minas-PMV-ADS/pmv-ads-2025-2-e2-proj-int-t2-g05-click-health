@@ -396,3 +396,70 @@ header {
   .modal { max-width: 94vw; }
   .form-grid { grid-template-columns: 1fr; }
 }
+
+/* ====== Card da página de Registro Clínico ====== */
+:root{
+  --bg:#f7f7f8; --card:#fff; --ink:#111827; --muted:#6b7280;
+  --accent:#2563eb; --line:#e5e7eb; --focus:#3b82f6;
+  --radius:12px; --pad:16px; --shadow:0 10px 20px rgba(0,0,0,.06);
+  --font: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: 16px;
+}
+html,body{background:var(--bg); color:var(--ink); font-family:var(--font)}
+.page-card{max-width:980px;margin:24px auto;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow)}
+.header{display:flex;justify-content:space-between;align-items:center;padding:20px;border-bottom:1px solid var(--line)}
+.title-wrap{display:flex;align-items:center;gap:12px}
+.title-wrap img{height:44px}
+.header h1{margin:0;font-size:34px}
+.a11y-tools{display:flex;gap:8px;align-items:center}
+.a11y-tools button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;cursor:pointer}
+.a11y-tools .toggle{display:flex;gap:6px;align-items:center;font-size:14px}
+
+main{padding:20px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{margin-bottom:16px}
+.label-row{display:flex;justify-content:space-between;align-items:center}
+.muted{color:var(--muted);font-size:14px}
+
+label{display:block;font-weight:600;margin-bottom:6px}
+input, select, textarea{
+  width:100%; padding:12px 14px; border:1px solid var(--line);
+  border-radius:10px; background:#fafafa; outline:none;
+}
+input:focus, select:focus, textarea:focus{border-color:var(--focus); box-shadow:0 0 0 3px rgba(59,130,246,.2)}
+
+.dictate button{border:1px solid var(--line);background:#fff;border-radius:20px;padding:6px 12px;cursor:pointer}
+
+.dropzone{
+  border:2px dashed #d6d6dc; border-radius:12px; padding:22px; text-align:center; background:#fcfcfd;
+}
+.dropzone.drag{background:#eef2ff;border-color:#a5b4fc}
+.files{list-style:none;margin:8px 0 0;padding:0}
+.files li{padding:8px 0;border-bottom:1px dashed var(--line);font-size:14px}
+
+.actions{display:flex;gap:10px;align-items:center}
+.primary{
+  background:var(--accent); color:#fff; border:none; padding:12px 18px;
+  border-radius:10px; cursor:pointer; font-weight:600;
+}
+.ghost{background:transparent;border:1px solid var(--line);padding:12px 18px;border-radius:10px;cursor:pointer}
+:focus-visible{outline:3px solid var(--focus); outline-offset:2px}
+
+/* Alto contraste */
+.hc body{background:#000;color:#fff}
+.hc .page-card{background:#000}
+.hc input, .hc select, .hc textarea{background:#111;color:#fff;border-color:#666}
+.hc .dropzone{background:#111;border-color:#666}
+
+:root { --ui-scale: 1; }
+.page-card { transform: scale(var(--ui-scale)); transform-origin: top center; }
+
+/* utilidades visuais/grades */
+.hide{display:none!important}
+.conditional{margin:10px 0 6px; padding:14px; border:1px dashed var(--line); border-radius:10px; background:#fafafa}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.radio-row{display:flex;gap:12px;align-items:center}
+
+.lab-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 10px; }
+.lab-row { padding: 12px; border: 1px dashed var(--line); border-radius: 10px; background: #fafafa; }
+.chip { border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 8px 12px; cursor: pointer; }

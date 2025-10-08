@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Histórico Clínico</title>
+
+  <!-- seu CSS global -->
+  <link rel="stylesheet" href="./style.css?v=20251008" />
+
+  <!-- estilos específicos desta página (leve, pode mover para style.css) -->
+  <style>
+    :root{ --side: 240px; }
+    body{ background:#f5f6f8; }
+    .appbar{
+      display:flex; align-items:center; gap:10px;
+      height:56px; padding:0 20px; background:#fff; border-bottom:1px solid #e5e7eb;
+    }
+    .brand{ font-weight:700; letter-spacing:.2px; }
+    .brand span{ color:#2e7a69; }
+
+    .layout{ display:grid; grid-template-columns: var(--side) 1fr; }
+    .sidebar{
+      background:#ffffff; border-right:1px solid #e5e7eb; min-height:calc(100vh - 56px);
+      padding:14px;
+    }
+    .nav{ list-style:none; margin:8px 0 0; padding:0; display:flex; flex-direction:column; gap:6px; }
+    .nav a{
+      display:block; padding:10px 12px; border-radius:10px; color:#111827; text-decoration:none;
+    }
+    .nav a.active{ background:#e9f2ff; color:#1d4ed8; font-weight:600; }
+    .content{ padding:18px; }
+    .patient-card{
+      display:flex; align-items:center; gap:12px; background:#fff; border:1px solid #e5e7eb;
+      border-radius:12px; padding:14px 16px; margin-bottom:14px;
+    }
+    .avatar{ width:48px; height:48px; background:#d1d5db; border-radius:999px; flex:none; }
+    .page-head{ display:flex; justify-content:space-between; align-items:flex-end; margin:12px 0 18px; }
+    .page-head h2{ margin:0; font-size:28px; }
+    .primary{ background:#2563eb; color:#fff; border:none; padding:10px 14px; border-radius:10px; cursor:pointer; }
+    .ghost{ background:#fff; border:1px solid #e5e7eb; padding:10px 14px; border-radius:10px; cursor:pointer; }
+
+    /* timeline */
+    .timeline{ position:relative; padding-left:28px; }
+    .timeline::before{
+      content:""; position:absolute; left:10px; top:6px; bottom:6px; width:4px; background:#e5e7eb; border-radius:4px;
+    }
+    .date-group{ margin-bottom:18px; }
+    .date-label{ font-weight:600; color:#6b7280; margin:14px 0 10px 0; display:flex; align-items:center; gap:8px; }
+    .date-label::before{
+      content:""; width:12px; height:12px; background:#3b82f6; border-radius:999px; box-shadow:0 0 0 4px #e8f0ff;
+    }
+
+    .entry{ position:relative; margin:10px 0 14px; }
+    .dot{
+      position:absolute; left:-18px; top:18px; width:12px; height:12px; border-radius:999px; background:#3b82f6;
+      box-shadow:0 0 0 4px #e8f0ff;
+    }
+    .dot.green{ background:#10b981; box-shadow:0 0 0 4px #def7ec; }
+    .card{
+      background:#fff; border:1px solid #e5e7eb; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,.04);
+      padding:14px 16px;
+    }
+    .title-row{ display:flex; justify-content:space-between; align-items:center; gap:10px; }
+    .title{ font-weight:700; }
+    .meta{ color:#6b7280; font-size:14px; }
+    .body{ margin-top:8px; color:#374151; white-space:pre-line; }
+    .foot{ margin-top:10px; display:flex; align-items:center; gap:10px; color:#6b7280; font-size:14px; }
+    .pill{ display:inline-flex; align-items:center; gap:6px; padding:4px 8px; border-radius:999px; background:#f3f4f6; font-size:12px; }
+    .actions{ margin-left:auto; display:flex; gap:8px; }
+
+    /* responsivo */
+    @media (max-width: 900px){
+      :root{ --side: 0px; }
+      .layout{ grid-template-columns: 1fr; }
+      .sidebar{ display:none; }
+      .title-row{ flex-direction:column; align-items:flex-start; }
+      .actions{ margin-left:0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- barra superior -->
+  <div class="appbar">
+    <img src="./images/clickhealth-logo.png" alt="" style="height:32px" />
+    <div class="brand">Click <span>Health</span></div>
+  </div>
+
+  <div class="layout">
+    <!-- navegação lateral -->
+    <aside class="sidebar" aria-label="Navegação do paciente">
+      <div style="padding:8px 10px; font-weight:700; color:#374151;">Menu</div>
+      <ul class="nav">
+        <li><a href="#" aria-disabled="true">Visão Geral</a></li>
+        <li><a href="#" aria-disabled="true">Agenda</a></li>
+        <li><a href="#" aria-disabled="true">Medicamentos</a></li>
+        <li><a class="active" href="./historicoclinico.html">Histórico Clínico</a></li>
+        <li><a href="#" aria-disabled="true">Feed de Atividades</a></li>
+        <li><a href="./registroatividades.html">Registro de Atividades</a></li>
+      </ul>
+    </aside>
+
+    <!-- conteúdo -->
+    <main class="content">
+      <section class="patient-card" aria-label="Dados do paciente">
+        <div class="avatar" aria-hidden="true"></div>
+        <div>
+          <div id="patientName" style="font-weight:700; font-size:18px;">Paciente</div>
+          <div class="meta">Histórico resumido do paciente</div>
+        </div>
+        <div style="margin-left:auto">
+          <button id="btnNovo" class="primary">+ Novo Registro Clínico</button>
+        </div>
+      </section>
+
+      <div class="page-head">
+        <h2>Histórico Clínico</h2>
+        <div class="meta" id="countInfo"></div>
+      </div>
+
+      <section id="timeline" class="timeline" aria-live="polite">
+        <!-- renderizado via JS -->
+      </section>
+    </main>
+  </div>
+
+  <script src="./historicoclinico.js?v=20251008"></script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Novo Registro Clínico</title>
+
+  <!-- Seu CSS global -->
+  <link rel="stylesheet" href="./style.css?v=20251008">
+  <!-- (Opcional p/ Firefox: no style.css inclua)
+       :root{--ui-scale:1}
+       .page-card{transform:scale(var(--ui-scale));transform-origin:top center} -->
+</head>
+<body>
+  <div class="page-card">
+    <header class="header">
+      <div class="title-wrap">
+        <h1>Novo Registro Clínico</h1>
+        <img src="./images/clickhealth-logo.png" alt="Click Health" />
+      </div>
+
+      <div class="a11y-tools" role="toolbar" aria-label="Ferramentas de acessibilidade">
+        <button id="zoomOut" title="Diminuir zoom (Alt+-)" aria-label="Diminuir zoom">−</button>
+        <button id="zoomReset" title="Restaurar zoom (Alt+0)" aria-label="Restaurar zoom">100%</button>
+        <button id="zoomIn" title="Aumentar zoom (Alt+=)" aria-label="Aumentar zoom">+</button>
+        <label class="toggle">
+          <input type="checkbox" id="hcToggle" />
+          <span>Alto contraste</span>
+        </label>
+      </div>
+    </header>
+
+    <main>
+      <form id="registroForm" aria-describedby="hint" autocomplete="off">
+        <p id="hint" class="muted">Campos com * são obrigatórios.</p>
+
+        <div class="grid-2">
+          <div class="field">
+            <label for="dataHora">Data e Hora do Registro *</label>
+            <input id="dataHora" name="dataHora" type="datetime-local" required />
+          </div>
+
+          <div class="field">
+            <label for="tipoRegistro">Tipo de Registro *</label>
+            <select id="tipoRegistro" name="tipoRegistro" required>
+              <option value="" disabled selected>Selecione…</option>
+              <option>Anotação de Consulta</option>
+              <option>Resultado de Exame de Imagem</option>
+              <option>Resultado de Exame Laboratorial</option>
+              <option>Anotação Diversa</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- ===== EXAME DE IMAGEM ===== -->
+        <section id="imagemBox" class="conditional hide" aria-hidden="true">
+          <div class="grid-3">
+            <div class="field">
+              <label for="imgTipo">Tipo de exame de imagem *</label>
+              <select id="imgTipo">
+                <option value="" disabled selected>Selecione…</option>
+                <option>Ultrassom</option>
+                <option>Tomografia Computadorizada</option>
+                <option>Ressonância Magnética</option>
+                <option>Raio-X</option>
+                <option>Colonoscopia</option>
+                <option>Endoscopia Digestiva Alta</option>
+                <option>Outros</option>
+              </select>
+              <input id="imgTipoOutro" class="hide" type="text" placeholder="Qual exame?" />
+            </div>
+
+            <div class="field">
+              <label for="imgRegiao">Parte do corpo *</label>
+              <select id="imgRegiao">
+                <option value="" disabled selected>Selecione…</option>
+                <option>Cabeça/Crânio</option><option>Face</option><option>Pescoço</option>
+                <option>Tórax</option><option>Abdome</option><option>Pelve</option>
+                <option>Coluna Cervical</option><option>Coluna Torácica</option><option>Coluna Lombar</option>
+                <option>Ombro</option><option>Braço</option><option>Cotovelo</option>
+                <option>Punho/Mão</option><option>Quadril</option><option>Coxa</option>
+                <option>Joelho</option><option>Perna</option><option>Tornozelo/Pé</option>
+                <option>Mama</option><option>Próstata</option><option>Útero/Anexos</option>
+                <option>Vias urinárias/Rins</option><option>Fígado/Vias biliares</option>
+                <option>Pâncreas</option><option>Baço</option><option>Vasos</option>
+                <option>Outros</option>
+              </select>
+              <input id="imgRegiaoOutra" class="hide" type="text" placeholder="Qual região?" />
+            </div>
+
+            <div class="field">
+              <label>Contraste *</label>
+              <div class="radio-row">
+                <label><input type="radio" name="contraste" value="Com contraste"> Com contraste</label>
+                <label><input type="radio" name="contraste" value="Sem contraste"> Sem contraste</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="imgData">Data de realização *</label>
+              <input id="imgData" type="date" />
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== EXAME LABORATORIAL (MÚLTIPLOS) ===== -->
+        <section id="labBox" class="conditional hide" aria-hidden="true">
+          <div class="field">
+            <label>Exames laboratoriais *</label>
+
+            <div id="labList" class="lab-list" aria-live="polite"></div>
+            <button type="button" id="labAdd" class="chip" aria-label="Adicionar exame laboratorial">+ Adicionar exame</button>
+
+            <!-- Template de linha -->
+            <template id="labRowTpl">
+              <div class="lab-row">
+                <div class="grid-3">
+                  <div class="field">
+                    <label>Exame *</label>
+                    <select class="labNome">
+                      <option value="" disabled selected>Selecione…</option>
+                      <option>Hemoglobina</option>
+                      <option>Hematócrito</option>
+                      <option>Leucócitos</option>
+                      <option>Plaquetas</option>
+                      <option>Glicose</option>
+                      <option>Ureia</option>
+                      <option>Creatinina</option>
+                      <option>Sódio</option>
+                      <option>Potássio</option>
+                      <option>Cloro</option>
+                      <option>Colesterol Total</option>
+                      <option>HDL-C</option>
+                      <option>LDL-C</option>
+                      <option>Triglicerídeos</option>
+                      <option>Hemoglobina A1c</option>
+                      <option>TSH</option>
+                      <option>T4 Livre</option>
+                      <option>PCR (Proteína C Reativa)</option>
+                      <option>D-dímero</option>
+                      <option>Ferritina</option>
+                      <option>Vitamina D (25-OH)</option>
+                      <option>Cálcio</option>
+                      <option>Magnésio</option>
+                      <option>Ácido Úrico</option>
+                      <option>TGO (AST)</option>
+                      <option>TGP (ALT)</option>
+                      <option>GGT</option>
+                      <option>Fosfatase Alcalina</option>
+                      <option>Bilirrubina Total</option>
+                      <option>Albumina</option>
+                      <option>Lactato</option>
+                      <option>Troponina</option>
+                      <option>BNP/NT-proBNP</option>
+                      <option>PSA Total</option>
+                      <option>Proteinúria (urina)</option>
+                      <option>EAS (urina rotina) – qualitativo</option>
+                      <option>Outros</option>
+                    </select>
+
+                    <div class="muted labUnidadeBadge">Unidade: —</div>
+
+                    <div class="grid-2 hide labOutroWrap">
+                      <input class="labNomeOutro" type="text" placeholder="Nome do exame" />
+                      <input class="labUnidadeOutro" type="text" placeholder="Unidade (ex.: mg/dL)" />
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label>Resultado *</label>
+                    <input class="labValor" type="number" step="any" inputmode="decimal" placeholder="Informe o valor" />
+                  </div>
+
+                  <div class="field">
+                    <label>&nbsp;</label>
+                    <button type="button" class="ghost labDel" aria-label="Remover exame">Remover</button>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="labData">Data da coleta *</label>
+              <input id="labData" type="date" />
+            </div>
+          </div>
+        </section>
+
+        <div class="field">
+          <label for="titulo">Título *</label>
+          <input id="titulo" name="titulo" type="text" placeholder="Ex: Hemograma – Resultado / Anotação de Enfermagem" required />
+        </div>
+
+        <div class="field">
+          <div class="label-row">
+            <label for="descricao">Descrição *</label>
+            <div class="dictate">
+              <button type="button" id="dictBtn" aria-pressed="false" aria-controls="descricao" title="Ditado por voz (Alt+D)">🎙️ Ditado</button>
+              <span id="dictStatus" class="muted" aria-live="polite"></span>
+            </div>
+          </div>
+          <textarea id="descricao" name="descricao" rows="8" required></textarea>
+        </div>
+
+        <div class="field">
+          <label for="anexos">Anexar Arquivos (PDF, Imagens)</label>
+          <div id="drop" class="dropzone" tabindex="0" role="button"
+               aria-label="Arraste arquivos aqui ou clique para selecionar">
+            <input id="anexos" name="anexos" type="file" accept=".pdf,image/*" multiple hidden />
+            <p>Arraste arquivos aqui ou <u>clique para selecionar</u></p>
+          </div>
+          <ul id="filesList" class="files"></ul>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="primary">Salvar Registro</button>
+          <button type="reset" class="ghost">Limpar</button>
+          <span id="formMsg" class="muted" aria-live="polite"></span>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <!-- PDF.js para auto-preenchimento -->
+  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+  </script>
+
+  <script src="./registroclinico.js?v=20251008"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/index.css">
+    <title>Dashboard - ClickHealth</title>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+
+            <div class="header-left">
+                <img src="images/clickhealth-logo.png" alt="Logo ClickHealth">
+            </div>
+
+            <div class="header-center">
+                <img src="images/image 2.png" alt="Letreiro ClickHealth">
+            </div>
+
+            <div class="header-right">
+                <div class="sino">
+                    <img src="images/Group.png" alt="Ícone de sino representando notificação">
+                </div>
+                <div class="perfil-usuario">
+                    <div class="circulo-avatar">
+                        <img src="images/Vector.png" alt="Círculo em cinza para representar o Avatar">
+                    </div>
+                    <a href="#"><span>Olá, João</span></a>
+                    
+                </div>
+            </div>
+
+        </div>
+    </header>
+    <main>
+        <section class="patient-dashboard">
+
+            <header class="dashboard-header">
+                <h2>Meus Pacientes</h2>
+                <button class="btn-newpatient">+ Adicionar Novo Paciente</button>
+            </header>
+
+            <div class="patient-roles-container">
+                <div class="role-column">
+                    <h3 class="role-title">Cuidador Principal</h3>
+                    <div class="patient-list">
+                        <article class="patient-card">
+                            <div class="avatar-placeholder"></div> <div class="patient-info">
+                                <span class="patient-name">Maria Clara Andrade</span>
+                                <small class="next-action">Próx. consulta 18/09</small>
+                    </div>
+                            <div class="patient-details">
+                                <span class="status-indicator yellow"></span> <button class="btn-manage">Gerenciar</button>
+                            </div>
+                        </article>
+                </div>
+            </div>
+
+            <div class="role-column">
+                <h3 class="role-title">Cuidador Assistente</h3>
+                <div class="patient-list">
+                    <article class="patient-card">
+                        <div class="avatar-placeholder"></div> <div class="patient-info">
+                            <span class="patient-name">José Ferreira</span>
+                            <small class="next-action">Medicação às 20:00</small>
+                        </div>
+                        <div class="patient-details">
+                            <span class="status-indicator blue"></span> <button class="btn-manage">Gerenciar</button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+        </section>
+</main>
+
+</body>
+</html>

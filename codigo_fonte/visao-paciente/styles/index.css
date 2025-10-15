@@ -1,0 +1,184 @@
+/* Reset básico e estilos do Body */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #F0F2F5;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilos do Header Corrigido */
+.app-header {
+    background-color: #FFFFFF;
+    height: 70px;
+    width: 100%;
+    border-bottom: 1px solid #E0E0E0;
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.header-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left, .header-center, .header-right {
+    flex: 1; /* Garante que as colunas dividam o espaço */
+}
+
+.header-left {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.header-center {
+    display: flex;
+    justify-content: center;
+}
+
+.header-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.header-left img {
+    height: 50px; /* Altura do ícone-logo da esquerda */
+    display: block;
+}
+
+.header-center img {
+    height: 25px; /* Altura da logo-texto central */
+    display: block;
+}
+
+.header-right a {
+    font-size: 16px;
+    color: #d9534f;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.header-right a:hover {
+    text-decoration: underline;
+}
+
+/* O restante dos estilos para a página permanece o mesmo */
+.patient-view-container {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 2rem 40px;
+}
+
+.page-header h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.card {
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.card-header {
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.card-header h2 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.card-header h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.highlight-card .highlight-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 0 0 0.5rem 0;
+}
+
+.highlight-card .highlight-subtitle {
+    font-size: 24px;
+    margin: 0;
+}
+
+.highlight-card.primary {
+    background-color: #4A90E2;
+    color: #FFFFFF;
+    border: none;
+}
+
+.highlight-card.primary .card-header h2,
+.highlight-card.primary .highlight-title,
+.highlight-card.primary .highlight-subtitle {
+    color: #FFFFFF;
+}
+
+.highlight-subtitle.secondary {
+    color: #666;
+}
+
+.list-card .item-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.list-card .list-item {
+    background-color: #F8F9FA;
+    border-radius: 8px;
+    padding: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list-item .item-title {
+    font-size: 20px;
+    color: #333;
+    display: block;
+}
+
+.list-item .item-description {
+    font-size: 16px;
+    color: #666;
+}
+
+.list-item .item-detail {
+    font-size: 18px;
+    color: #333;
+    white-space: nowrap;
+}
+
+.list-item .item-detail.strong {
+    font-weight: bold;
+}

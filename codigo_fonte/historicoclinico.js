@@ -4,7 +4,6 @@ function getCurrentUser(){
   catch { return {}; }
 }
 function getCurrentPatient(){
-  // defina em algum lugar: localStorage.setItem('currentPatient', JSON.stringify({ name:'Maria Clara Andrade' }))
   try { return JSON.parse(localStorage.getItem('currentPatient') || '{}'); }
   catch { return {}; }
 }
@@ -13,8 +12,7 @@ const patient = getCurrentPatient();
 
 // cabeçalho
 document.getElementById('patientName').textContent = patient.name || 'Paciente';
-
-document.getElementById('btnNovo')?.addEventListener('click', ()=>{
+document.getElementById('btnNovo')?.addEventListener('click', ()=> {
   window.location.href = './registroclinico.html';
 });
 
@@ -24,6 +22,7 @@ function fmtDateLong(d){
 function fmtTime(d){
   return d.toLocaleTimeString('pt-BR', { hour:'2-digit', minute:'2-digit' });
 }
+function safeJSON(s){ try { return JSON.parse(s); } catch { return {}; } }
 
 // ===== fetch (registros clínicos + atividades) =====
 async function getJSON(url){
@@ -34,13 +33,22 @@ async function getJSON(url){
   } catch { return []; }
 }
 
+function normAnexo(a){
+  // normaliza campos vindos da API
+  return {
+    name: a.originalname || a.filename || 'arquivo',
+    href: a.path_rel ? ('/' + a.path_rel.replace(/^\/?/, '')) : '',
+    type: a.mimetype || '',
+    size: a.size_bytes || 0
+  };
+}
+
 async function loadData(){
   const [clin, acts] = await Promise.all([
-    getJSON('/api/registros'),       // nosso endpoint
-    getJSON('/api/atividades')       // se não existir, vem []
+    getJSON('/api/registros'),   // já vem com anexos
+    getJSON('/api/atividades')   // pode estar vazio
   ]);
 
-  // unifica
   const items = [];
 
   // registros clínicos
@@ -48,7 +56,7 @@ async function loadData(){
     const dt = new Date(r.dataHora || r.DataHora || r.data || r.createdAt);
     const extras = typeof r.extrasJson === 'string' ? safeJSON(r.extrasJson) : (r.extrasJson || {});
     const isImage = (r.tipoRegistro || '').toLowerCase().includes('imagem');
-    const isLab = (r.tipoRegistro || '').toLowerCase().includes('laboratorial');
+    const isLab   = (r.tipoRegistro || '').toLowerCase().includes('laboratorial');
 
     items.push({
       id: r.id || r.Id,
@@ -59,11 +67,12 @@ async function loadData(){
       byId:   r.createdById   || r.CreatedById   || '',
       description: r.descricao || r.Descricao || '',
       extras,
+      anexos: (r.anexos || []).map(normAnexo),
       badge: isImage ? 'Imagem' : (isLab ? 'Laboratório' : 'Anotação')
     });
   });
 
-  // atividades (se houver)
+  // atividades (se/ quando usar)
   (acts || []).forEach(a=>{
     const dt = new Date(a.dataHora || a.DataHora || a.data || a.createdAt);
     items.push({
@@ -75,6 +84,7 @@ async function loadData(){
       byId:   a.createdById   || a.CreatedById   || '',
       description: a.descricao || a.Descricao || '',
       extras: {},
+      anexos: (a.anexos || []).map(normAnexo),
       badge: 'Atividade'
     });
   });
@@ -109,10 +119,7 @@ function renderTimeline(items){
     label.textContent = fmtDateLong(d);
     gEl.appendChild(label);
 
-    group.forEach(i=>{
-      gEl.appendChild(renderEntry(i));
-    });
-
+    group.forEach(i=> gEl.appendChild(renderEntry(i)) );
     el.appendChild(gEl);
   });
 }
@@ -149,14 +156,12 @@ function renderEntry(i){
     const editBtn = document.createElement('button');
     editBtn.className = 'ghost';
     editBtn.textContent = 'Editar';
-    editBtn.addEventListener('click', ()=>{
-      // se sua página de edição aceita ?id=, redireciona
+    editBtn.addEventListener('click', ()=> {
       window.location.href = `./registroclinico.html?id=${i.id}`;
     });
     actions.appendChild(editBtn);
   }
   titleRow.appendChild(actions);
-
   card.appendChild(titleRow);
 
   const meta = document.createElement('div');
@@ -168,6 +173,14 @@ function renderEntry(i){
   body.className = 'body';
   body.textContent = i.description || '';
   card.appendChild(body);
+
+  // anexos (preview + download)
+  if (i.anexos && i.anexos.length) {
+    const files = document.createElement('div');
+    files.className = 'files-grid';
+    i.anexos.forEach(ax => files.appendChild(renderAttachment(ax)));
+    card.appendChild(files);
+  }
 
   const foot = document.createElement('div');
   foot.className = 'foot';
@@ -185,11 +198,9 @@ function renderEntry(i){
 }
 
 function toggleDetails(card){
-  // simples: alterna a descrição (colapsar/expandir)
   const body = card.querySelector('.body');
   if (!body) return;
-  if (body.style.display === 'none') body.style.display = '';
-  else body.style.display = 'none';
+  body.style.display = (body.style.display === 'none') ? '' : 'none';
 }
 
 function makePill(text){
@@ -197,10 +208,6 @@ function makePill(text){
   d.className = 'pill';
   d.textContent = text;
   return d;
-}
-
-function safeJSON(s){
-  try { return JSON.parse(s); } catch { return {}; }
 }
 
 function extrasPreview(extras){
@@ -218,6 +225,64 @@ function extrasPreview(extras){
     return s || 'Exames';
   }
   return '';
+}
+
+// ===== helpers de anexos =====
+function renderAttachment(ax){
+  const box = document.createElement('div');
+  box.className = 'file-card';
+
+  const isImg = ax.type?.startsWith('image/');
+  const isPDF = ax.type === 'application/pdf';
+
+  if (isImg) {
+    const a = document.createElement('a');
+    a.href = ax.href;
+    a.target = '_blank';
+    a.download = ax.name || '';
+    const img = document.createElement('img');
+    img.src = ax.href;
+    img.alt = ax.name || 'Imagem';
+    img.loading = 'lazy';
+    a.appendChild(img);
+    box.appendChild(a);
+  } else if (isPDF) {
+    const icon = document.createElement('div');
+    icon.className = 'file-icon';
+    icon.textContent = 'PDF';
+    box.appendChild(icon);
+
+    const name = document.createElement('div');
+    name.className = 'file-name';
+    name.textContent = ax.name || 'arquivo.pdf';
+    box.appendChild(name);
+
+    const row = document.createElement('div');
+    row.className = 'file-actions';
+    const a1 = document.createElement('a');
+    a1.href = ax.href; a1.target = '_blank'; a1.textContent = 'Abrir';
+    const a2 = document.createElement('a');
+    a2.href = ax.href; a2.download = ax.name || 'arquivo.pdf'; a2.textContent = 'Download';
+    row.appendChild(a1); row.appendChild(a2);
+    box.appendChild(row);
+  } else {
+    const icon = document.createElement('div');
+    icon.className = 'file-icon';
+    icon.textContent = 'ARQ';
+    box.appendChild(icon);
+
+    const name = document.createElement('div');
+    name.className = 'file-name';
+    name.textContent = ax.name || 'arquivo';
+    box.appendChild(name);
+
+    const a2 = document.createElement('a');
+    a2.href = ax.href; a2.download = ax.name || 'arquivo'; a2.textContent = 'Download';
+    a2.className = 'file-download';
+    box.appendChild(a2);
+  }
+
+  return box;
 }
 
 // inicialização

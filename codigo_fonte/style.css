@@ -463,3 +463,23 @@ input:focus, select:focus, textarea:focus{border-color:var(--focus); box-shadow:
 .lab-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 10px; }
 .lab-row { padding: 12px; border: 1px dashed var(--line); border-radius: 10px; background: #fafafa; }
 .chip { border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 8px 12px; cursor: pointer; }
+
+.files-grid{
+  margin-top:10px;
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap:10px;
+}
+.file-card{
+  border:1px solid #e5e7eb; border-radius:10px; padding:8px; background:#fafafa;
+  display:flex; flex-direction:column; gap:6px; align-items:flex-start;
+}
+.file-card img{ width:100%; height:120px; object-fit:cover; border-radius:8px; border:1px solid #e5e7eb; background:#fff; }
+.file-icon{
+  width:42px; height:42px; border-radius:10px; background:#eef2ff; color:#1d4ed8;
+  display:flex; align-items:center; justify-content:center; font-weight:700;
+}
+.file-name{ font-size:13px; color:#374151; }
+.file-actions{ display:flex; gap:10px; font-size:13px; }
+.file-actions a, .file-download{ color:#1d4ed8; text-decoration:none; }
+.file-actions a:hover, .file-download:hover{ text-decoration:underline; }

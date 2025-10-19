@@ -1,3 +1,4 @@
+// codigo_fonte/api/server.js
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -9,16 +10,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Servir frontend (toda a pasta codigo_fonte)
+// serve todo o front da pasta codigo_fonte
 app.use(express.static(path.join(__dirname, '..')));
 
-// Uploads
+// pasta de uploads
 const UPLOAD_DIR = path.join(__dirname, '..', 'uploads');
 if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
 
 const storage = multer.diskStorage({
   destination: (_, __, cb) => cb(null, UPLOAD_DIR),
-  filename: (_, file, cb) => {
+  filename:   (_, file, cb) => {
     const ts = Date.now();
     const safe = file.originalname.replace(/[^\w.\-]+/g, '_');
     cb(null, `${ts}-${safe}`);
@@ -26,16 +27,17 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// Logs de erros não tratados (útil em dev)
+// logs úteis em dev
 process.on('unhandledRejection', err => console.error('❌ unhandledRejection:', err));
 process.on('uncaughtException',  err => console.error('❌ uncaughtException:',  err));
 
 (async () => {
+  // abre/cria o banco (sql.js) e aplica schema
   await db.open();
 
   // ---------------- REGISTROS CLÍNICOS ----------------
 
-  // Criar registro (com upload)
+  // Criar registro (com upload de anexos)
   app.post('/api/registros', upload.array('anexos'), async (req, res) => {
     try {
       const { dataHora, tipoRegistro, titulo, descricao, extras } = req.body;
@@ -56,8 +58,14 @@ process.on('uncaughtException',  err => console.error('❌ uncaughtException:', 
           db.run(
             `INSERT INTO anexos (registro_id, filename, originalname, mimetype, size_bytes, path_rel)
              VALUES (?, ?, ?, ?, ?, ?)`,
-            [registroId, f.filename, f.originalname, f.mimetype, f.size,
-             path.join('uploads', f.filename).replace(/\\/g, '/')]
+            [
+              registroId,
+              f.filename,
+              f.originalname,
+              f.mimetype,
+              f.size,
+              path.join('uploads', f.filename).replace(/\\/g, '/')
+            ]
           );
         }
       }
@@ -70,7 +78,7 @@ process.on('uncaughtException',  err => console.error('❌ uncaughtException:', 
     }
   });
 
-  // Listar registros (já com anexos embutidos)
+  // Listar registros 
   app.get('/api/registros', (_, res) => {
     try {
       const regs = db.all(
@@ -83,7 +91,7 @@ process.on('uncaughtException',  err => console.error('❌ uncaughtException:', 
       const ids = regs.map(r => r.id);
       let anexosByReg = {};
       if (ids.length) {
-        const marks = ids.map(()=>'?').join(',');
+        const marks = ids.map(() => '?').join(',');
         const allAnex = db.all(
           `SELECT registro_id, originalname, mimetype, size_bytes, path_rel, id
              FROM anexos
@@ -99,8 +107,8 @@ process.on('uncaughtException',  err => console.error('❌ uncaughtException:', 
 
       const out = regs.map(r => ({
         ...r,
-        extrasJson: r.extras_json,       // compat com o front
-        anexos: anexosByReg[r.id] || []  // lista de anexos
+        extrasJson: r.extras_json,        // compat p/ front
+        anexos: anexosByReg[r.id] || []   // lista de anexos
       }));
 
       res.json(out);
@@ -134,6 +142,7 @@ process.on('uncaughtException',  err => console.error('❌ uncaughtException:', 
   });
 
   // ---------------- ATIVIDADES (feed) ----------------
+  // (tabelas em schema.sql)
 
   // Listar atividades
   app.get('/api/atividades', (_, res) => {
@@ -151,7 +160,7 @@ process.on('uncaughtException',  err => console.error('❌ uncaughtException:', 
     }
   });
 
-  // Criar atividade (opcional, se usar upload em atividades descomente a tabela no schema)
+  // Criar atividade
   app.post('/api/atividades', upload.array('anexos'), async (req, res) => {
     try {
       const { dataHora, titulo, descricao, createdById, createdByName } = req.body;
@@ -163,7 +172,6 @@ process.on('uncaughtException',  err => console.error('❌ uncaughtException:', 
         [dataHora, titulo, descricao, createdById || null, createdByName || null]
       );
 
-      // se quiser anexar arquivos em atividades, inclua aqui o insert em atividades_anexos
       await db.flush();
       res.status(201).json({ id: ins.lastId });
     } catch (e) {
@@ -172,7 +180,7 @@ process.on('uncaughtException',  err => console.error('❌ uncaughtException:', 
     }
   });
 
-  // arquivos públicos
+  // servir arquivos enviados
   app.use('/uploads', express.static(UPLOAD_DIR));
 
   // start

@@ -1,485 +1,212 @@
-
-/* ---------- Reset & base ---------- */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* ===========================
+   Click Health • UI Base
+   =========================== */
 :root{
-  --bg:#F0F2F5;
-  --surface:#FFFFFF;
-  --ink:#1F2937;          /* cinza 800 */
-  --muted:#6B7280;        /* cinza 500 */
-  --line:#E5E7EB;         /* cinza 200 */
-  --brand:#2563EB;        /* azul primário */
-  --brand-weak:#DCE8FF;   /* azul clarinho para hovers */
-  --success:#10B981;
-  --warn:#F59E0B;
-  --danger:#EF4444;
+  --bg:#f7f9fb;
+  --surface:#ffffff;
+  --ink:#0b1220;
+  --muted:#6b7280;
+  --line:#e6e9ee;
+  --accent:#2563eb;
+  --accent-ink:#0b3b9b;
+  --ok:#16a34a;
+  --warn:#d97706;
+  --err:#b91c1c;
+
   --radius:14px;
-  --shadow: 0 1px 2px rgba(16,24,40,.06), 0 1px 3px rgba(16,24,40,.10);
+  --radius-sm:10px;
+  --shadow:0 8px 30px rgba(2,20,50,.06);
+  --shadow-sm:0 4px 16px rgba(2,20,50,.08);
+
+  --font: "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
 
-html, body { height: 100%; }
-body {
-  background-color: var(--bg);
-  color: var(--ink);
-  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font-family:var(--font); color:var(--ink);
+  background:linear-gradient(180deg,#f4f8ff, #f7f9fb 40%, #f8fafc 100%);
+  -webkit-font-smoothing:antialiased; line-height:1.4;
 }
 
-/* --------------------------HEADER ----------------------------- */
-header {
-    background-color: #FFFFFF;
-    height: 70px;
-    width: 100%;
-    border-bottom: 1px solid #E0E0E0;
-    display: flex;
-    align-items: center;
-    padding: 0 60px;
+/* ===========================
+   AppBar
+   =========================== */
+.appbar{
+  position:sticky; top:0; z-index:10;
+  display:flex; align-items:center; gap:12px;
+  padding:10px 16px; background:rgba(255,255,255,.72);
+  backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--line);
 }
-.header-container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.appbar .brand{
+  display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink);
+  font-weight:700;
 }
-.header-left {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333333;
-}
-.header-center {
-    font-size: 16px;
-    color: #555555;
-}
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-}
-.sino {
-    width: 24px;
-    height: 24px;
-    color: #555555;
-}
-.perfil-usuario {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-.circulo-avatar {
-    width: 36px;
-    height: 36px;
-    background-color: #D8D8D8;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 8px;
-    color: #666;
-    overflow: hidden;
-}
-.perfil-usuario span {
-    font-size: 14px;
-    color: #333333;
-}
-.header-container img { max-width: 100%; height: auto; display: block; }
-.circulo-avatar img { width: 100%; height: 100%; object-fit: cover; }
-.header-left img { height: 65px; }
+.logo{height:28px; width:auto}
+.spacer{flex:1}
 
-/* ---------- App Shell (menu lateral + conteúdo) ---------- */
-.app-shell {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 24px;
-  padding: 24px 32px;
+/* Zoom / Contraste no header da appbar (registro) */
+.appbar .btn{margin-left:4px}
+
+/* ===========================
+   Page Container
+   =========================== */
+.page-card{
+  max-width:1150px; margin:22px auto; background:var(--surface);
+  border:1px solid var(--line); border-radius:var(--radius);
+  box-shadow:var(--shadow); padding:18px;
+}
+.page-card h1{
+  display:flex; align-items:center; gap:10px;
+  margin:4px 0 12px; font-size:40px; font-weight:900; letter-spacing:.3px;
+}
+.muted{color:var(--muted)}
+
+/* ===========================
+   Layout helpers
+   =========================== */
+.row{display:flex; align-items:center; gap:10px}
+.gap{gap:10px}
+.grid-2{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+.grid-3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px}
+@media (max-width:900px){
+  .grid-2,.grid-3{grid-template-columns:1fr}
 }
 
-/* Menu lateral */
-.sidebar {
-  position: sticky;
-  top: 86px; /* header (70) + margem */
-  align-self: start;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 12px;
+/* ===========================
+   Form Fields
+   =========================== */
+label{display:block; font-weight:700; color:#0d1b2a; margin:6px 0}
+input[type="text"], input[type="date"], input[type="datetime-local"],
+select, textarea{
+  width:100%; font:inherit; color:var(--ink);
+  background:#fbfdff; border:1px solid var(--line);
+  border-radius:12px; padding:14px 16px;
+  outline:none; transition:border-color .15s, box-shadow .15s, background .15s;
 }
-.sidebar .nav {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.sidebar .nav a {
-  text-decoration: none;
-  color: var(--ink);
-  font-weight: 500;
-  padding: 10px 12px;
-  border-radius: 10px;
-  display: block;
-}
-.sidebar .nav a:hover{ background: #F7F9FF; }
-.sidebar .nav a.active{
-  background: #EEF3FF;
-  color: #1D4ED8;
+textarea{min-height:180px; resize:vertical}
+input::placeholder, textarea::placeholder{color:#9ca3af}
+
+input:focus, select:focus, textarea:focus{
+  border-color:#b8ccff;
+  box-shadow:0 0 0 4px rgba(37,99,235,.12);
+  background:#fff;
 }
 
-/* Conteúdo principal */
-.main {
-  min-height: calc(100vh - 70px - 48px);
+/* Select com setinha estilizada */
+select{
+  appearance:none; -webkit-appearance:none; -moz-appearance:none;
+  background-image:
+    linear-gradient(180deg,transparent 50%,rgba(0,0,0,.02) 50%),
+    url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 24 24" fill="%232563eb" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5"/></svg>');
+  background-repeat:no-repeat;
+  background-position: right 14px center, right 14px center;
+  background-size: 100% 100%, 18px;
+  padding-right:44px;
 }
 
-/* ---------- Títulos, breadcrumbs e seções ---------- */
-.page-title {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 6px;
-}
-.page-subtitle {
-  color: var(--muted);
-  margin-bottom: 20px;
+/* Fieldset bloco */
+.fieldset{
+  border:1px dashed var(--line);
+  padding:14px; border-radius:12px; background:#fff;
 }
 
-/* ---------- Cards & blocos ---------- */
-.card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 16px;
-}
-.card + .card { margin-top: 12px; }
-
-.card-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.item {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 14px 16px;
+/* Chip (ex.: Ditado) */
+.chip{
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:14px; border:1px solid var(--line); border-radius:999px;
+  padding:6px 10px; background:#f8fafc; color:#0f172a;
 }
 
-/* ---------- Componentes de formulário ---------- */
-.label { display:block; font-weight:600; margin-bottom:8px; color:#374151; }
-.input, .select, .textarea {
-  width: 100%;
-  background: #FAFAFA;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 12px 14px;
-  font: inherit;
-  color: var(--ink);
+/* ===========================
+   Buttons
+   =========================== */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  font:600 14px/1 var(--font); color:#0f172a; background:#fff;
+  border:1px solid var(--line); border-radius:12px; padding:10px 12px;
+  cursor:pointer; transition:transform .04s ease, background .15s, box-shadow .15s, border-color .15s;
+  user-select:none;
 }
-.input:focus, .select:focus, .textarea:focus {
-  outline: 3px solid #E4EEFF;
-  border-color: #BFD3FF;
-  background: #FFFFFF;
+.btn:hover{background:#f9fafb}
+.btn:active{transform:translateY(1px)}
+.btn.primary{
+  background:linear-gradient(180deg,#3b82f6,#2563eb);
+  color:#fff; border-color:#1e40af; box-shadow:0 6px 18px rgba(37,99,235,.28);
 }
-.textarea { min-height: 120px; resize: vertical; }
+.btn.primary:hover{filter:saturate(105%)}
+.ml{margin-left:8px}
 
-/* Botões */
-.btn {
-  border: 0;
-  border-radius: 12px;
-  padding: 10px 16px;
-  font-weight: 600;
-  cursor: pointer;
+/* Zoom group (no histórico e appbar) */
+.toolbar .btn, .appbar .btn{
+  border-radius:10px; padding:8px 10px;
 }
-.btn-primary {
-  background: var(--brand);
-  color: #fff;
-}
-.btn-primary:hover { filter: brightness(0.96); }
-.btn-ghost {
-  background: #fff;
-  color: var(--ink);
-  border: 1px solid var(--line);
-}
-.btn-ghost:hover { background: #F9FAFB; }
+#zoomPct{min-width:66px; text-align:center; font-weight:700}
 
-/* Pills (chips) de atalho abaixo do textarea) */
-.pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
-}
-.pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 12px;
-  border-radius: 999px;
-  border: 1px solid #BFD3FF;
-  background: #F5F9FF;
-  color: #1E40AF;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-}
-.pill:hover { background:#EEF5FF; }
-
-/* ---------- Registro de Atividades (área superior da página) ---------- */
-.note-box {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 16px;
-}
-.note-box .textarea {
-  background: #FFFFFF;
-  border-color: var(--line);
-}
-.section-divider {
-  height: 1px;
-  background: var(--line);
-  margin: 20px 0;
-}
-
-/* Lista de “Últimos Registros” */
-.feed {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.feed-item {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 14px 16px;
-}
-.feed-item .meta {
-  color: var(--muted);
-  font-size: 14px;
-  margin-top: 6px;
-}
-
-/* ---------- Timeline (Histórico Clínico) ---------- */
-.timeline {
-  position: relative;
-  padding-left: 28px; /* espaço para a linha e os pontos */
-}
-.timeline::before {
-  content: "";
-  position: absolute;
-  left: 10px;
-  top: 4px;
-  bottom: 4px;
-  width: 2px;
-  background: #D7DFEA;
-  border-radius: 2px;
-}
-.timeline-group {
-  margin-bottom: 22px;
-}
-.timeline-date {
-  font-weight: 700;
-  margin-bottom: 12px;
-  color: #111827;
-}
-.timeline-item {
-  position: relative;
-  margin-bottom: 12px;
-}
-.timeline-item::before {
-  content: "";
-  position: absolute;
-  left: -20px;
-  top: 16px;
-  width: 10px;
-  height: 10px;
-  background: #3B82F6; /* ponto azul */
-  border: 2px solid #fff;
-  border-radius: 50%;
-  box-shadow: 0 0 0 2px #D7DFEA; /* aro sobre a linha */
-}
-.timeline-card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 14px 16px;
-  box-shadow: var(--shadow);
-}
-.timeline-card .title {
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-.timeline-card .desc { color: #4B5563; }
-
-/* ---------- Modal (Novo Registro Clínico) ---------- */
-.modal-backdrop {
-  position: fixed; inset: 0;
-  background: rgba(15, 23, 42, .35);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  z-index: 50;
-}
-.modal-backdrop.open { display: flex; }
-
-.modal {
-  width: 100%;
-  max-width: 720px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  box-shadow: 0 8px 40px rgba(2,8,23,.18);
-  overflow: hidden;
-}
-.modal-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 20px;
-  border-bottom: 1px solid var(--line);
-}
-.modal-header h3 { font-size: 22px; }
-.modal-body { padding: 20px; }
-.modal-footer {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  padding: 16px 20px;
-  border-top: 1px solid var(--line);
-}
-
-/* Grid de formulário no modal */
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px 16px;
-}
-.form-grid .full { grid-column: 1 / -1; }
-
-/* Área de upload (drag & drop) */
-.dropzone {
-  border: 2px dashed #D1D5DB;
-  background: #FAFAFA;
-  border-radius: 14px;
-  padding: 22px;
-  text-align: center;
-  color: #6B7280;
-}
-.dropzone.dragover {
-  background: #F3F7FF;
-  border-color: #A7C4FF;
-}
-
-/* ---------- Avatares e ícones circulares (lista/cartões) ---------- */
-.avatar {
-  width: 36px; height: 36px; border-radius: 50%;
-  background: #E5E7EB; display: inline-flex; align-items: center; justify-content: center;
-  font-weight: 700; color: #555;
-}
-
-/* ---------- Utilidades ---------- */
-.mt-8{ margin-top: 8px; } .mt-12{ margin-top:12px; } .mt-16{ margin-top:16px; }
-.mb-8{ margin-bottom: 8px; } .mb-12{ margin-bottom:12px; } .mb-16{ margin-bottom:16px; }
-
-.flex{ display:flex; } .items-center{ align-items:center; } .justify-between{ justify-content:space-between; }
-.gap-8{ gap:8px; } .gap-12{ gap:12px; } .gap-16{ gap:16px; }
-
-/* ---------- Responsividade ---------- */
-@media (max-width: 1100px){
-  .app-shell { grid-template-columns: 220px 1fr; padding: 20px; }
-}
-@media (max-width: 900px){
-  .app-shell { grid-template-columns: 1fr; }
-  .sidebar { position: relative; top: 0; }
-}
-@media (max-width: 640px){
-  header { padding: 0 20px; }
-  .modal { max-width: 94vw; }
-  .form-grid { grid-template-columns: 1fr; }
-}
-
-/* ====== Card da página de Registro Clínico ====== */
-:root{
-  --bg:#f7f7f8; --card:#fff; --ink:#111827; --muted:#6b7280;
-  --accent:#2563eb; --line:#e5e7eb; --focus:#3b82f6;
-  --radius:12px; --pad:16px; --shadow:0 10px 20px rgba(0,0,0,.06);
-  --font: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  font-size: 16px;
-}
-html,body{background:var(--bg); color:var(--ink); font-family:var(--font)}
-.page-card{max-width:980px;margin:24px auto;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow)}
-.header{display:flex;justify-content:space-between;align-items:center;padding:20px;border-bottom:1px solid var(--line)}
-.title-wrap{display:flex;align-items:center;gap:12px}
-.title-wrap img{height:44px}
-.header h1{margin:0;font-size:34px}
-.a11y-tools{display:flex;gap:8px;align-items:center}
-.a11y-tools button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;cursor:pointer}
-.a11y-tools .toggle{display:flex;gap:6px;align-items:center;font-size:14px}
-
-main{padding:20px}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.field{margin-bottom:16px}
-.label-row{display:flex;justify-content:space-between;align-items:center}
-.muted{color:var(--muted);font-size:14px}
-
-label{display:block;font-weight:600;margin-bottom:6px}
-input, select, textarea{
-  width:100%; padding:12px 14px; border:1px solid var(--line);
-  border-radius:10px; background:#fafafa; outline:none;
-}
-input:focus, select:focus, textarea:focus{border-color:var(--focus); box-shadow:0 0 0 3px rgba(59,130,246,.2)}
-
-.dictate button{border:1px solid var(--line);background:#fff;border-radius:20px;padding:6px 12px;cursor:pointer}
-
+/* ===========================
+   Dropzone
+   =========================== */
 .dropzone{
-  border:2px dashed #d6d6dc; border-radius:12px; padding:22px; text-align:center; background:#fcfcfd;
+  position:relative; display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+  border:2px dashed #cfd6e4; border-radius:14px; background:#fbfdff;
+  padding:18px; color:#475569; cursor:pointer;
 }
-.dropzone.drag{background:#eef2ff;border-color:#a5b4fc}
-.files{list-style:none;margin:8px 0 0;padding:0}
-.files li{padding:8px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.dropzone.drag{border-color:#94a9ff; background:#f5f8ff}
+.dropzone .sr-only{position:absolute; inset:0; opacity:0; pointer-events:none}
+.file-list{list-style:none; padding-left:18px; margin:8px 0 0 0; color:#334155}
+.file-list li{margin:2px 0}
 
-.actions{display:flex;gap:10px;align-items:center}
-.primary{
-  background:var(--accent); color:#fff; border:none; padding:12px 18px;
-  border-radius:10px; cursor:pointer; font-weight:600;
+/* ===========================
+   Histórico: Cards
+   =========================== */
+.grid{display:grid; grid-template-columns:1fr; gap:12px}
+.card{
+  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  box-shadow:var(--shadow-sm); overflow:hidden;
 }
-.ghost{background:transparent;border:1px solid var(--line);padding:12px 18px;border-radius:10px;cursor:pointer}
-:focus-visible{outline:3px solid var(--focus); outline-offset:2px}
-
-/* Alto contraste */
-.hc body{background:#000;color:#fff}
-.hc .page-card{background:#000}
-.hc input, .hc select, .hc textarea{background:#111;color:#fff;border-color:#666}
-.hc .dropzone{background:#111;border-color:#666}
-
-:root { --ui-scale: 1; }
-.page-card { transform: scale(var(--ui-scale)); transform-origin: top center; }
-
-/* utilidades visuais/grades */
-.hide{display:none!important}
-.conditional{margin:10px 0 6px; padding:14px; border:1px dashed var(--line); border-radius:10px; background:#fafafa}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.radio-row{display:flex;gap:12px;align-items:center}
-
-.lab-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 10px; }
-.lab-row { padding: 12px; border: 1px dashed var(--line); border-radius: 10px; background: #fafafa; }
-.chip { border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 8px 12px; cursor: pointer; }
-
-.files-grid{
-  margin-top:10px;
-  display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap:10px;
+.card > header{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:12px 14px; border-bottom:1px solid var(--line);
 }
-.file-card{
-  border:1px solid #e5e7eb; border-radius:10px; padding:8px; background:#fafafa;
-  display:flex; flex-direction:column; gap:6px; align-items:flex-start;
+.title{font-weight:700; font-size:16px}
+.meta{color:var(--muted); font-size:12px}
+.tag{font-size:12px; border:1px solid var(--line); padding:2px 8px; border-radius:999px; color:#374151; background:#f9fafb}
+.content{padding:14px 14px 16px; display:none}
+.content.open{display:block}
+.anexos{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
+.thumb{border:1px solid var(--line); border-radius:12px; width:120px; height:90px; display:flex; align-items:center; justify-content:center; background:#f8fafc; cursor:pointer; overflow:hidden}
+.thumb img{max-width:100%; max-height:100%; object-fit:cover}
+.thumb .pdf{font-size:12px; color:#1f2937}
+
+/* Estado vazio */
+.empty{
+  padding:24px; border:1px dashed var(--line); border-radius:12px; color:var(--muted);
+  background:#fff; margin-bottom:10px;
 }
-.file-card img{ width:100%; height:120px; object-fit:cover; border-radius:8px; border:1px solid #e5e7eb; background:#fff; }
-.file-icon{
-  width:42px; height:42px; border-radius:10px; background:#eef2ff; color:#1d4ed8;
-  display:flex; align-items:center; justify-content:center; font-weight:700;
-}
-.file-name{ font-size:13px; color:#374151; }
-.file-actions{ display:flex; gap:10px; font-size:13px; }
-.file-actions a, .file-download{ color:#1d4ed8; text-decoration:none; }
-.file-actions a:hover, .file-download:hover{ text-decoration:underline; }
+
+/* ===========================
+   Modal Preview
+   =========================== */
+.modal{position:fixed; inset:0; background:rgba(10,18,34,.75); display:none; align-items:center; justify-content:center; z-index:50}
+.modal.open{display:flex}
+.modal-box{background:#fff; max-width:90vw; max-height:90vh; border-radius:14px; overflow:hidden; display:flex; flex-direction:column; box-shadow:var(--shadow)}
+.modal-head{display:flex; align-items:center; justify-content:space-between; padding:10px 12px; border-bottom:1px solid var(--line)}
+.modal-body{padding:0; overflow:auto}
+.viewer{width:85vw; height:75vh; border:0}
+
+/* ===========================
+   Utilitários
+   =========================== */
+.hide{display:none !important}
+
+/* ===========================
+   Alto Contraste
+   =========================== */
+html.hc, .hc body{background:#000}
+.hc .page-card{background:#000; border-color:#444}
+.hc .card{background:#000; border-color:#444}
+.hc .btn{background:#111; color:#fff; border-color:#444}
+.hc input, .hc select, .hc textarea{background:#000; color:#fff; border-color:#666}
+.hc .dropzone{background:#000; border-color:#555; color:#e5e7eb}
+.hc .meta,.hc .muted{color:#cbd5e1}

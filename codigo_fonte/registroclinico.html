@@ -10,7 +10,6 @@
 
   <header class="appbar">
     <a href="/historicoclinico.html" class="brand">
-      <!-- CORRIGIDO: caminho + aspas -->
       <img src="/images/clickhealth-logo.png" alt="Click Health" class="logo" />
       <span>Histórico Clínico</span>
     </a>
@@ -25,7 +24,7 @@
     <h1>Novo Registro Clínico</h1>
     <p class="muted">Campos com * são obrigatórios.</p>
 
-    <form id="registroForm">
+    <form id="registroForm" enctype="multipart/form-data">
       <!-- Linha 1 -->
       <section class="grid-2">
         <label>Data e Hora do Registro *
@@ -81,7 +80,7 @@
         </label>
       </section>
 
-      <!-- BLOCO LAB (fica visível quando "Laboratorial") -->
+      <!-- BLOCO LAB -->
       <section id="labBox" class="fieldset hide" aria-hidden="true">
         <div class="grid-2">
           <label>Data da coleta *
@@ -129,10 +128,10 @@
         <h3>Anexar Arquivos (PDF, Imagens)</h3>
         <div id="drop" class="dropzone">
           Arraste arquivos aqui ou <button type="button" class="btn">clique para selecionar</button>
-          <!-- IMPORTANTE: id e name = "anexos" -->
           <input id="anexos" name="anexos" type="file" class="sr-only" multiple>
         </div>
         <ul id="filesList" class="file-list"></ul>
+        <div id="anexosExistentes"></div>
       </section>
 
       <label>Título *

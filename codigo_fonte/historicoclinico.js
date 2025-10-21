@@ -1,141 +1,169 @@
-// ========= API BASE & USER =========
-const API_BASE = window.location.port === '3000' ? '' : 'http://localhost:3000';
+// ====== USER/PATIENT ======
+function getCurrentUser(){ try { return JSON.parse(localStorage.getItem('currentUser')||'{}'); } catch { return {}; } }
+function getCurrentPatient(){ try { return JSON.parse(localStorage.getItem('currentPatient')||'{}'); } catch { return {}; } }
+const USER = getCurrentUser();
+const PATIENT = getCurrentPatient();
 
-let CURRENT_USER = JSON.parse(localStorage.getItem('currentUser') || 'null');
-if (!CURRENT_USER) {
-  CURRENT_USER = { id: 'u_' + Math.random().toString(36).slice(2), name: 'Usuário Padrão' };
-  localStorage.setItem('currentUser', JSON.stringify(CURRENT_USER));
+// ====== ZOOM + CONTRASTE ======
+let zoom = 100;
+const pct = document.getElementById('zoomPct');
+document.getElementById('zoomIn') .addEventListener('click', ()=>{ zoom=Math.min(200,zoom+10); applyZoom(); });
+document.getElementById('zoomOut').addEventListener('click', ()=>{ zoom=Math.max(70, zoom-10); applyZoom(); });
+document.getElementById('altoContraste').addEventListener('change', (e)=> {
+  document.documentElement.classList.toggle('hc', e.target.checked);
+});
+function applyZoom(){ pct.textContent = `${zoom}%`; document.body.style.zoom = zoom/100; }
+applyZoom();
+
+// ====== API ======
+const API = '/api/clinico';
+const lista = document.getElementById('lista');
+const estado = document.getElementById('estado');
+
+// ====== UTILS ======
+function fmtDateTime(s){
+  try{ return new Date(s).toLocaleString('pt-BR',{ dateStyle:'short', timeStyle:'short' }); }
+  catch{ return s; }
 }
-const headersAuth = { 'X-User-Id': CURRENT_USER.id, 'X-User-Name': CURRENT_USER.name };
-
-document.getElementById('who').textContent = `Logado como: ${CURRENT_USER.name} (${CURRENT_USER.id})`;
-
-// ========= LISTAGEM =========
-async function carregaHistorico() {
-  const resp = await fetch(`${API_BASE}/api/registros`, { headers: headersAuth });
-  if (!resp.ok) { alert(await resp.text()); return; }
-  const data = await resp.json();
-
-  const tbody = document.querySelector('#grid tbody');
-  tbody.innerHTML = '';
-
-  for (const r of data) {
-    const tr = document.createElement('tr');
-
-    const anexosHTML = (r.anexos || []).map(a => {
-      const base = a.storage_path?.split(/[\\/]/).pop();
-      const name = a.file_name || 'arquivo';
-      const href = base ? `${API_BASE}/uploads/${base}` : '#';
-      return `<li><a href="${href}" target="_blank" rel="noopener">${name}</a></li>`;
-    }).join('');
-
-    tr.innerHTML = `
-      <td>${r.dataHora ? new Date(r.dataHora).toLocaleString() : ''}</td>
-      <td>${r.tipoRegistro || ''}</td>
-      <td>${r.titulo || ''}</td>
-      <td>${(r.descricao || '').slice(0, 120)}${(r.descricao || '').length > 120 ? '…' : ''}</td>
-      <td>${anexosHTML ? `<ul class="file-list">${anexosHTML}</ul>` : '<span class="muted">—</span>'}</td>
-      <td>
-        ${r.canEdit ? `<button class="btn btn-edit" data-id="${r.id}">Editar</button>` : '<span class="muted">—</span>'}
-      </td>
-    `;
-    tbody.appendChild(tr);
-  }
+function iconFor(mime, name){
+  const ext = (name||'').split('.').pop().toLowerCase();
+  if (mime?.startsWith('image/')) return '🖼️';
+  if (ext === 'pdf' || mime === 'application/pdf') return '📄';
+  return '📎';
 }
 
-document.addEventListener('click', (e) => {
-  if (e.target.matches('.btn-edit')) {
-    const id = e.target.getAttribute('data-id');
-    abreModalEdicao(id);
+// ====== MODAL PREVIEW ======
+const modal = document.getElementById('modal');
+const modalClose = document.getElementById('modalClose');
+const modalBody = document.getElementById('modalBody');
+const modalTitle = document.getElementById('modalTitle');
+modalClose.onclick = ()=> modal.classList.remove('open');
+modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('open'); });
+function openPreview(anexo){
+  modalTitle.textContent = anexo.originalname || 'Anexo';
+  modalBody.innerHTML = '';
+  if ((anexo.mimetype||'').startsWith('image/')){
+    const img = new Image();
+    img.src = anexo.url; img.alt = anexo.originalname || 'Imagem';
+    img.style.maxWidth = '85vw'; img.style.maxHeight = '75vh';
+    modalBody.appendChild(img);
+  } else if (anexo.mimetype === 'application/pdf' || (anexo.url||'').endsWith('.pdf')) {
+    const iframe = document.createElement('iframe');
+    iframe.className = 'viewer'; iframe.src = anexo.url; modalBody.appendChild(iframe);
+  } else {
+    const p = document.createElement('p');
+    p.style.padding='16px';
+    p.innerHTML = `Este tipo de arquivo não tem preview.<br/><a class="btn" href="${anexo.url}" download>Baixar</a>`;
+    modalBody.appendChild(p);
   }
-});
-
-// ========= MODAL EDIÇÃO =========
-async function abreModalEdicao(id) {
-  const resp = await fetch(`${API_BASE}/api/registros/${id}`, { headers: headersAuth });
-  if (!resp.ok) { alert(await resp.text()); return; }
-  const r = await resp.json();
-
-  document.getElementById('editId').value = r.id;
-  document.getElementById('editDataHora').value = r.dataHora ? r.dataHora.slice(0,16) : '';
-  document.getElementById('editTipo').value = r.tipoRegistro || '';
-  document.getElementById('editTitulo').value = r.titulo || '';
-  document.getElementById('editDescricao').value = r.descricao || '';
-  document.getElementById('editExtras').value = (() => {
-    try { return JSON.stringify(JSON.parse(r.extras_json || '{}'), null, 2); }
-    catch { return r.extras_json || '{}'; }
-  })();
-
-  const ul = document.getElementById('editAnexosList');
-  ul.innerHTML = '';
-  for (const a of (r.anexos || [])) {
-    const base = a.storage_path?.split(/[\\/]/).pop();
-    const href = base ? `${API_BASE}/uploads/${base}` : '#';
-    const nome = a.file_name || 'arquivo';
-    const li = document.createElement('li');
-    li.innerHTML = `
-      <a href="${href}" target="_blank" rel="noopener">${nome}</a>
-      <button class="btn btn-del-anexo" data-anexo="${a.id}">Remover</button>
-    `;
-    ul.appendChild(li);
-  }
-
-  document.getElementById('modalEdit').showModal();
+  modal.classList.add('open');
 }
 
-document.getElementById('editForm').addEventListener('submit', async (e)=>{
-  e.preventDefault();
-  const id = document.getElementById('editId').value;
-  let extras_json = document.getElementById('editExtras').value.trim();
-  try { JSON.parse(extras_json || '{}'); } catch { return alert('Extras JSON inválido.'); }
+// ====== RENDER ======
+function render(items){
+  lista.innerHTML = '';
+  estado.style.display = 'none';
 
-  const body = {
-    dataHora: document.getElementById('editDataHora').value,
-    tipoRegistro: document.getElementById('editTipo').value,
-    titulo: document.getElementById('editTitulo').value,
-    descricao: document.getElementById('editDescricao').value,
-    extras_json
-  };
-
-  // Atualiza campos textuais
-  {
-    const resp = await fetch(`${API_BASE}/api/registros/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json', ...headersAuth },
-      body: JSON.stringify(body)
-    });
-    if (!resp.ok) return alert(await resp.text());
+  if (!items.length){
+    estado.style.display = 'block';
+    estado.innerHTML = 'Nenhum registro encontrado. <a class="link" href="/registroclinico.html">Criar novo</a>';
+    return;
   }
 
-  // Envia novos anexos se houver
-  const novos = document.getElementById('editAnexosNovos').files;
-  if (novos && novos.length) {
-    const fd = new FormData();
-    Array.from(novos).forEach(f => fd.append('anexos', f));
-    const up = await fetch(`${API_BASE}/api/registros/${id}/anexos`, {
-      method: 'POST',
-      headers: headersAuth,
-      body: fd
-    });
-    if (!up.ok) return alert('Registro salvo, mas falhou ao enviar anexos: ' + await up.text());
+  items.forEach(it=>{
+    const card = document.createElement('article');
+    card.className = 'card';
+
+    const h = document.createElement('header');
+    const left = document.createElement('div');
+    const right = document.createElement('div');
+    right.className = 'actions';
+
+    const ttl = document.createElement('div');
+    ttl.className = 'title';
+    ttl.textContent = it.titulo || '(Sem título)';
+
+    const meta = document.createElement('div');
+    meta.className = 'meta';
+    meta.textContent = `${fmtDateTime(it.datahora)} • ${it.autor_nome||'—'} • `;
+    const tag = document.createElement('span');
+    tag.className = 'tag'; tag.textContent = it.tipo || '—';
+    meta.appendChild(tag);
+
+    left.appendChild(ttl); left.appendChild(meta);
+
+    const btnVer = document.createElement('button');
+    btnVer.className = 'btn'; btnVer.textContent = 'Ver';
+    const content = document.createElement('div');
+    content.className = 'content';
+    btnVer.onclick = ()=> content.classList.toggle('open');
+    right.appendChild(btnVer);
+
+    if (USER?.id && USER.id === it.autor_id){
+      const btnEd = document.createElement('a');
+      btnEd.className = 'btn'; btnEd.textContent = 'Editar';
+      btnEd.href = `/registroclinico.html?id=${it.id}`;
+      right.appendChild(btnEd);
+    }
+
+    h.appendChild(left); h.appendChild(right);
+    card.appendChild(h);
+
+    // Corpo
+    const desc = document.createElement('div');
+    desc.style.whiteSpace = 'pre-wrap';
+    desc.textContent = (it.descricao||'').trim();
+    content.appendChild(desc);
+
+    // Anexos
+    const anexos = it.anexos || [];
+    if (anexos.length){
+      const label = document.createElement('div');
+      label.style.marginTop='10px'; label.style.fontSize='12px'; label.style.color='#374151';
+      label.textContent = 'Anexos:';
+      content.appendChild(label);
+
+      const wrap = document.createElement('div');
+      wrap.className = 'anexos';
+      anexos.forEach(ax=>{
+        const th = document.createElement('div');
+        th.className = 'thumb'; th.title = ax.originalname;
+        if ((ax.mimetype||'').startsWith('image/')){
+          const im=new Image(); im.src=ax.url; im.alt=ax.originalname||'Imagem';
+          th.appendChild(im);
+        } else if (ax.mimetype==='application/pdf' || (ax.url||'').endsWith('.pdf')){
+          const d=document.createElement('div'); d.className='pdf'; d.innerHTML=`📄 PDF<br>${(ax.originalname||'').slice(0,16)}`;
+          th.appendChild(d);
+        } else {
+          const d=document.createElement('div'); d.className='pdf'; d.innerHTML=`${iconFor(ax.mimetype, ax.originalname)} ${(ax.originalname||'').slice(0,16)}`;
+          th.appendChild(d);
+        }
+        th.addEventListener('click', ()=> openPreview(ax));
+        wrap.appendChild(th);
+      });
+      content.appendChild(wrap);
+    }
+
+    card.appendChild(content);
+    lista.appendChild(card);
+  });
+}
+
+// ====== LOAD ======
+async function load(){
+  try{
+    const qs = new URLSearchParams();
+    if (PATIENT?.id) qs.set('paciente_id', PATIENT.id); // só filtra se existir
+    const resp = await fetch(`${API}?${qs.toString()}`);
+    if(!resp.ok) throw new Error(await resp.text());
+    const data = await resp.json(); // já vem em ordem desc pelo server; se não, ordena aqui
+    // segurança: se vier fora de ordem por algum motivo, garante:
+    data.sort((a,b)=> new Date(b.datahora) - new Date(a.datahora) || (b.id - a.id));
+    render(data);
+  }catch(e){
+    console.error(e);
+    estado.style.display='block';
+    estado.textContent = 'Erro ao carregar histórico: ' + (e.message||e);
   }
-
-  document.getElementById('modalEdit').close();
-  carregaHistorico();
-});
-
-document.addEventListener('click', async (e)=>{
-  if (e.target.matches('.btn-del-anexo')) {
-    const anexoId = e.target.getAttribute('data-anexo');
-    if (!confirm('Remover este anexo?')) return;
-    const resp = await fetch(`${API_BASE}/api/anexos/${anexoId}`, {
-      method: 'DELETE',
-      headers: headersAuth
-    });
-    if (!resp.ok) return alert(await resp.text());
-    e.target.closest('li')?.remove();
-  }
-});
-
-// boot
-carregaHistorico();
+}
+load();

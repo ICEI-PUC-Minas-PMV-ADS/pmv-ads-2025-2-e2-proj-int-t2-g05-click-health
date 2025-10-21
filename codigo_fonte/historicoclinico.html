@@ -1,81 +1,83 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Histórico Clínico</title>
-  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/style.css"/>
+  <style>
+    :root{
+      --line:#e5e7eb; --muted:#6b7280; --bg:#f7f7f8; --ink:#111827;
+      --accent:#2563eb; --ok:#16a34a; --warn:#d97706; --err:#b91c1c;
+    }
+    body{background:#fff;color:var(--ink);}
+    .wrap{max-width:1200px;margin:0 auto;padding:16px;}
+    .toolbar{display:flex;align-items:center;gap:8px;margin:8px 0 16px}
+    .btn{border:1px solid var(--line);padding:8px 10px;border-radius:10px;background:#fff;cursor:pointer}
+    .btn:hover{background:#f9fafb}
+    .switch{display:flex;align-items:center;gap:6px;margin-left:auto}
+    .link{color:#2563eb;text-decoration:underline}
+    .grid{display:grid;grid-template-columns:1fr;gap:12px}
+    .card{border:1px solid var(--line);border-radius:14px;background:#fff}
+    .card > header{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--line)}
+    .title{font-weight:700}
+    .meta{color:var(--muted);font-size:12px}
+    .content{padding:12px 14px;display:none}
+    .content.open{display:block}
+    .actions{display:flex;gap:8px}
+    .tag{font-size:12px;border:1px solid var(--line);padding:2px 8px;border-radius:999px;color:#374151;background:#f9fafb}
+    .empty{padding:24px;border:1px dashed var(--line);border-radius:12px;color:var(--muted)}
+    .anexos{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .thumb{border:1px solid var(--line);border-radius:10px;overflow:hidden;width:120px;height:90px;display:flex;align-items:center;justify-content:center;background:#f8fafc;cursor:pointer}
+    .thumb img{max-width:100%;max-height:100%;object-fit:cover}
+    .thumb .pdf{font-size:12px;color:#1f2937}
+
+    /* modal preview */
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:50}
+    .modal.open{display:flex}
+    .modal-box{background:#fff;max-width:90vw;max-height:90vh;border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+    .modal-head{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid var(--line)}
+    .modal-body{padding:0;overflow:auto}
+    .viewer{width:85vw;height:75vh;border:0}
+
+    /* alto contraste */
+    .hc body{background:#000;color:#fff}
+    .hc .card{background:#000;border-color:#444}
+    .hc .btn{background:#111;color:#fff;border-color:#444}
+  </style>
 </head>
 <body>
-  <header class="appbar">
-    <a class="brand" href="/registroclinico.html">
-      <img src="/images/logo.svg" alt="Click Health" class="logo" />
-      <span>Novo Registro</span>
-    </a>
-  </header>
+  <div class="wrap">
+    <header style="display:flex;align-items:center;gap:12px;justify-content:space-between">
+      <h1 style="font-size:28px;font-weight:800;margin:8px 0">Histórico Clínico</h1>
+      <a class="btn" href="/registroclinico.html">+ Novo Registro</a>
+    </header>
 
-  <main class="page-card">
-    <h1>Histórico Clínico</h1>
-    <p id="who" class="muted"></p>
-
-    <table id="grid" class="table">
-      <thead>
-        <tr>
-          <th>Data/Hora</th>
-          <th>Tipo</th>
-          <th>Título</th>
-          <th>Descrição</th>
-          <th>Anexos</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </main>
-
-  <!-- Modal edição -->
-  <dialog id="modalEdit" class="modal">
-    <form id="editForm" method="dialog">
-      <h2>Editar registro</h2>
-      <input type="hidden" id="editId"/>
-
-      <label>Data/Hora
-        <input type="datetime-local" id="editDataHora" required>
-      </label>
-
-      <label>Tipo
-        <input type="text" id="editTipo" required>
-      </label>
-
-      <label>Título
-        <input type="text" id="editTitulo" required>
-      </label>
-
-      <label>Descrição
-        <textarea id="editDescricao" rows="4"></textarea>
-      </label>
-
-      <label>Extras (JSON)
-        <textarea id="editExtras" rows="6">{}</textarea>
-      </label>
-
-      <div>
-        <strong>Anexos atuais</strong>
-        <ul id="editAnexosList" class="file-list"></ul>
+    <div class="toolbar">
+      <button class="btn" id="zoomOut">−</button>
+      <span id="zoomPct" class="btn" style="pointer-events:none">100%</span>
+      <button class="btn" id="zoomIn">+</button>
+      <div class="switch">
+        <input type="checkbox" id="altoContraste"/>
+        <label for="altoContraste">Alto contraste</label>
       </div>
+    </div>
 
-      <div>
-        <strong>Adicionar anexos</strong><br/>
-        <input id="editAnexosNovos" type="file" multiple>
+    <div id="estado" class="empty" style="display:none"></div>
+    <div id="lista" class="grid" aria-live="polite"></div>
+  </div>
+
+  <!-- modal preview -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="Visualizador de anexo">
+    <div class="modal-box">
+      <div class="modal-head">
+        <strong id="modalTitle">Visualização</strong>
+        <button class="btn" id="modalClose">Fechar</button>
       </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
 
-      <div class="row end">
-        <button type="button" class="btn" onclick="document.getElementById('modalEdit').close()">Cancelar</button>
-        <button type="submit" class="btn primary">Salvar alterações</button>
-      </div>
-    </form>
-  </dialog>
-
-  <script src="/historicoclinico.js" defer></script>
+  <script src="/historicoclinico.js"></script>
 </body>
 </html>

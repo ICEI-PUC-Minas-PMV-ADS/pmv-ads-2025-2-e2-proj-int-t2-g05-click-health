@@ -14,6 +14,63 @@ Para cada caso de teste definido no Plano de Testes de Software, realize o regis
 |	Requisito Associado 	| RF-00Y - A aplicação deve permitir que um usuário previamente cadastrado faça login |
 |Registro de evidência | www.teste.com.br/drive/ct-02 |
 
+| **Caso de Teste** 	| **CT03 – Realizar login** 	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-00Y - A aplicação deve permitir que um usuário previamente cadastrado faça login |
+|Registro de evidência | www.teste.com.br/drive/ct-02 |
+
+| **Caso de Teste** 	| **CT04 – Realizar login** 	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-00Y - A aplicação deve permitir que um usuário previamente cadastrado faça login |
+|Registro de evidência | www.teste.com.br/drive/ct-02 |
+
+| **Caso de Teste** 	| **CT05 – Realizar login** 	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-00Y - A aplicação deve permitir que um usuário previamente cadastrado faça login |
+|Registro de evidência | www.teste.com.br/drive/ct-02 |
+
+| **Caso de Teste** 	| **CT06 – Realizar login** 	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-00Y - A aplicação deve permitir que um usuário previamente cadastrado faça login |
+|Registro de evidência | www.teste.com.br/drive/ct-02 |
+
+| **Caso de Teste** 	| **CT07 – Registro de histórico clínico** 	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-RF07 - Registro de histórico clínico |
+|Registro de evidência |<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e2-proj-int-t2-g05-click-health/blob/f277335a0618f65e21717ba838ae8636eaa25243/docs/img/testedeedicao.gif" >  
+<img src= "https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e2-proj-int-t2-g05-click-health/blob/f277335a0618f65e21717ba838ae8636eaa25243/docs/img/testeregistroehistorico.gif">
+|
+
+| **Caso de Teste** 	| **CT08 – Realizar login** 	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-007 - Testar se é possível registrar alterações no histórico clínico do paciente |
+|Registro de evidência | www.teste.com.br/drive/ct-02 |
+
+| **Caso de Teste** 	| **CT09 – Realizar login** 	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-007 - Testar se é possível registrar alterações no histórico clínico do paciente |
+|Registro de evidência | www.teste.com.br/drive/ct-02 |
+
+| **Caso de Teste** 	| **CT010 – Realizar login** 	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-007 - Testar se é possível registrar alterações no histórico clínico do paciente |
+|Registro de evidência | www.teste.com.br/drive/ct-02 |
+
+| **Caso de Teste** 	| **CT01 – Realizar login** 	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-007 - Testar se é possível registrar alterações no histórico clínico do paciente |
+|Registro de evidência | www.teste.com.br/drive/ct-02 |
+
+| **Caso de Teste** 	| **CT02 – Realizar login** 	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-007 - Testar se é possível registrar alterações no histórico clínico do paciente |
+|Registro de evidência | www.teste.com.br/drive/ct-02 |
+
+| **Caso de Teste** 	| **CT03 – Realizar login** 	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-007 - Testar se é possível registrar alterações no histórico clínico do paciente |
+|Registro de evidência | www.teste.com.br/drive/ct-02 |
+
 ## Relatório de testes de software
 
 Apresente e discuta detalhadamente os resultados obtidos nos testes realizados, destacando tanto os pontos fortes quanto as fragilidades identificadas na solução. Explique como os aspectos positivos contribuem para o desempenho e a usabilidade do sistema, e como os pontos fracos impactam sua eficácia.

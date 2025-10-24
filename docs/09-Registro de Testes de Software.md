@@ -39,6 +39,7 @@ Para cada caso de teste definido no Plano de Testes de Software, realize o regis
 |	Requisito Associado 	| RF-RF07 - Registro de histórico clínico |
 |Registro de evidência |<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e2-proj-int-t2-g05-click-health/blob/f277335a0618f65e21717ba838ae8636eaa25243/docs/img/testedeedicao.gif" >  
 <img src= "https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e2-proj-int-t2-g05-click-health/blob/f277335a0618f65e21717ba838ae8636eaa25243/docs/img/testeregistroehistorico.gif">
+<img src= "https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e2-proj-int-t2-g05-click-health/blob/6ba0b7a2b33f808b82ca0b0a657b487278bb4e13/docs/img/bd%20registro%20clinico.png">
 |
 
 | **Caso de Teste** 	| **CT08 – Realizar login** 	|

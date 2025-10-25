@@ -7,7 +7,8 @@ Para cada caso de teste definido no Plano de Testes de Software, realize o regis
 | **Caso de Teste** 	| **CT01 – Cadastrar perfil** 	|
 |:---:	|:---:	|
 |	Requisito Associado 	| RF-001 - Validar se o cuidador consegue cadastrar, visualizar, editar e excluir diversos pacientes |
-|Registro de evidência | ![testerf001](https://github.com/user-attachments/assets/f91a31d6-88ef-4e23-ae1e-29d8bcb03e70) |
+|Registro de evidência | ![testerf001](https://github.com/user-attachments/assets/7d2b22c0-edfc-4763-b6d8-5d4bfa6b740e)
+ |
 
 | **Caso de Teste** 	| **CT02 – Realizar login** 	|
 |:---:	|:---:	|

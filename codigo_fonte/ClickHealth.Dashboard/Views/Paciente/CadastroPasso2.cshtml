@@ -1,0 +1,45 @@
+@{
+    ViewData["Title"] = "Cadastro de Paciente - Passo 2";
+}
+
+<main class="form-container">
+    <h1 class="form-title">Cadastrar Novo Paciente</h1>
+    <p class="form-step-title">Passo 2 de 2: Gerenciar Cuidadores</p>
+
+    <form asp-controller="Paciente" asp-action="CadastroPasso2" method="post">
+        @Html.AntiForgeryToken()
+        <div class="form-card">
+
+            <section class="form-section">
+                <h2 class="form-section-title">Convidar Cuidadores</h2>
+                <div class="form-inline">
+                    <div class="form-group">
+                        <label for="cuidador-email-input">E-mail do cuidador</label>
+                        <input type="email" id="cuidador-email-input" class="form-control" />
+                    </div>
+                    <button type="button" id="btn-convidar-cuidador" class="btn btn-success" style="width: 150px;">Convidar</button>
+                </div>
+            </section>
+
+            <hr class="form-divider">
+
+            <section class="form-section">
+                <h2 class="form-section-title">Cuidadores Convidados</h2>
+                <ul class="caregiver-list">
+                    <!-- A lista será preenchida pelo JS -->
+                </ul>
+            </section>
+
+        </div>
+
+        <div class="form-footer">
+            <a asp-controller="Paciente" asp-action="CadastroPasso1" class="btn btn-secondary" style="width: 120px;">Voltar</a>
+            <button type="submit" class="btn btn-success" style="width: 120px;">Concluir</button>
+        </div>
+    </form>
+</main>
+
+@section Scripts {
+    <script src="~/js/cadastro-paciente.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

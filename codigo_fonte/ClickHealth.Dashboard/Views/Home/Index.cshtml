@@ -1,0 +1,75 @@
+﻿@model ClickHealth.Dashboard.Models.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<main>
+    <section class="patient-dashboard">
+
+        <header class="dashboard-header">
+            <h2>Meus Pacientes</h2>
+            
+            <div style="display: flex; gap: 10px;">
+                
+            
+                <a class="btn btn-secondary" 
+                   style="background-color: #6c757d; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; justify-content: center;" 
+                   asp-controller="Paciente" asp-action="Index">
+                   Gerenciar Lista
+                </a>
+                
+                <a class="btn-newpatient" asp-controller="Paciente" asp-action="CadastroPasso1">+ Adicionar Novo Paciente</a>
+            </div>
+
+        </header>
+
+        <div class="patient-roles-container">
+            <div class="role-column">
+                <h3 class="role-title">Cuidador Principal</h3>
+                <div class="patient-list">
+                    
+                    @foreach (var paciente in Model.PacientesPrincipais)
+                    {
+                        <article class="patient-card">
+                            <div class="avatar-placeholder"></div> 
+                            <div class="patient-info">
+                                <span class="patient-name">@paciente.NomePaciente</span>
+                                <small class="next-action">@paciente.ProximaAcao</small>
+                            </div>
+                            <div class="patient-details">
+                                <span class="status-indicator @paciente.StatusIndicador"></span> 
+                                <!-- Link "Gerenciar" que leva para a edição do paciente específico -->
+                                <a asp-controller="Paciente" asp-action="Editar" asp-route-id="@paciente.IdPaciente" class="btn-manage">Gerenciar</a>
+                            </div>
+                        </article>
+                    }
+
+                </div>
+            </div>
+
+            <div class="role-column">
+                <h3 class="role-title">Cuidador Assistente</h3>
+                <div class="patient-list">
+                    
+                    @foreach (var paciente in Model.PacientesAssistentes)
+                    {
+                        <article class="patient-card">
+                            <div class="avatar-placeholder"></div> 
+                            <div class="patient-info">
+                                <span class="patient-name">@paciente.NomePaciente</span>
+                                <small class="next-action">@paciente.ProximaAcao</small>
+                            </div>
+                            <div class="patient-details">
+                                <span class="status-indicator @paciente.StatusIndicador"></span> 
+                                <!-- Link "Gerenciar" que leva para a edição do paciente específico -->
+                                <a asp-controller="Paciente" asp-action="Editar" asp-route-id="@paciente.IdPaciente" class="btn-manage">Gerenciar</a>
+                            </div>
+                        </article>
+                    }
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+</main>

@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - ClickHealth</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/index.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/cadastro-paciente.css" asp-append-version="true">
+
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="header-left">
+                <img src="~/images/clickhealth-logo.png" alt="Logo ClickHealth">
+            </div>
+            <div class="header-center">
+                <img src="~/images/image 2.png" alt="Letreiro ClickHealth">
+            </div>
+            <div class="header-right">
+                <div class="sino">
+                    <img src="~/images/Group.png" alt="Ícone de sino representando notificação">
+                </div>
+                <div class="perfil-usuario">
+                    <div class="circulo-avatar">
+                        <img src="~/images/Vector.png" alt="Círculo em cinza para representar o Avatar">
+                    </div>
+                    <a href="#"><span>Olá, João</span></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/js/cadastro-paciente.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

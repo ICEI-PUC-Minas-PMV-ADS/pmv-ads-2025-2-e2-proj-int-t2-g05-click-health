@@ -1,0 +1,19 @@
+# Arquivo .gitignore Padrão do ASP.NET Core
+[Bb]in/
+[Oo]bj/
+
+*.user
+*.suo
+*.sln.docstates
+.vs/
+.vscode/
+
+
+*.db
+*.db-shm
+*.db-wal
+
+
+*.DS_Store
+Thumbs.db
+.fake

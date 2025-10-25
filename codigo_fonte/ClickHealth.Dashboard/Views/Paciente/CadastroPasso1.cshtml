@@ -1,0 +1,60 @@
+@model ClickHealth.Dashboard.Models.Paciente
+@{
+    ViewData["Title"] = "Cadastro de Paciente - Passo 1";
+}
+
+<main class="form-container">
+    <h1 class="form-title">Cadastrar Novo Paciente</h1>
+    <p class="form-step-title">Passo 1 de 2: Perfil do Paciente</p>
+
+    <form asp-action="CadastroPasso1" method="post">
+        @Html.AntiForgeryToken()
+
+        <div class="form-card">
+            <section class="form-section">
+                <h2 class="form-section-title">Dados Pessoais</h2>
+                <div class="dados-pessoais-flex">
+                    <div class="avatar-upload">Adicionar foto</div>
+                    <input type="file" id="avatar-file-input" name="avatarFile" accept="image/*" style="display: none;">
+                    <div class="form-fields-container">
+                        <div class="form-group">
+                            <label class="control-label">Nome Completo</label>
+                            <input asp-for="DadosPessoais" class="form-control" placeholder="Nome Completo" />
+                            <span asp-validation-for="DadosPessoais" class="text-danger"></span>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="control-label">Data de Nascimento</label>
+                                <input asp-for="DataNascimento" class="form-control" type="date" />
+                                <span asp-validation-for="DataNascimento" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Telefone</label>
+                                <input asp-for="Telefone" class="form-control" placeholder="(00) 00000-0000" />
+                                <span asp-validation-for="Telefone" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="form-section">
+                <h2 class="form-section-title">Informações de Saúde</h2>
+                <div class="form-group">
+                    <label class="control-label">Condições Médicas e Alergias</label>
+                    <textarea asp-for="CondicoesMedicas" class="form-control" rows="3" placeholder="Descreva aqui..."></textarea>
+                    <span asp-validation-for="CondicoesMedicas" class="text-danger"></span>
+                </div>
+            </section>
+        </div>
+
+        <div class="form-footer">
+            <a asp-controller="Home" asp-action="Index" class="btn btn-secondary" style="width: 120px;">Cancelar</a>
+            <button type="submit" class="btn btn-primary" style="width: 120px;">Próximo</button>
+        </div>
+    </form>
+</main>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -73,6 +73,12 @@ Para cada caso de teste definido no Plano de Testes de Software, realize o regis
 |	Requisito Associado 	| RF-007 - Testar se é possível registrar alterações no histórico clínico do paciente |
 |Registro de evidência | www.teste.com.br/drive/ct-02 |
 
+
+# Registro de Testes de Software - Tela Agendamento
+
+![gifclick](https://github.com/user-attachments/assets/7e24b74f-e9a9-4af4-b96a-d99fbf88b930)
+
+
 ## Relatório de testes de software
 
 Apresente e discuta detalhadamente os resultados obtidos nos testes realizados, destacando tanto os pontos fortes quanto as fragilidades identificadas na solução. Explique como os aspectos positivos contribuem para o desempenho e a usabilidade do sistema, e como os pontos fracos impactam sua eficácia.

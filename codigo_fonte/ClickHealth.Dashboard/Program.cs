@@ -1,29 +1,17 @@
-// USING statements DESCOMENTADOS
+using ClickHealth.Models;
 using Microsoft.EntityFrameworkCore;
-using ClickHealth.Dashboard.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Conexão com SQLite
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 builder.Services.AddControllersWithViews();
-
-// LINHA DESCOMENTADA: Registra o DbContext novamente
-builder.Services.AddDbContext<ClickHealthContext>(options =>
-   options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-// Configura a sessÃ£o em memÃ³ria
-builder.Services.AddDistributedMemoryCache();
-builder.Services.AddSession(options =>
-{
-    options.IdleTimeout = TimeSpan.FromMinutes(10);
-    options.Cookie.HttpOnly = true;
-    options.Cookie.IsEssential = true;
-});
-
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configuração padrão
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -32,15 +20,12 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
-app.UseSession(); // Ativa a sessÃ£o
-
 app.UseAuthorization();
 
+// Rota padrão
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Agendamentos}/{action=Index}/{id?}");
 
 app.Run();

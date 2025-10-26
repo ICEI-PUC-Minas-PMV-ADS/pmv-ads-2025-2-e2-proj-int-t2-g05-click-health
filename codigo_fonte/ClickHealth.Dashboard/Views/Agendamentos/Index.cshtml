@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ClickHealth.Models.Agendamento>
+
+<h2>Agendamentos</h2>
+
+<p>
+    <a class="btn btn-primary" href="/Agendamentos/Create">Novo Agendamento</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Paciente</th>
+            <th>Data</th>
+            <th>Hora</th>
+            <th>Observação</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.NomePaciente</td>
+                <td>@item.Data.ToShortDateString()</td>
+                <td>@item.Hora</td>
+                <td>@item.Observacao</td>
+            </tr>
+        }
+    </tbody>
+</table>

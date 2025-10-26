@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ClickHealth.Models.MedicamentoTomado>
+
+@{
+    ViewData["Title"] = "Medicamentos Tomados";
+}
+
+<h2>Registros de Medicamentos Tomados</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Novo Registro</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Paciente</th>
+            <th>Medicamento</th>
+            <th>Data</th>
+            <th>Hora</th>
+            <th>Observação</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.NomePaciente</td>
+                <td>@item.Medicamento?.Nome</td>
+                <td>@item.Data.ToString("dd/MM/yyyy")</td>
+                <td>@item.Hora</td>
+                <td>@item.Observacao</td>
+            </tr>
+        }
+    </tbody>
+</table>

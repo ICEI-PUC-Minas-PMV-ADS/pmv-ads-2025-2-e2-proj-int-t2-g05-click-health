@@ -1,0 +1,38 @@
+﻿@model ClickHealth.Models.Agendamento
+
+<h2>Novo Agendamento</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label>Nome do Paciente</label>
+        <input asp-for="NomePaciente" class="form-control" />
+        <span asp-validation-for="NomePaciente" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Data</label>
+        <input asp-for="Data" type="date" class="form-control" />
+        <span asp-validation-for="Data" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Hora</label>
+        <input asp-for="Hora" type="time" class="form-control" />
+        <span asp-validation-for="Hora" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Observação</label>
+        <textarea asp-for="Observacao" class="form-control"></textarea>
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-success">Salvar</button>
+    <a href="/Agendamentos" class="btn btn-secondary">Voltar</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

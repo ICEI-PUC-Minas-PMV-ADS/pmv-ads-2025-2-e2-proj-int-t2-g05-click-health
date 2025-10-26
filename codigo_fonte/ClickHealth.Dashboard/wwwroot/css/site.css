@@ -1,31 +1,105 @@
-html {
-  font-size: 14px;
+
+:root {
+    --azul: #007bff;
+    --verde: #28a745;
+    --branco: #ffffff;
+    --cinza-claro: #f8f9fa;
+    --cinza-texto: #333333;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
+/* Corpo da página */
 body {
-  margin-bottom: 60px;
+    background-color: var(--cinza-claro);
+    color: var(--cinza-texto);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* Cabeçalho / Navbar */
+.navbar {
+    background: linear-gradient(90deg, var(--azul), var(--verde));
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+.navbar-brand {
+    color: var(--branco) !important;
+    font-weight: bold;
+    font-size: 1.4rem;
 }
+
+.nav-link {
+    color: var(--branco) !important;
+    font-weight: 500;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+    .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: var(--branco);
+        border-radius: 4px;
+    }
+
+/* Botões */
+.btn-primary {
+    background-color: var(--azul);
+    border-color: var(--azul);
+}
+
+    .btn-primary:hover {
+        background-color: #0069d9;
+    }
+
+.btn-success {
+    background-color: var(--verde);
+    border-color: var(--verde);
+}
+
+    .btn-success:hover {
+        background-color: #218838;
+    }
+
+/* Tabelas */
+.table {
+    background-color: var(--branco);
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+    .table thead {
+        background-color: var(--azul);
+        color: var(--branco);
+    }
+
+/* Formulários */
+.form-control {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+    .form-control:focus {
+        border-color: var(--azul);
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+/* Títulos */
+h1, h2, h3 {
+    color: var(--azul);
+    font-weight: 600;
+}
+
+/* Rodapé */
+footer {
+    background: var(--azul);
+    color: var(--branco);
+    padding: 15px 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Botão voltar */
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }

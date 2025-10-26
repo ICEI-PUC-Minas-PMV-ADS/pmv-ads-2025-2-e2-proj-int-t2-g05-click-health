@@ -1,0 +1,44 @@
+﻿@model ClickHealth.Models.MedicamentoTomado
+@using ClickHealth.Models
+
+@{
+    ViewData["Title"] = "Registrar Medicamento Tomado";
+    var medicamentos = ViewBag.Medicamentos as List<Medicamento>;
+}
+
+<h2>Registrar Medicamento Tomado</h2>
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="NomePaciente" class="form-label"></label>
+        <input asp-for="NomePaciente" class="form-control" />
+        <span asp-validation-for="NomePaciente" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="MedicamentoId" class="form-label">Medicamento</label>
+        <select asp-for="MedicamentoId" class="form-control"
+                asp-items="@(new SelectList(medicamentos, "Id", "Nome"))">
+            <option value="">Selecione...</option>
+        </select>
+        <span asp-validation-for="MedicamentoId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Data" class="form-label"></label>
+        <input asp-for="Data" type="date" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Hora" class="form-label"></label>
+        <input asp-for="Hora" type="time" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Observacao" class="form-label"></label>
+        <textarea asp-for="Observacao" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">Salvar</button>
+    <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+</form>

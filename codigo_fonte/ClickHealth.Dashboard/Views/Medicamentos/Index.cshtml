@@ -1,0 +1,30 @@
+﻿@model IEnumerable<ClickHealth.Models.Medicamento>
+
+@{
+    ViewData["Title"] = "Medicamentos";
+}
+
+<h2>Lista de Medicamentos</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Novo Medicamento</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nome</td>
+                <td>@item.Descricao</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

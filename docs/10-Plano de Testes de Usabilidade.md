@@ -76,17 +76,18 @@ Os cenários representam tarefas reais que os usuários executam no sistema. Nes
 
 **Cenário 3**
 - **Objetivo:** Avaliar a facilidade em registrar mudanças clínicas do paciente.
-- **Contexto:** Após uma consulta, o cuidador registra uma mudança de medicação e resultado de exame.
+- **Contexto:** Após uma consulta, o cuidador registra uma mudança de resultado de exame.
 - **Tarefas:**
 
  
  **1**  Acessar "Histórico Clínico".
- **2** Registrar nova medicação e resultado de exame.
+ **2** Registrar resultado de exame.
 
 
 - **Critério de Sucesso:**
   - Dados salvos corretamente.
   - Informações exibidas corretamente no feed.
+
 
 
   **Cenário 4**

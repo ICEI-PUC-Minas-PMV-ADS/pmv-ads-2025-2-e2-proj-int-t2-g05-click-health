@@ -23,7 +23,12 @@ A tabela a seguir é um exemplo de como ela deverá ser preenchida considerando 
 |------|-----------------------------------------|----|----|
 |RF-001| A aplicação deve permitir que o usuário avalie uma agência de intercâmbio com base na sua experiência| |  |
 |RF-002| A aplicação deve permitir que o usuário inclua comentários ao fazer uma avaliação de uma agência de intercâmbio     |  |  |
-|RF-003| A aplicação deve permitir que o usuário consulte todas as agências de intercâmbio cadastradas ordenando-as com base em suas notas |  |  |
+|RF-003| A aplicação deve permitir que o usuário consulte todas as agências de intercâmbio cadastradas ordenando-as com base em suas      |  |  |
+|RF-007| Registrar (CRUD)* histórico clínico por paciente: alterações de medicação (com data e responsável), resultados de exames, internações e anotações clínicas.	     |  Registros clinicos e historico do paciente. | Carolina Almeida |
+|RF-008| Exibir feed de atualizações por paciente, em ordem cronológica, com registro automático de ações.     | Registros clinicos e historico do paciente. | Carolina Almeida |
+
+
+
 
 
 # Instruções de acesso

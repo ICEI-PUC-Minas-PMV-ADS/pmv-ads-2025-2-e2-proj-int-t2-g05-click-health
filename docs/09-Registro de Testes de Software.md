@@ -10,9 +10,9 @@ Para cada caso de teste definido no Plano de Testes de Software, realize o regis
 |Registro de evidência | ![testerf001](https://github.com/user-attachments/assets/7d2b22c0-edfc-4763-b6d8-5d4bfa6b740e)
  |
 
-| **Caso de Teste** 	| **CT02 – Realizar login** 	|
+| **Caso de Teste** 	| **CT014 – Cadastrar nova contan** 	|
 |:---:	|:---:	|
-|	Requisito Associado 	| RF-00Y - A aplicação deve permitir que um usuário previamente cadastrado faça login |
+|	Requisito Associado 	| RF-00 - A aplicação deve permitir o registro de um novo usuário, processo anterior ao cadastro de paciente, ou seja, o cadastro da conta na aplicação. Nesta etapa é possível cadastrar uma nova conta, listar as contas registradas, exibir detalhes, editar e excluir contas. Além disso, ir para a dashboard dos pacientes/cuidadores |
 |Registro de evidência | www.teste.com.br/drive/ct-02 |
 
 | **Caso de Teste** 	| **CT03 – Realizar login** 	|

@@ -1,0 +1,8 @@
+# banco local
+*.db
+*.db-shm
+*.db-wal
+
+# uploads dos usuários
+wwwroot/uploads/*
+!wwwroot/uploads/.gitkeep

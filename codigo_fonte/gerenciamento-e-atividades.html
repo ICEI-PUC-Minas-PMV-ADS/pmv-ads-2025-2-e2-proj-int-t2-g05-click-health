@@ -1,0 +1,397 @@
+﻿@{
+    // CRÍTICO: Indica ao Razor para não usar o _Layout.cshtml, prevenindo duplicidade de HTML e erros de compilação.
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click Health - Painel de Controle</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* Estilos CSS NATIVOS - Para garantir 100% de altura */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Estilos CUSTOMIZADOS do Tailwind (para o componente) */
+        .input-field {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+            outline: none;
+            font-size: 1rem;
+            background-color: #f9fafb;
+        }
+
+            .input-field:focus {
+                border-color: #4f46e5;
+                box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+                background-color: white;
+            }
+
+        .btn-secondary {
+            background-color: #f3f4f6;
+            color: #4b5563;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: 1px solid #d1d5db;
+        }
+
+            .btn-secondary:hover {
+                background-color: #e5e7eb;
+                color: #1f2937;
+            }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+
+        // --- Dados Mock (Simulando dados da API) ---
+
+        const MOCK_PACIENTE = {
+          nome: "Maria Clara Andrade",
+          foto: "https://placehold.co/100x100/94a3b8/ffffff?text=MC",
+          dataNascimento: "15/05/1960"
+        };
+
+        const MOCK_CUIDADORES = [
+          { id: 1, email: "eduardo.singularo@sga.pucminas.br", permissao: "Pode Editar" },
+          { id: 2, email: "joao.pedro@exemplo.com", permissao: "Apenas Visualizar" }
+        ];
+
+        const MOCK_FEED = [
+          // Ícones substituídos por Emojis
+          { id: 1, tipo: 'concluido', texto: "Tarefa Concluída: 'Losartana'", autor: "Lucas Moura", hora: "Hoje, às 11:30", icon: '✅', color: "text-green-500", bgColor: "bg-green-100" },
+          { id: 2, tipo: 'medicamento', texto: "Medicamento Adicionado: AAS (ácido acetilsalicílico) - 100mg - Após o almoço", autor: "João Pedro", hora: "Hoje, às 09:15", icon: '➕', color: "text-blue-500", bgColor: "bg-blue-100" },
+          { id: 3, tipo: 'permissao', texto: "Permissão Alterada: As permissões de Lucas Moura foram alteradas para 'Pode Editar'.", autor: "João Pedro", hora: "Ontem, às 18:22", icon: '✏️', color: "text-yellow-500", bgColor: "bg-yellow-100" },
+          { id: 4, tipo: 'agendamento', texto: "Agendamento Adicionado: Novo compromisso: 'Exame de Sangue - 22/09/2025'", autor: "João Pedro", hora: "Ontem, às 18:45", icon: '📅', color: "text-gray-500", bgColor: "bg-gray-100" },
+        ];
+
+
+        // --- Componentes de Tela ---
+
+        const ConfiguracoesPaciente = ({ paciente, cuidadores }) => {
+          // CORRIGIDO: Usando a sintaxe global React.useState
+          const [novoCuidadorEmail, setNovoCuidadorEmail] = React.useState('');
+
+          const handleInvite = () => {
+            if (novoCuidadorEmail) {
+              alert(`Enviando convite para: ${novoCuidadorEmail}. (Lógica de API aqui)`);
+              setNovoCuidadorEmail('');
+            }
+          };
+
+          return (
+            <div className="space-y-8 p-6">
+              {/* Perfil do Paciente Card */}
+              <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                <div className="flex justify-between items-center mb-6">
+                  <h2 className="text-xl font-bold text-gray-800">Perfil do Paciente</h2>
+                  <a href="#" className="text-blue-600 hover:text-blue-800 text-sm font-medium">Configurações</a>
+                </div>
+
+                <div className="flex items-start space-x-6">
+                  <div className="flex flex-col items-center">
+                    <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 text-lg font-semibold border-4 border-white shadow-md">
+                      👤 {/* Ícone de usuário substituído por Emoji */}
+                    </div>
+                    <button className="text-sm text-indigo-600 mt-2 hover:underline">Alterar foto</button>
+                  </div>
+
+                  <div className="flex-1 space-y-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="text-sm font-medium text-gray-600">Nome Completo</label>
+                        <input type="text" value={paciente.nome} className="input-field" readOnly />
+                      </div>
+                      <div>
+                        <label className="text-sm font-medium text-gray-600">Data de Nascimento</label>
+                        <input type="text" value={paciente.dataNascimento} className="input-field" readOnly />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex justify-end space-x-4 mt-6">
+                  <button className="btn-secondary flex items-center space-x-2">
+                    <span>Gerenciar Medicamentos</span>
+                    <span>➡️</span>
+                  </button>
+                  <button className="btn-secondary flex items-center space-x-2">
+                    <span>Ver Histórico Clínico</span>
+                    <span>➡️</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Gerenciar Cuidadores Card */}
+              <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                <h2 className="text-xl font-bold text-gray-800 mb-6">Gerenciar Cuidadores</h2>
+
+                <div className="space-y-4 mb-8">
+                  {cuidadores.map((c, index) => (
+                    <div key={c.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border">
+                      <span className="font-medium text-gray-700">{c.email}</span>
+                      <div className="flex items-center space-x-3">
+                        <span className={`px-3 py-1 text-xs font-semibold rounded-full ${c.permissao === 'Pode Editar' ? 'bg-blue-100 text-blue-800' : 'bg-yellow-100 text-yellow-800'}`}>
+                          {c.permissao}
+                        </span>
+                        <button className="text-red-500 hover:text-red-700 text-sm">
+                          Remover
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Convidar Novo Cuidador */}
+                <div className="flex flex-col space-y-2">
+                  <label htmlFor="invite-email" className="text-sm font-medium text-gray-700">Convidar novo cuidador por e-mail</label>
+                  <div className="flex space-x-3">
+                    <input
+                      id="invite-email"
+                      type="email"
+                      placeholder="email@exemplo.com"
+                      value={novoCuidadorEmail}
+                      onChange={(e) => setNovoCuidadorEmail(e.target.value)}
+                      className="input-field flex-1"
+                    />
+                    <button
+                      onClick={handleInvite}
+                      className="bg-green-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-700 transition"
+                    >
+                      Convidar
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Opções Avançadas Card */}
+              <div className="p-4 rounded-xl border-l-4 border-red-500 bg-red-50 shadow-lg">
+                <h3 className="text-lg font-bold text-red-800 mb-2">Opções Avançadas</h3>
+                <p className="text-sm text-red-700 mb-4">
+                  Ações nesta seção são permanentes e não podem ser desfeitas. Tenha certeza absoluta antes de continuar.
+                </p>
+                <button className="text-red-600 border border-red-600 px-4 py-2 rounded-lg font-semibold hover:bg-red-100 transition flex items-center space-x-2">
+                  <span>🗑️</span>
+                  <span>Excluir Perfil do Paciente</span>
+                </button>
+              </div>
+
+              {/* Botão Salvar Alterações */}
+              <div className="sticky bottom-0 bg-white p-4 shadow-2xl rounded-t-xl text-right border-t border-gray-200">
+                <button className="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition shadow-lg">
+                  Salvar Alterações
+                </button>
+              </div>
+            </div>
+          );
+        };
+
+        const FeedAtividades = ({ feed }) => {
+          return (
+            <div className="p-6">
+              <h1 className="text-2xl font-bold text-gray-800 mb-8">Feed de Atividades</h1>
+
+              <div className="relative">
+                <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200"></div>
+
+                {feed.map((item, index) => (
+                  <div key={item.id} className="mb-8 flex items-start">
+                    <div className="relative z-10 flex flex-col items-center">
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${item.bgColor} border-2 border-white shadow-md`}>
+                        <span className={item.color}>{item.icon}</span>
+                      </div>
+                      {index < feed.length - 1 && (
+                        <div className="w-0.5 h-10 bg-gray-200"></div>
+                      )}
+                    </div>
+
+                    <div className="flex-1 ml-6 p-4 bg-white rounded-xl shadow-md hover:shadow-lg transition duration-300 border border-gray-100">
+                      <div className="flex justify-between items-start">
+                        <div className="space-y-1">
+                          <p className="font-semibold text-gray-900">{item.tipo === 'concluido' ? 'Tarefa Concluída' : item.tipo === 'medicamento' ? 'Medicamento Adicionado' : item.tipo === 'permissao' ? 'Permissão Alterada' : 'Agendamento Adicionado'}</p>
+                          <p className="text-sm text-gray-600">{item.texto}</p>
+                        </div>
+
+                        <div className="text-right text-xs text-gray-400 min-w-[150px]">
+                          <p>Por: <span className="font-medium text-gray-600">{item.autor}</span></p>
+                          <p>{item.hora}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        };
+
+
+        // --- Layout Principal (Sidebar e Header) ---
+
+        const Sidebar = ({ currentView, setView }) => {
+          const links = [
+            // Ícones substituídos por Emojis
+            { id: 'visaoGeral', name: 'Visão Geral', icon: '👀' },
+            { id: 'agenda', name: 'Agenda', icon: '📅' },
+            { id: 'medicamentos', name: 'Medicamentos', icon: '💊' },
+            { id: 'historicoClinico', name: 'Histórico Clínico', icon: '📜' },
+            { id: 'feedAtividades', name: 'Feed de Atividades', icon: '🕒' },
+            { id: 'registroAtividades', name: 'Registro de Atividades', icon: '📝' },
+          ];
+
+          return (
+            <div className="w-60 bg-white border-r border-gray-200 p-4 space-y-2">
+              {links.map((link) => (
+                <a
+                  key={link.id}
+                  href="#"
+                  onClick={(e) => { e.preventDefault(); setView(link.id); }}
+                  className={`
+                    flex items-center space-x-3 p-3 rounded-xl transition duration-200
+                    ${currentView === link.id
+                      ? 'bg-indigo-50 text-indigo-700 font-semibold border-r-4 border-indigo-600'
+                      : 'text-gray-600 hover:bg-gray-100'
+                    }
+                  `}
+                >
+                  <span className="text-xl">{link.icon}</span>
+                  <span>{link.name}</span>
+                </a>
+              ))}
+
+              {/* Link de Configurações */}
+              <a
+                href="#"
+                onClick={(e) => { e.preventDefault(); setView('configuracoes'); }}
+                className={`
+                  flex items-center space-x-3 p-3 rounded-xl transition duration-200 mt-8
+                  ${currentView === 'configuracoes'
+                    ? 'bg-indigo-50 text-indigo-700 font-semibold border-r-4 border-indigo-600'
+                    : 'text-gray-600 hover:bg-gray-100'
+                  }
+                `}
+              >
+                <span className="text-xl">⚙️</span>
+                <span>Configurações</span>
+              </a>
+            </div>
+          );
+        };
+
+        const Header = () => (
+          <header className="flex justify-between items-center p-4 bg-white border-b border-gray-200">
+            <div className="flex items-center space-x-3">
+              <div className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600">
+                🩺
+              </div>
+              <h1 className="text-xl font-bold text-indigo-800">Click Health</h1>
+            </div>
+
+            <div className="flex items-center space-x-4">
+              <button className="p-2 rounded-full text-gray-500 hover:bg-gray-100 transition">
+                🔔
+              </button>
+              <div className="text-sm font-medium text-gray-700">
+                Olá, João
+              </div>
+              <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center text-white font-semibold">
+                J
+              </div>
+            </div>
+          </header>
+        );
+
+        const PacienteHeader = ({ paciente }) => (
+          <div className="bg-white p-4 flex items-center justify-between border-b border-gray-200">
+            <div className="flex items-center space-x-4">
+              <div className="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center text-white text-xl font-semibold border-2 border-white shadow-sm">
+                {paciente.nome.substring(0, 2).toUpperCase()}
+              </div>
+              <h2 className="text-xl font-semibold text-gray-800">{paciente.nome}</h2>
+            </div>
+            <a href="#" className="text-sm text-indigo-600 hover:text-indigo-800">
+              Configurações
+            </a>
+          </div>
+        );
+
+        const App = () => {
+          // CORRIGIDO: Usando React.useState
+          const [currentView, setCurrentView] = React.useState('configuracoes');
+
+          const renderContent = () => {
+            switch (currentView) {
+              case 'configuracoes':
+                return <ConfiguracoesPaciente paciente={MOCK_PACIENTE} cuidadores={MOCK_CUIDADORES} />;
+              case 'feedAtividades':
+                return <FeedAtividades feed={MOCK_FEED} />;
+              case 'visaoGeral':
+              case 'agenda':
+              case 'medicamentos':
+              case 'historicoClinico':
+              case 'registroAtividades':
+                return (
+                  <div className="p-6">
+                    <h1 className="text-2xl font-bold text-gray-800">{currentView.charAt(0).toUpperCase() + currentView.slice(1)} - Em Breve...</h1>
+                    <p className="mt-4 text-gray-600">Esta é a área para a tela de {currentView}.</p>
+                  </div>
+                );
+              default:
+                return <div className="p-6">Selecione uma opção na barra lateral.</div>;
+            }
+          };
+
+          return (
+            <div className="min-h-screen flex flex-col bg-gray-50">
+              <Header />
+
+              <div className="flex flex-1 overflow-hidden">
+                <Sidebar currentView={currentView} setView={setCurrentView} />
+
+                <main className="flex-1 overflow-y-auto">
+                  <PacienteHeader paciente={MOCK_PACIENTE} />
+
+                  <div className="p-6 h-full">
+                    <div className="bg-white rounded-xl shadow-xl h-full">
+                      {renderContent()}
+                    </div>
+                  </div>
+                </main>
+              </div>
+            </div>
+          );
+        };
+
+        // Renderiza a aplicação
+        const domNode = document.getElementById('root');
+        const root = ReactDOM.createRoot(domNode);
+        root.render(<App />);
+
+    </script>
+</body>
+</html>

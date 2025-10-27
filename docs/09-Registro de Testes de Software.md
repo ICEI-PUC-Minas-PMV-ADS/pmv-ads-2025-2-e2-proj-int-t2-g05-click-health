@@ -73,6 +73,14 @@ Para cada caso de teste definido no Plano de Testes de Software, realize o regis
 |	Requisito Associado 	| RF-007 - Testar se é possível registrar alterações no histórico clínico do paciente |
 |Registro de evidência | www.teste.com.br/drive/ct-02 |
 
+| **Caso de Teste** 	| **CT13 – Gerenciar Alertas e Notificações** 	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-013 – Validar o funcionamento completo do CRUD de alertas e a exibição das notificações no painel do cuidador|
+|Registro de evidência | ![testerf001]()
+ |
+
+CT-RF08 – Gerenciar Alertas e Notificações
+
 
 # Registro de Testes de Software - Tela Agendamento
 

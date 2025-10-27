@@ -1,0 +1,20 @@
+﻿# ==== Banco local (SQLite) ====
+*.db
+*.db-shm
+*.db-wal
+
+# ==== Uploads de usuários ====
+wwwroot/uploads/*
+!wwwroot/uploads/.gitkeep
+
+# ==== Build / IDE ====
+bin/
+obj/
+.vs/
+
+# Outros comuns
+*.user
+*.suo
+*.userprefs
+*.DS_Store
+Thumbs.db

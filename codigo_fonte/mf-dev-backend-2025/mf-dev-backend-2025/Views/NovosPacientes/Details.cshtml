@@ -1,0 +1,77 @@
+﻿@model mf_dev_backend_2025.Models.novopaciente
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Detalhes da Conta";
+    var foto = string.IsNullOrWhiteSpace(Model.FotoPath) ? "/img/avatar-placeholder.svg" : Model.FotoPath;
+    var senhaMasked = string.IsNullOrEmpty(Model.senha) ? "—" : new string('•', Math.Min(Model.senha.Length, 8));
+}
+
+@section Styles {
+    <style>
+        body { background:#f4f6f8; }
+        .page-wrap { padding: 32px 16px; }
+        .card {
+            background:#fff; border-radius:16px; box-shadow:0 8px 30px rgba(0,0,0,.08);
+            padding:24px; max-width: 860px; margin: 0 auto;
+        }
+        .brand { display:flex; align-items:center; gap:10px; justify-content:center; margin-bottom: 12px; }
+        .brand img { width:64px; height:64px; object-fit:contain; }
+        .title { text-align:center; font-weight:700; margin: 4px 0 20px; }
+
+        .profile {
+            display:flex; gap:24px; align-items:center; margin-bottom: 18px; flex-wrap:wrap;
+        }
+        .avatar {
+            width:96px; height:96px; border-radius:50%; overflow:hidden; background:#eef1f4;
+            border:2px dashed #d6dbe1; flex: 0 0 auto;
+        }
+        .avatar img { width:100%; height:100%; object-fit:cover; }
+        .kv {
+            display:grid; grid-template-columns: 160px 1fr; gap:12px 16px;
+        }
+        .kv .k { color:#6c757d; font-weight:600; }
+        .kv .v { color:#212529; }
+
+        .actions { display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-end; margin-top: 20px; }
+        .btn-primary { background:#4a79ff; border-color:#4a79ff; }
+        .btn-outline-danger { border-color:#dc3545; color:#dc3545; }
+        .btn-outline-danger:hover { background:#dc3545; color:#fff; }
+    </style>
+}
+
+<div class="page-wrap">
+    <!-- (opcional) logo no topo -->
+    <div class="brand">
+        <img src="~/img/logo.png" alt="Click Health" />
+    </div>
+
+    <div class="card">
+        <h2 class="title">Detalhes da Conta</h2>
+
+        <div class="profile">
+            <div class="avatar">
+                <img src="@foto" alt="Foto do usuário" />
+            </div>
+
+            <div class="kv">
+                <div class="k">ID</div>
+                <div class="v">@Model.Id</div>
+
+                <div class="k">Nome</div>
+                <div class="v">@Model.Nome</div>
+
+                <div class="k">E-mail</div>
+                <div class="v">@Model.email</div>
+
+                <div class="k">Senha</div>
+                <div class="v">@senhaMasked</div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a>
+            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger">Excluir</a>
+            <a asp-action="Index" class="btn btn-outline-secondary">Voltar</a>
+        </div>
+    </div>
+</div>

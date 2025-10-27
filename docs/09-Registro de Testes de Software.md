@@ -12,7 +12,7 @@ Para cada caso de teste definido no Plano de Testes de Software, realize o regis
 
 | **Caso de Teste** 	| **CT014 – Cadastrar nova contan** 	|
 |:---:	|:---:	|
-|	Requisito Associado 	| RF-00 - A aplicação deve permitir o registro de um novo usuário, processo anterior ao cadastro de paciente, ou seja, o cadastro da conta na aplicação. Nesta etapa é possível cadastrar uma nova conta, listar as contas registradas, exibir detalhes, editar e excluir contas. Além disso, ir para a dashboard dos pacientes/cuidadores |
+|	Requisito Associado 	| RF-014 - A aplicação deve permitir o registro de um novo usuário, processo anterior ao cadastro de paciente, ou seja, o cadastro da conta na aplicação. Nesta etapa é possível cadastrar uma nova conta, listar as contas registradas, exibir detalhes, editar e excluir contas. Além disso, ir para a dashboard dos pacientes/cuidadores |
 |Registro de evidência | www.teste.com.br/drive/ct-02 |
 
 | **Caso de Teste** 	| **CT03 – Realizar login** 	|

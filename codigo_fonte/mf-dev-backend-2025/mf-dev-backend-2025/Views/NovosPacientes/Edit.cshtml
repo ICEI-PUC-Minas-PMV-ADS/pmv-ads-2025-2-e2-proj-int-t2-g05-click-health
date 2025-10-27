@@ -1,0 +1,134 @@
+﻿@model mf_dev_backend_2025.Models.novopaciente
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Editar Conta";
+}
+
+<style>
+    body {
+        background: #f4f6f8;
+    }
+
+    .auth-wrap {
+        min-height: calc(100vh - 56px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+    }
+
+    .auth-card {
+        width: 100%;
+        max-width: 560px;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 8px 30px rgba(0,0,0,.08);
+        padding: 32px 28px;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+        .brand img {
+            width: 64px;
+            height: 64px;
+            object-fit: contain;
+        }
+
+    .auth-title {
+        text-align: center;
+        font-weight: 700;
+        margin: 4px 0 16px;
+    }
+
+    .form-label {
+        font-weight: 600;
+    }
+
+    .btn-primary {
+        background: #4a79ff;
+        border-color: #4a79ff;
+    }
+
+        .btn-primary:hover {
+            filter: brightness(.95);
+        }
+
+    .muted-link {
+        color: #6c757d;
+        text-decoration: none;
+    }
+
+        .muted-link:hover {
+            text-decoration: underline;
+        }
+</style>
+
+<div class="auth-wrap">
+    <div class="w-100">
+        <!-- Logo -->
+        <div class="brand">
+            <img src="~/img/logo.png" alt="Click Health" />
+        </div>
+
+        <div class="auth-card mx-auto">
+            <h2 class="auth-title">Editar Conta</h2>
+
+            <form asp-action="Edit" method="post" enctype="multipart/form-data" novalidate>
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                <input type="hidden" asp-for="Id" />
+
+                @* Foto atual (se existir) *@
+                @if (!string.IsNullOrEmpty(Model.FotoPath))
+                {
+                    <div class="text-center mb-3">
+                        <img src="@Model.FotoPath" alt="Foto"
+                             style="width:96px;height:96px;border-radius:50%;object-fit:cover;" />
+                    </div>
+                }
+
+                @* Trocar/Enviar nova foto *@
+                <div class="mb-3">
+                    <label class="form-label">Trocar foto</label>
+                    <input type="file" name="foto" accept="image/*" class="form-control" />
+                    <small class="text-muted">Máximo 10 MB. Formatos: JPG, PNG, WEBP ou GIF.</small>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Nome" class="form-label">Nome Completo</label>
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="email" class="form-label">E-mail</label>
+                    <input asp-for="email" class="form-control" type="email" />
+                    <span asp-validation-for="email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="senha" class="form-label">Senha</label>
+                    <input asp-for="senha" class="form-control" type="password" value="" />
+                    <span asp-validation-for="senha" class="text-danger"></span>
+                    <small class="text-muted">Deixe em branco para manter a senha atual.</small>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary py-2">Salvar alterações</button>
+                    <a asp-action="Index" class="btn btn-outline-secondary">Voltar</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

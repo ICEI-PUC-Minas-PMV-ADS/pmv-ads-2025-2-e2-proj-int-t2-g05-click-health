@@ -1,0 +1,122 @@
+﻿@model mf_dev_backend_2025.Models.novopaciente
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Criar Conta";
+}
+
+@section Styles {
+    <style>
+        body { background: #f4f6f8; }
+        .auth-wrap {
+            min-height: calc(100vh - 56px); /* desconta navbar padrão */
+            display: flex; align-items: center; justify-content: center;
+            padding: 24px;
+        }
+        .auth-card {
+            width: 100%; max-width: 560px;
+            background: #fff; border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,.08);
+            padding: 32px 28px;
+        }
+        .brand {
+            display:flex; align-items:center; justify-content:center; gap:10px;
+            margin-bottom: 10px;
+        }
+        .brand img { width: 64px; height: 64px; object-fit: contain; }
+        .auth-title { text-align:center; font-weight:700; margin: 4px 0 16px; }
+        .avatar {
+            width: 96px; height: 96px; border-radius: 50%;
+            background: #eef1f4; border: 2px dashed #d6dbe1;
+            margin: 0 auto 18px; position: relative; overflow: hidden;
+            display:flex; align-items:center; justify-content:center;
+            color: #9aa4b2; font-size: .9rem;
+            cursor: pointer; transition: .2s;
+        }
+        .avatar:hover { background:#e9edf2; }
+        .avatar input[type=file] { position:absolute; inset:0; opacity:0; cursor:pointer; }
+        .avatar img { width:100%; height:100%; object-fit: cover; }
+        .muted-link { color:#6c757d; text-decoration:none; }
+        .muted-link:hover { text-decoration:underline; }
+        .btn-primary {
+            background:#4a79ff; border-color:#4a79ff;
+        }
+        .btn-primary:hover { filter: brightness(.95); }
+        .form-label { font-weight:600; }
+    </style>
+}
+
+<div class="auth-wrap">
+    <div class="w-100">
+        <!-- Logo -->
+        <div class="brand">
+            <img src="~/img/logo.png" alt="Click Health" />
+        </div>
+
+        <div class="auth-card mx-auto">
+            <h2 class="auth-title">Crie sua Conta</h2>
+
+
+            <form asp-action="Create" method="post" enctype="multipart/form-data" novalidate>
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+                <!-- Avatar (agora DENTRO do form) -->
+                <label class="avatar" title="Adicionar foto">
+                    <span id="avatarText">Adicionar foto</span>
+                    <img id="avatarPreview" alt="" style="display:none;" />
+                    <input type="file" name="foto" accept="image/*" id="avatarFile" />
+                </label>
+
+                <div class="mb-3">
+                    <label asp-for="Nome" class="form-label">Nome Completo</label>
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="email" class="form-label">E-mail</label>
+                    <input asp-for="email" class="form-control" type="email" />
+                    <span asp-validation-for="email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="senha" class="form-label">Senha</label>
+                    <input asp-for="senha" class="form-control" type="password" />
+                    <span asp-validation-for="senha" class="text-danger"></span>
+                </div>
+
+                <!-- Campo extra de confirmação só visual; não altera backend -->
+                <div class="mb-4">
+                    <label class="form-label">Confirmar Senha</label>
+                    <input name="ConfirmarSenha" class="form-control" type="password" />
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 py-2">Cadastrar</button>
+
+                <div class="text-center mt-3">
+                    <a asp-action="Index" class="muted-link">Já tem uma conta? Entre</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        // Preview simples do avatar (não envia nada especial pro backend)
+        const input = document.getElementById('avatarFile');
+        const img = document.getElementById('avatarPreview');
+        const txt = document.getElementById('avatarText');
+        if (input) {
+            input.addEventListener('change', (e) => {
+                const [file] = e.target.files || [];
+                if (!file) return;
+                const url = URL.createObjectURL(file);
+                img.src = url; img.style.display = 'block';
+                if (txt) txt.style.display = 'none';
+            });
+        }
+    </script>
+}

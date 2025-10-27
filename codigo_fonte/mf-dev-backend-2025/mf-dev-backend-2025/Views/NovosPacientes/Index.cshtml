@@ -1,0 +1,212 @@
+﻿@model IEnumerable<mf_dev_backend_2025.Models.novopaciente>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject IConfiguration Config
+@{
+    ViewData["Title"] = "Lista de Contas";
+
+    string Mask(string? s)
+    {
+        var n = string.IsNullOrEmpty(s) ? 8 : s!.Length;
+        if (n < 8) n = 8;
+        if (n > 12) n = 12;
+        return new string('•', n);
+    }
+
+    // Lê a URL da dashboard do appsettings.json (Dashboard:Url)
+    var dashboardUrl = Config["Dashboard:Url"];
+    var hasDashboardUrl = !string.IsNullOrWhiteSpace(dashboardUrl);
+}
+
+@section Styles {
+    <style>
+        body {
+            background: #f4f6f8;
+        }
+
+        .page {
+            max-width: 1100px;
+            margin: 28px auto;
+            padding: 0 16px;
+        }
+
+        .title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 0 0 16px;
+        }
+
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background: #4a79ff;
+            color: #fff;
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #1f2328;
+        }
+
+        .btn-info {
+            background: #17a2b8;
+            color: #fff;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: #fff;
+        }
+
+        .btn-outline {
+            background: #fff;
+            color: #0d6efd;
+            border-color: #b6d1ff;
+        }
+
+        .btn-lg {
+            padding: 12px 18px;
+            font-size: 1rem;
+        }
+
+        .list {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 28px rgba(0,0,0,.06);
+            padding: 8px;
+        }
+
+        .header, .item {
+            display: grid;
+            grid-template-columns: 1.2fr 1.2fr .7fr auto; /* nome | email | senha | ações */
+            gap: 12px;
+            align-items: center;
+            padding: 12px 10px;
+        }
+
+        .header {
+            font-weight: 700;
+            color: #6c757d;
+            border-bottom: 1px solid #eef1f4;
+        }
+
+        .item {
+            border-bottom: 1px solid #f2f4f7;
+        }
+
+            .item:last-child {
+                border-bottom: none;
+            }
+
+        .name {
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .email {
+            color: #374151;
+        }
+
+        .pwd {
+            color: #6b7280;
+            letter-spacing: 2px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+
+        .footer-nav {
+            margin-top: 16px;
+            display: flex;
+            justify-content: center;
+        }
+
+            .footer-nav .hint {
+                font-size: .9rem;
+                color: #6c757d;
+                margin-top: 6px;
+                text-align: center;
+            }
+    </style>
+}
+
+<div class="page">
+    <div class="toolbar">
+        <h1 class="title">Lista de Contas</h1>
+        <a asp-action="Create" class="btn btn-primary">Cadastrar nova conta</a>
+    </div>
+
+    <div class="list">
+        <div class="header">
+            <div>Nome</div>
+            <div>E-mail</div>
+            <div>Senha</div>
+            <div style="text-align:right;">Ações</div>
+        </div>
+
+        @if (Model is null || !Model.Any())
+        {
+            <div class="item">
+                <div class="name">—</div>
+                <div class="email">Nenhuma conta cadastrada ainda.</div>
+                <div class="pwd">—</div>
+                <div class="actions">
+                    <a asp-action="Create" class="btn btn-primary">Cadastrar</a>
+                </div>
+            </div>
+        }
+        else
+        {
+            @foreach (var p in Model)
+            {
+                <div class="item">
+                    <div class="name">@p.Nome</div>
+                    <div class="email">@p.email</div>
+                    <div class="pwd">@Mask(p.senha)</div>
+
+                    <div class="actions">
+                        <a asp-action="Edit" asp-route-id="@p.Id" class="btn btn-warning">Editar</a>
+                        <a asp-action="Details" asp-route-id="@p.Id" class="btn btn-info">Detalhes</a>
+                        <a asp-action="Delete" asp-route-id="@p.Id" class="btn btn-danger">Excluir</a>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+    <!-- Botão para a dashboard (sem mexer em rotas; usa URL absoluta do appsettings) -->
+    <div class="footer-nav">
+        <a class="btn btn-outline btn-lg"
+           href="@(hasDashboardUrl? dashboardUrl : "#")"
+           target="@(hasDashboardUrl ? "_blank" : "_self")"
+           rel="@(hasDashboardUrl ? "noopener" : null)"
+           title="@(hasDashboardUrl ? "Abrir dashboard" : "Configure Dashboard:Url no appsettings.json")">
+            Ir para a Dashboard de Novos Pacientes
+        </a>
+    </div>
+
+    @if (!hasDashboardUrl)
+    {
+        <div class="footer-nav">
+            <div class="hint">
+                Dica: defina <code>Dashboard:Url</code> no <code>appsettings.json</code> para ativar este botão.
+            </div>
+        </div>
+    }
+</div>

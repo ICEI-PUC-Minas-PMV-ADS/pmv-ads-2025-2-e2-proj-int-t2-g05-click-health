@@ -1,4 +1,4 @@
-# TÍTULO DO PROJETO
+# CLICKHEALTH
 
 `CURSO`
 
@@ -6,29 +6,31 @@
 
 `SEMESTRE`
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+Aplicação para cuidadores poderem acompanhar consultas, medicamentos, exames, entre outras necessidades de um paciente em questão e poder dividir com outros responsáveis.
 
 ## Integrantes
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
+* Eduardo Rodrigues Singulano
+* Tainan Marques Gadelha
+* Karine Luara de Oliveira Xavier da Silva
+* Helen Lagares da Silva
+* Carolina Mariana Aparecida Ferreira de Almeida
+* Marcos Antonio Pires de Souza
 
 ## Orientador
 
-* Nome completo do professor
+* José Wilson da Costa
 
 ## Instruções de Instalação, Execução e Acesso
 
 **Acesso rápido (produção)**
-* URL da aplicação: https://seu-dominio.com/caminho
-* Status: online / instável / em manutenção (atualize conforme o caso)
-* Ambiente: produção / homologação
+* URL da aplicação: http://clickhealth-001-site1.ktempurl.com/Account/Login
+* Status: online (em manutenção)
+* Ambiente: produção 
 
 **Usuário(s) de teste (se houver):**
-* Login: usuario_teste
-* Senha: senha_teste
+* Login: 11276387
+* Senha: 60-dayfreetrial
 
 # Documentação
 

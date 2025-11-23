@@ -1,33 +1,238 @@
 # Arquitetura da Solução
 
-<span style="color:red">Pré-requisitos: <a href="3-Projeto de Interface.md"> Projeto de Interface</a></span>
-
-Definição de como o software é estruturado em termos dos componentes que fazem parte da solução e do ambiente de hospedagem da aplicação.
+A arquitetura da solução define como o sistema Click Health será organizado em termos de componentes de software, estrutura de dados e ambiente de hospedagem. Essa etapa é fundamental para assegurar que os requisitos funcionais e não funcionais sejam devidamente atendidos, garantindo escalabilidade, usabilidade e segurança.
 
 ## Diagrama de Classes
 
-O diagrama de classes ilustra graficamente como será a estrutura do software, e como cada uma das classes da sua estrutura estarão interligadas. Essas classes servem de modelo para materializar os objetos que executarão na memória.
+O diagrama de classes representa graficamente a estrutura lógica do software, destacando as classes, seus atributos e métodos, bem como os relacionamentos entre elas. No Click Health, esse artefato foi elaborado a partir das histórias de usuário e requisitos funcionais, servindo como guia para o desenvolvimento orientado a objetos.
 
-As referências abaixo irão auxiliá-lo na geração do artefato “Diagrama de Classes”.
+As classes modeladas incluem elementos como Usuário, Paciente, Plano de Cuidado, Agenda, Histórico Clínico e Notificações, refletindo as principais entidades do sistema. Os relacionamentos explicitam como essas entidades interagem para viabilizar a experiência de cuidado colaborativo.
 
-> - [Diagramas de Classes - Documentação da IBM](https://www.ibm.com/docs/pt-br/rational-soft-arch/9.6.1?topic=diagrams-class)
-> - [O que é um diagrama de classe UML? | Lucidchart](https://www.lucidchart.com/pages/pt/o-que-e-diagrama-de-classe-uml)
+<img src= ![9f546ba8-3e12-49d3-9fb6-1fcd5ce95557](https://github.com/user-attachments/assets/3b1555a9-a272-438b-b670-1fc6e56d6cc3)
+
+<img width="960" height="309" alt="diagrama_monitoramento - clickhealth" src="https://github.com/user-attachments/assets/83cf2ed6-f3ee-4922-9475-d02ae3591958" />
+
 
 ## Modelo ER (Projeto Conceitual)
 
-O Modelo ER representa através de um diagrama como as entidades (coisas, objetos) se relacionam entre si na aplicação interativa.
 
-Sugestão de ferramentas para geração deste artefato: LucidChart e Draw.io.
-
-A referência abaixo irá auxiliá-lo na geração do artefato “Modelo ER”.
+<img width="3840" height="1549" alt="Untitled diagram _ Mermaid Chart-2025-09-17-215446" src="https://github.com/user-attachments/assets/11c99a03-d6f1-4c2e-b3f7-9349320b20cb" />
 
 > - [Como fazer um diagrama entidade relacionamento | Lucidchart](https://www.lucidchart.com/pages/pt/como-fazer-um-diagrama-entidade-relacionamento)
 
-## Projeto da Base de Dados
+# Projeto da Base de Dados - Click Health
 
-O projeto da base de dados corresponde à representação das entidades e relacionamentos identificadas no Modelo ER, no formato de tabelas, com colunas e chaves primárias/estrangeiras necessárias para representar corretamente as restrições de integridade.
+O Projeto da Base de Dados tem como finalidade converter o Modelo Entidade-Relacionamento (ER) em um Modelo Relacional, mantendo a coerência com o Diagrama de Classes elaborado anteriormente.
+Nesse processo, cada entidade identificada no modelo conceitual é descrita em forma de tabela, com a definição de colunas, chaves primárias (PK), chaves estrangeiras (FK) e restrições de integridade. Essa estrutura garante consistência entre os dados, reduz redundâncias e assegura a integridade referencial do sistema.
+
+### Tabela: **Usuario**
+| Coluna | Tipo | Restrições |
+|--------|------|-------------|
+| id_usuario | INT | PK, AUTO_INCREMENT |
+| email | VARCHAR(100) | UNIQUE, NOT NULL |
+| senha_hash | VARCHAR(255) | NOT NULL |
+| estado | VARCHAR(20) | CHECK (estado IN ('ativo','inativo')) |
+| created_at | DATETIME | DEFAULT CURRENT_TIMESTAMP |
+| updated_at | DATETIME | ON UPDATE CURRENT_TIMESTAMP |
+
+
+### Tabela: **Paciente**
+| Coluna | Tipo | Restrições |
+|--------|------|-------------|
+| id_paciente | INT | PK, AUTO_INCREMENT |
+| id_usuario | INT | FK → Usuario(id_usuario), NOT NULL |
+| condicoes_medicas | TEXT |  |
+| dados_pessoais | TEXT |  |
+
+
+### Tabela: **Cuidador**
+| Coluna | Tipo | Restrições |
+|--------|------|-------------|
+| id_cuidador | INT | PK, AUTO_INCREMENT |
+| id_usuario | INT | FK → Usuario(id_usuario), NOT NULL |
+| tipo | VARCHAR(50) | CHECK (tipo IN ('familiar','profissional','apoio')) |
+| informacoes_experiencia | TEXT |  |
+
+
+### Tabela: **HistoricoMedico**
+| Coluna | Tipo | Restrições |
+|--------|------|-------------|
+| id_historico | INT | PK, AUTO_INCREMENT |
+| id_paciente | INT | FK → Paciente(id_paciente), NOT NULL |
+| diagnosticos_passados | TEXT |  |
+| alergias | TEXT |  |
+| intervencoes | TEXT |  |
+| procedimentos | TEXT |  |
+| atualizado_em | DATETIME | DEFAULT CURRENT_TIMESTAMP |
+
+
+### Tabela: **Medicacao**
+| Coluna | Tipo | Restrições |
+|--------|------|-------------|
+| id_medicacao | INT | PK, AUTO_INCREMENT |
+| id_paciente | INT | FK → Paciente(id_paciente), NOT NULL |
+| nome | VARCHAR(100) | NOT NULL |
+| dosagem | VARCHAR(50) | NOT NULL |
+| frequencia | VARCHAR(50) |  |
+| horario_administracao | DATETIME |  |
  
-Para mais informações, consulte o microfundamento "Modelagem de Dados".
+### Tabela: **MonitoramentoSaude**
+| Coluna | Tipo | Restrições |
+|--------|------|-------------|
+| id_monitoramento | INT | PK, AUTO_INCREMENT |
+| id_paciente | INT | FK → Paciente(id_paciente), NOT NULL |
+| frequencia_cardiaca | INT |  |
+| pressao_arterial | VARCHAR(20) |  |
+| temperatura | DECIMAL(4,1) |  |
+| glicose | DECIMAL(5,2) |  |
+| data_hora | DATETIME | NOT NULL |
+| id_dispositivo | INT | FK → Dispositivo(id_dispositivo) |
+
+
+### Tabela: **Dispositivo**
+| Coluna | Tipo | Restrições |
+|--------|------|-------------|
+| id_dispositivo | INT | PK, AUTO_INCREMENT |
+| tipo_dispositivo | VARCHAR(100) | NOT NULL |
+| identificacao | VARCHAR(100) | UNIQUE |
+| status_conexao | BOOLEAN | DEFAULT TRUE |
+
+
+### Tabela: **Alerta**
+| Coluna | Tipo | Restrições |
+|--------|------|-------------|
+| id_alerta | INT | PK, AUTO_INCREMENT |
+| id_paciente | INT | FK → Paciente(id_paciente), NOT NULL |
+| tipo_emergencia | VARCHAR(100) | NOT NULL |
+| data_hora | DATETIME | NOT NULL |
+| localizacao | VARCHAR(255) |  |
+| status | VARCHAR(50) | CHECK (status IN ('aberto','encerrado')) |
+
+
+### Tabela: **SessaoUsuario**
+| Coluna | Tipo | Restrições |
+|--------|------|-------------|
+| id_sessao | INT | PK, AUTO_INCREMENT |
+| id_usuario | INT | FK → Usuario(id_usuario), NOT NULL |
+| token_sessao | VARCHAR(255) | UNIQUE, NOT NULL |
+| data_inicio | DATETIME | NOT NULL |
+| data_fim | DATETIME |  |
+
+
+### Tabela: **TentativaLogin**
+| Coluna | Tipo | Restrições |
+|--------|------|-------------|
+| id_tentativa | INT | PK, AUTO_INCREMENT |
+| id_usuario | INT | FK → Usuario(id_usuario), NOT NULL |
+| data_hora | DATETIME | NOT NULL |
+| resultado | VARCHAR(20) | CHECK (resultado IN ('sucesso','falha')) |
+| ip_origem | VARCHAR(50) |  |
+
+
+### Tabela: **LogAuditoria**
+| Coluna | Tipo | Restrições |
+|--------|------|-------------|
+| id_log | INT | PK, AUTO_INCREMENT |
+| id_usuario | INT | FK → Usuario(id_usuario), NOT NULL |
+| acao | VARCHAR(100) | NOT NULL |
+| data_hora | DATETIME | NOT NULL |
+| descricao | TEXT |  |
+
+Comentários sobre as Tabelas - Projeto da Base de Dados
+
+
+Tabela Usuario
+A tabela Usuario concentra as informações básicas de autenticação e controle de acesso.
+- id_usuario: chave primária que identifica unicamente cada usuário.
+- email: usado para login; precisa ser único.
+- senha_hash: senha criptografada para garantir segurança.
+- estado: indica se o usuário está ativo ou inativo no sistema.
+- created_at e updated_at: permitem rastrear quando o cadastro foi feito e atualizado.
+
+
+Tabela Paciente
+A tabela Paciente representa usuários cadastrados como pacientes.
+- id_paciente: chave primária.
+- id_usuario: chave estrangeira que conecta o paciente ao usuário da tabela Usuario.
+- condicoes_medicas: histórico geral de condições médicas.
+- dados_pessoais: informações como endereço, telefone ou outros dados relevantes.
+
+
+Tabela Cuidador
+A tabela Cuidador identifica usuários que têm papel de cuidado.
+- id_cuidador: chave primária.
+- id_usuario: chave estrangeira ligada à tabela Usuario.
+- tipo: define se o cuidador é familiar, profissional ou de apoio.
+- informacoes_experiencia: registra qualificações ou experiências prévias do cuidador.
+
+
+Tabela HistoricoMedico
+Armazena informações clínicas detalhadas do paciente.
+- id_historico: chave primária.
+- id_paciente: chave estrangeira que relaciona o histórico ao paciente.
+- diagnosticos_passados, alergias, intervencoes, procedimentos: registros clínicos importantes.
+- atualizado_em: data da última atualização do histórico.
+
+
+Tabela Medicacao
+Registra os medicamentos associados ao paciente.
+- id_medicacao: chave primária.
+- id_paciente: chave estrangeira conectada ao paciente.
+- nome, dosagem e frequencia: detalhes da prescrição médica.
+- horario_administracao: horário previsto de administração do medicamento.
+
+
+Tabela MonitoramentoSaude
+Guarda os dados vitais monitorados periodicamente.
+- id_monitoramento: chave primária.
+- id_paciente: chave estrangeira que liga o registro ao paciente.
+- frequencia_cardiaca, pressao_arterial, temperatura, glicose: variáveis de saúde monitoradas.
+- data_hora: momento em que a medição foi registrada.
+- id_dispositivo: chave estrangeira ligada ao dispositivo responsável pela coleta.
+
+
+Tabela Dispositivo
+Lista os equipamentos usados para monitoramento.
+- id_dispositivo: chave primária.
+- tipo_dispositivo: tipo de aparelho (pulseira, monitor de glicose etc.).
+- identificacao: código único de identificação do dispositivo.
+- status_conexao: indica se o dispositivo está ativo ou inativo.
+
+
+Tabela Alerta
+Registra situações de emergência vinculadas a pacientes.
+- id_alerta: chave primária.
+- id_paciente: chave estrangeira.
+- tipo_emergencia: descreve o tipo de ocorrência (queda, crise etc.).
+- data_hora: horário do evento.
+- localizacao: posição do paciente no momento do alerta.
+- status: indica se o alerta está em aberto ou já foi encerrado.
+
+
+Tabela SessaoUsuario
+Controla as sessões de login dos usuários.
+- id_sessao: chave primária.
+- id_usuario: chave estrangeira.
+- token_sessao: identificador único da sessão.
+- data_inicio e data_fim: marcam a duração da sessão ativa.
+
+
+Tabela TentativaLogin
+Armazena tentativas de acesso ao sistema.
+- id_tentativa: chave primária.
+- id_usuario: chave estrangeira ligada ao usuário que tentou logar.
+- data_hora: horário da tentativa.
+- resultado: se o login foi um sucesso ou falhou.
+- ip_origem: IP de onde a tentativa foi feita.
+
+
+Tabela LogAuditoria
+Registra todas as ações relevantes executadas no sistema.
+- id_log: chave primária.
+- id_usuario: chave estrangeira vinculada ao usuário responsável.
+- acao: descreve qual operação foi realizada (ex.: inclusão de paciente).
+- data_hora: momento da ação.
+- descricao: detalhes complementares do evento.
 
 ## ATENÇÃO!!!
 
@@ -35,17 +240,28 @@ Os três artefatos — **Diagrama de Classes, Modelo ER e Projeto da Base de Dad
 
 ## Tecnologias Utilizadas
 
-Descreva aqui qual(is) tecnologias você vai usar para resolver o seu problema, ou seja, implementar a sua solução. Liste todas as tecnologias envolvidas, linguagens a serem utilizadas, serviços web, frameworks, bibliotecas, IDEs de desenvolvimento, e ferramentas.
+Para o desenvolvimento da solução, serão utilizadas tecnologias já dominadas pela equipe:
 
-Apresente também uma figura explicando como as tecnologias estão relacionadas ou como uma interação do usuário com o sistema vai ser conduzida, por onde ela passa até retornar uma resposta ao usuário.
+Frontend: HTML5, CSS, C# e JavaScript.
+
+Backend: simulado via LocalStorage ou banco em nuvem simples.
+
+Ferramentas de Versionamento: Git + GitHub (fluxo Gitflow).
+
+Ferramentas de Gestão: GitHub Projects para backlog e Kanban; Microsoft Teams e WhatsApp para comunicação.
+
+Protótipos e Wireframes: Figma / Mermaid.
+
+Diagramas: Lucidchart, Bizagi, Canva.
+
+A imagem abaixo apresenta a interação das tecnologias utilizadas para o desenvolvimento da aplicação.
+
+<img src= "https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e2-proj-int-t2-g05-click-health/blob/9da4750dbfce38836785c469ae1d224c3f4c260f/docs/img/intereacoes_clickhealth.png">
 
 ## Hospedagem
 
-Explique como a hospedagem e o lançamento da plataforma foi feita.
+A hospedagem do sistema Click Health será realizada inicialmente em ambiente GitHub Pages, permitindo a publicação direta do protótipo frontend e o acesso público ao sistema por meio de qualquer navegador, sem necessidade de instalação local. Essa escolha garante simplicidade de implantação, custo zero e integração nativa com o repositório GitHub, facilitando o versionamento contínuo e a disponibilização de novas versões para testes e validações.
 
-> **Links Úteis**:
->
-> - [Website com GitHub Pages](https://pages.github.com/)
-> - [Programação colaborativa com Repl.it](https://repl.it/)
-> - [Getting Started with Heroku](https://devcenter.heroku.com/start)
-> - [Publicando Seu Site No Heroku](http://pythonclub.com.br/publicando-seu-hello-world-no-heroku.html)
+Como o GitHub Pages suporta apenas aplicações estáticas, o backend nesta fase será simulado por meio do LocalStorage do navegador ou por um banco de dados em nuvem simples, adequado para prototipagem e demonstrações.
+
+Para futuras evoluções, poderá ser considerado a migração para plataformas que ofereçam suporte a aplicações com backend dinâmico, possibilitando a implementação de APIs, autenticação robusta e persistência de dados em bancos de dados relacionais ou não relacionais. Essa estratégia garante que a solução possa começar de forma ágil e enxuta, mas com potencial de escalabilidade para atender cenários reais de uso.

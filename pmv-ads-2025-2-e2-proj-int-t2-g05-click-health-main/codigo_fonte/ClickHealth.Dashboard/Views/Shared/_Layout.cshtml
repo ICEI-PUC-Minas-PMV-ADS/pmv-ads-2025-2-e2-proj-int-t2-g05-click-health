@@ -1,0 +1,177 @@
+﻿@*
+    Layout principal do ClickHealth Dashboard
+*@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - ClickHealth</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/cadastro-paciente.css" asp-append-version="true" />
+
+    @RenderSection("Styles", required: false)
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #f4f6f8;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: #ffffff;
+            z-index: 1000;
+            border-bottom: 1px solid #e0e3e7;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 24px;
+        }
+
+        .header-left img {
+            height: 40px;
+        }
+
+        .header-center img {
+            height: 32px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .sino img {
+            height: 22px;
+        }
+
+        .perfil-usuario {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .circulo-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #e8edf4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .circulo-avatar img {
+            width: 18px;
+            height: 18px;
+        }
+
+        .perfil-usuario span {
+            font-size: 14px;
+            color: #333;
+        }
+
+        /* ===== Sidebar ===== */
+
+        .sidebar {
+            width: 230px;
+            background: #003459;
+            position: fixed;
+            top: 64px; /* altura aproximada do header */
+            left: 0;
+            bottom: 0;
+            padding-top: 16px;
+            display: flex;
+            flex-direction: column;
+            color: #ffffff;
+        }
+
+        .sidebar a {
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 15px;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            background: #005a8d;
+        }
+
+        /* ===== Conteúdo principal ===== */
+
+        .container {
+            margin-top: 80px;      /* espaço do header */
+            margin-left: 250px;    /* espaço da sidebar */
+            padding: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="header-left">
+                <img src="~/images/clickhealth-logo.png" alt="Logo ClickHealth" />
+            </div>
+            <div class="header-center">
+                <img src="~/images/image 2.png" alt="Letreiro ClickHealth" />
+            </div>
+            <div class="header-right">
+                <div class="sino">
+                    <img src="~/images/Group.png" alt="Ícone de sino representando notificação" />
+                </div>
+                <div class="perfil-usuario">
+                    <div class="circulo-avatar">
+                        <img src="~/images/Vector.png" alt="Avatar" />
+                    </div>
+                    <a href="#"><span>Olá, João</span></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ✅ MENU LATERAL -->
+    <nav class="sidebar">
+        <a asp-controller="Home" asp-action="Index">🏠 Dashboard</a>
+        <a asp-controller="Paciente" asp-action="Index">🧑‍⚕️ Pacientes</a>
+        <a asp-controller="Cuidador" asp-action="Index">🤝 Cuidadores</a>
+        <a asp-controller="Medicacao" asp-action="Index">💊 Medicações</a>
+        <a asp-controller="MonitoramentoSaude" asp-action="Index">📊 Monitoramento</a>
+
+        <!-- 🔹 Registro Clínico -->
+        <a asp-controller="RegistroClinico" asp-action="Create">📝 Registro Clínico</a>
+        <a asp-controller="RegistroClinico" asp-action="Index">📚 Histórico Clínico</a>
+
+        <!-- 🔹 Histórico geral (se já existir esse módulo) -->
+        <a asp-controller="HistoricoMedico" asp-action="Index">📖 Histórico Médico (Geral)</a>
+
+        <a asp-controller="Account" asp-action="Logout">🚪 Sair</a>
+    </nav>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/cadastro-paciente.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

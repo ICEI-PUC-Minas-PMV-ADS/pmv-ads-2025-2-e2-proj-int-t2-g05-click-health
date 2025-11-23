@@ -1,0 +1,80 @@
+﻿@model ClickHealth.Dashboard.Models.Notificacao
+
+@{
+    Layout = "_LayoutDashboard";
+    ViewData["Title"] = "Nova Notificação";
+}
+
+<div class="container-fluid px-4 mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-semibold mb-0">
+            <i class="bi bi-plus-circle-fill text-success me-2"></i> @ViewData["Title"]
+        </h3>
+        <a asp-action="Index" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left me-1"></i> Voltar
+        </a>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-4">
+            <form asp-action="Create" method="post">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="IdPaciente" class="form-label fw-semibold">Paciente</label>
+                        <select asp-for="IdPaciente" class="form-select" asp-items="ViewBag.IdPaciente">
+                            <option value="">Selecione um paciente...</option>
+                        </select>
+                        <span asp-validation-for="IdPaciente" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="Tipo" class="form-label fw-semibold">Tipo de Notificação</label>
+                        <select asp-for="Tipo" class="form-select">
+                            <option value="">Selecione...</option>
+                            <option value="Consulta">Consulta</option>
+                            <option value="Lembrete">Lembrete</option>
+                            <option value="Medicamento">Medicamento</option>
+                            <option value="Aviso">Aviso</option>
+                            <option value="Convite">Convite</option>
+                        </select>
+                        <span asp-validation-for="Tipo" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Titulo" class="form-label fw-semibold">Título</label>
+                    <input asp-for="Titulo" class="form-control" placeholder="Ex: Lembrete de Consulta" />
+                    <span asp-validation-for="Titulo" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Mensagem" class="form-label fw-semibold">Mensagem</label>
+                    <textarea asp-for="Mensagem" class="form-control" rows="4" placeholder="Digite a mensagem..."></textarea>
+                    <span asp-validation-for="Mensagem" class="text-danger"></span>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <label asp-for="DataHora" class="form-label fw-semibold">Data e Hora</label>
+                        <input asp-for="DataHora" type="datetime-local" class="form-control"
+                               value="@Model.DataHora.ToString("yyyy-MM-ddTHH:mm")" />
+                        <span asp-validation-for="DataHora" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-success me-2">
+                        <i class="bi bi-check-circle me-1"></i> Salvar
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="bi bi-x-circle me-1"></i> Cancelar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

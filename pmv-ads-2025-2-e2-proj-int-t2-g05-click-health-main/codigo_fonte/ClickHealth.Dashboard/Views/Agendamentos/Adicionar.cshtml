@@ -1,0 +1,59 @@
+﻿@model ClickHealth.Dashboard.Models.AgendamentoMedicacao
+@{
+    ViewData["Title"] = "Novo Agendamento";
+    ViewData["HideSidebar"] = true;
+}
+
+<div class="container mt-5">
+    <h2 class="text-primary mb-4">Novo Agendamento de Medicação</h2>
+
+    <div class="card shadow">
+        <div class="card-body p-5">
+            <form asp-action="Adicionar" method="post">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Paciente *</label>
+                        <select asp-for="IdPaciente" asp-items="ViewBag.Pacientes" class="form-select" required>
+                            <option value="">Selecione o paciente</option>
+                        </select>
+                        <span asp-validation-for="IdPaciente" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Medicação *</label>
+                        <select asp-for="IdMedicacao" asp-items="ViewBag.Medicacoes" class="form-select" required>
+                            <option value="">Selecione a medicação</option>
+                        </select>
+                        <span asp-validation-for="IdMedicacao" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Data e Hora *</label>
+                        <input asp-for="DataHora" type="datetime-local" class="form-control" required />
+                        <span asp-validation-for="DataHora" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Dose *</label>
+                        <input asp-for="Dose" class="form-control" placeholder="Ex: 1 comprimido" required />
+                        <span asp-validation-for="Dose" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label fw-semibold">Observações</label>
+                        <textarea asp-for="Observacoes" class="form-control" rows="4"></textarea>
+                    </div>
+                </div>
+
+                <div class="mt-5 text-end">
+                    <a asp-action="Index" class="btn btn-secondary btn-lg">Cancelar</a>
+                    <button type="submit" class="btn btn-primary btn-lg ms-3">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

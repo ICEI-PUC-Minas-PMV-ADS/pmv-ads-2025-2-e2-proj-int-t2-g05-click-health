@@ -1,0 +1,48 @@
+﻿@{
+    Layout = "_LayoutDashboard";
+}
+
+@model ClickHealth.Dashboard.Models.Notificacao
+
+@{
+    ViewData["Title"] = "Excluir Notificação";
+}
+
+<h2 class="mb-3 text-danger">@ViewData["Title"]</h2>
+
+<h5>Tem certeza de que deseja excluir esta notificação?</h5>
+<hr />
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <dl class="row mb-0">
+            <!-- Título -->
+            <dt class="col-sm-3 fw-semibold text-secondary">Título</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Titulo)</dd>
+
+            <!-- Mensagem -->
+            <dt class="col-sm-3 fw-semibold text-secondary">Mensagem</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Mensagem)</dd>
+
+            <!-- Tipo -->
+            <dt class="col-sm-3 fw-semibold text-secondary">Tipo</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Tipo)</dd>
+
+            <!-- Data e Hora -->
+            <dt class="col-sm-3 fw-semibold text-secondary">Data e Hora</dt>
+            <dd class="col-sm-9">@Model.DataHora.ToString("dd/MM/yyyy HH:mm")</dd>
+        </dl>
+    </div>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <button type="submit" class="btn btn-danger me-2">
+        <i class="bi bi-trash"></i> Excluir
+    </button>
+    <a asp-action="Index" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Cancelar
+    </a>
+</form>
+

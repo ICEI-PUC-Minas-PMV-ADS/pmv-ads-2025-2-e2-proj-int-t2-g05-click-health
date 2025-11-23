@@ -1,0 +1,68 @@
+﻿@model ClickHealth.Dashboard.Models.Notificacao
+@{
+    Layout = "_LayoutDashboard";
+    ViewData["Title"] = "Nova Notificação";
+}
+
+<h2 class="mb-3">@ViewData["Title"]</h2>
+<hr />
+
+<form asp-action="Create" method="post" class="col-md-6">
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+    <!-- PACIENTE -->
+    <div class="form-group mb-3">
+        <label asp-for="IdPaciente" class="form-label">Paciente</label>
+        <select asp-for="IdPaciente" class="form-select" asp-items="ViewBag.IdPaciente">
+            <option value="">Selecione um paciente...</option>
+        </select>
+        <span asp-validation-for="IdPaciente" class="text-danger"></span>
+    </div>
+
+    <!-- TÍTULO -->
+    <div class="mb-3">
+        <label asp-for="Titulo" class="form-label"></label>
+        <input asp-for="Titulo" class="form-control" placeholder="Digite o título da notificação" />
+        <span asp-validation-for="Titulo" class="text-danger"></span>
+    </div>
+
+    <!-- MENSAGEM -->
+    <div class="mb-3">
+        <label asp-for="Mensagem" class="form-label"></label>
+        <textarea asp-for="Mensagem" rows="3" class="form-control" placeholder="Digite a mensagem"></textarea>
+        <span asp-validation-for="Mensagem" class="text-danger"></span>
+    </div>
+
+    <!-- TIPO E DATA -->
+    <div class="row g-3 mb-3">
+        <div class="col-md-6">
+            <label asp-for="Tipo" class="form-label"></label>
+            <select asp-for="Tipo" class="form-select">
+                <option value="">Selecione o tipo...</option>
+                <option>Consulta</option>
+                <option>Medicamento</option>
+                <option>Exame</option>
+                <option>Convite</option>
+            </select>
+            <span asp-validation-for="Tipo" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="DataHora" class="form-label"></label>
+            <input asp-for="DataHora" type="datetime-local" class="form-control" />
+            <span asp-validation-for="DataHora" class="text-danger"></span>
+        </div>
+    </div>
+
+    <!-- BOTÕES -->
+    <button class="btn btn-primary" type="submit">
+        <i class="bi bi-floppy"></i> Salvar
+    </button>
+    <a asp-action="Index" class="btn btn-secondary ms-2">Voltar</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

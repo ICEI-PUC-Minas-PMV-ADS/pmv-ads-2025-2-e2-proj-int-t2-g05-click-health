@@ -1,0 +1,59 @@
+﻿@model ClickHealth.Dashboard.Models.LoginViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Entrar";
+}
+
+<div class="container" style="max-width: 980px; margin: 40px auto;">
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px; align-items:center;">
+        <!-- Coluna do formulário -->
+        <div>
+            <div style="margin-bottom:24px;">
+                <img src="~/img/favicon.png" alt="Click Health" style="height:40px;">
+            </div>
+
+            <h2 style="margin:0 0 12px;">Acesse sua conta para continuar</h2>
+
+            <form asp-action="Login" method="post">
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input asp-for="RememberMe" class="form-check-input" />
+                    <label asp-for="RememberMe" class="form-check-label"></label>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="min-width:160px;">Entrar</button>
+            </form>
+
+            <div style="margin-top:12px;">
+                <a asp-action="ForgotPassword">Esqueci minha senha</a>
+            </div>
+
+            <div style="margin-top:12px;">
+                Não tem uma conta?
+                <a asp-controller="Account" asp-action="Register">Cadastre-se!</a>
+            </div>
+
+            <div asp-validation-summary="ModelOnly" class="text-danger" style="margin-top:12px;"></div>
+        </div>
+
+        <!-- Coluna da imagem/placeholder -->
+        <div style="background:#e8eef5; border-radius:12px; height:420px; display:flex; align-items:center; justify-content:center; color:#6c757d;">
+            Espaço para Imagem
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

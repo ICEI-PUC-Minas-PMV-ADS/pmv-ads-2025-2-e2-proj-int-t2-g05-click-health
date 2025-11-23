@@ -1,0 +1,149 @@
+/* Estrutura da área principal de conteúdo */
+main {
+  padding: 2rem 0;
+  background-color: #ffffff;
+}
+
+/* Container principal do dashboard */
+.patient-dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Cabeçalho do dashboard (título e botão principal) */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.dashboard-header h2 {
+  font-size: 2.2rem;
+  margin: 0;
+  color: #343a40;
+  font-weight: 700;
+}
+
+.btn-newpatient {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+}
+
+.btn-newpatient:hover {
+  background-color: #0056b3;
+}
+
+/* Estrutura das colunas de papéis para Cuidador Principal/Assistente */
+.patient-roles-container {
+  display: flex;
+  gap: 2rem;
+}
+
+.role-column {
+  flex: 1;
+  min-width: 300px;
+}
+
+.role-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #343a40;
+  margin-bottom: 1.5rem;
+}
+
+/* Lista e cards de pacientes */
+.patient-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.patient-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem;
+  background-color: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Componentes internos do card */
+.avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  background-color: #e0e0e0;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.patient-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.patient-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #343a40;
+  margin-bottom: 0.2rem;
+}
+
+.next-action {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.patient-details {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-shrink: 0;
+}
+
+/* Indicadores de status (círculos coloridos) */
+.status-indicator {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.status-indicator.yellow {
+  background-color: #ffc107;
+}
+
+.status-indicator.blue {
+  background-color: #007bff;
+}
+
+/* Botão "Gerenciar" dentro do card */
+.btn-manage {
+  background-color: #e9ecef;
+  color: #495057;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  white-space: nowrap;
+}
+
+.btn-manage:hover {
+  background-color: #ced4da;
+  color: #343a40;
+}

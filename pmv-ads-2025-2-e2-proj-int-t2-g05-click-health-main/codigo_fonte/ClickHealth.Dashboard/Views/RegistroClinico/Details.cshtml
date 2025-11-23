@@ -1,0 +1,158 @@
+@model ClickHealth.Dashboard.Models.RegistroClinico
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Detalhes do Registro Clínico";
+    var nomePaciente = Model.Paciente?.DadosPessoais ?? "Paciente";
+}
+
+@section Styles {
+    <style>
+        .page-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .tag-paciente {
+            font-size: 14px;
+            color: #495057;
+            margin-bottom: 16px;
+        }
+
+        .panel {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+            padding: 20px 24px;
+            margin-bottom: 16px;
+        }
+
+        .panel h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .muted {
+            font-size: 12px;
+            color: #6c757d;
+            margin-bottom: 12px;
+        }
+
+        .label {
+            font-weight: 600;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .btn-secondary {
+            background: #f1f3f5;
+            border: 1px solid #ced4da;
+            color: #495057;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .list-exames {
+            list-style: disc;
+            margin-left: 20px;
+        }
+    </style>
+}
+
+<h2 class="page-title">Detalhes do Registro Clínico</h2>
+<div class="tag-paciente">
+    Paciente: <strong>@nomePaciente</strong> · @Model.DataRegistro.ToString("dd/MM/yyyy HH:mm")
+</div>
+
+<div class="panel">
+    <h3>Resumo</h3>
+    <p>@Model.Resumo</p>
+</div>
+
+<div class="panel">
+    <h3>Observações</h3>
+    <p>@(string.IsNullOrWhiteSpace(Model.Observacoes) ? "<i>Sem observações adicionais.</i>" : Model.Observacoes)</p>
+</div>
+
+<div class="panel">
+    <h3>Exames laboratoriais</h3>
+
+    @{
+        if (string.IsNullOrWhiteSpace(Model.ExamesJson))
+        {
+            <p class="muted">Nenhum exame registrado neste atendimento.</p>
+        }
+        else
+        {
+            // tentativa simples de parse no client via JS – aqui só marcamos o container
+            <div id="exames-container-view"
+                 data-json="@Model.ExamesJson">
+                <p class="muted">
+                    A lista de exames será montada automaticamente.
+                </p>
+                <ul class="list-exames" id="lista-exames"></ul>
+            </div>
+        }
+    }
+</div>
+
+@if (!string.IsNullOrWhiteSpace(Model.ArquivoPath))
+{
+    <div class="panel">
+        <h3>Anexo</h3>
+        <p>
+            <a href="@Model.ArquivoPath" target="_blank">📎 Abrir arquivo anexado</a>
+        </p>
+    </div>
+}
+
+<div class="actions">
+    <a asp-action="Index" class="btn-secondary">Voltar ao histórico</a>
+</div>
+
+@section Scripts {
+    <script>
+        // Renderiza os exames cadastrados em JSON
+        (function () {
+            const container = document.getElementById('exames-container-view');
+            if (!container) return;
+
+            const json = container.getAttribute('data-json');
+            if (!json) return;
+
+            try {
+                const exames = JSON.parse(json);
+                const lista = document.getElementById('lista-exames');
+                lista.innerHTML = '';
+
+                if (!Array.isArray(exames) || exames.length === 0) {
+                    lista.innerHTML = '<li>Nenhum exame cadastrado.</li>';
+                    return;
+                }
+
+                exames.forEach(e => {
+                    const li = document.createElement('li');
+                    const nome = e.nome || e.Nome || '';
+                    const valor = e.valor || e.Valor || '';
+                    li.textContent = nome && valor ? `${nome}: ${valor}` :
+                                     nome ? nome :
+                                     valor ? valor :
+                                     '(exame sem descrição)';
+                    lista.appendChild(li);
+                });
+            } catch (err) {
+                console.error('Erro ao interpretar ExamesJson', err);
+            }
+        })();
+    </script>
+}

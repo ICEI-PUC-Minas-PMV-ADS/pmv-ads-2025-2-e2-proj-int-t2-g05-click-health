@@ -1,0 +1,37 @@
+@model IEnumerable<ClickHealth.Dashboard.Models.Paciente>
+@{
+    Layout = "_LayoutDashboard";
+    ViewData["Title"] = "Lista de Pacientes";
+}
+
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <h2>Lista de Pacientes</h2>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Voltar ao Dashboard</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Condições Médicas</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var paciente in Model)
+        {
+            <tr>
+                <td>@paciente.DadosPessoais</td>
+                <td>@paciente.CondicoesMedicas</td>
+                <td>
+                    <a asp-controller="Paciente" asp-action="Editar" asp-route-id="@paciente.IdPaciente" class="btn btn-primary">
+                        Gerenciar
+                    </a>
+                    <a asp-controller="Paciente" asp-action="Excluir" asp-route-id="@paciente.IdPaciente" class="btn btn-danger">
+                        Excluir
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

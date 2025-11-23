@@ -1,0 +1,255 @@
+@model ClickHealth.Dashboard.Models.RegistroClinico
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Novo Registro Clínico";
+}
+
+@section Styles {
+    <style>
+        .page-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 2fr 1.5fr;
+            gap: 24px;
+        }
+
+        .panel {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            padding: 20px 24px;
+        }
+
+        .panel h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .form-control, select {
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid #d0d7e2;
+            font-size: 14px;
+        }
+
+        textarea.form-control {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .exames-header,
+        .exame-row {
+            display: grid;
+            grid-template-columns: 2fr 1.5fr auto;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .exames-header {
+            font-size: 13px;
+            font-weight: 600;
+            color: #6c757d;
+            margin-bottom: 4px;
+        }
+
+        .exame-row {
+            margin-bottom: 6px;
+        }
+
+        .btn-sm {
+            padding: 4px 10px;
+            font-size: 12px;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-add {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-remove {
+            background: #e55353;
+            color: white;
+        }
+
+        .actions {
+            margin-top: 20px;
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            border: none;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .btn-secondary {
+            background: #f1f3f5;
+            border: 1px solid #ced4da;
+            color: #495057;
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .muted {
+            font-size: 12px;
+            color: #6c757d;
+        }
+    </style>
+}
+
+<h2 class="page-title">Novo Registro Clínico</h2>
+
+<form asp-action="Create" asp-controller="RegistroClinico" method="post" enctype="multipart/form-data" id="registro-form">
+    <div class="form-grid">
+        <!-- COLUNA ESQUERDA: DADOS GERAIS -->
+        <div class="panel">
+            <h3>Dados do atendimento</h3>
+
+            <div class="form-group">
+                <label class="form-label">Paciente</label>
+                <select asp-for="IdPaciente" asp-items="ViewBag.Pacientes" class="form-control">
+                    <option value="">Selecione um paciente</option>
+                </select>
+                <span asp-validation-for="IdPaciente" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Data do registro</label>
+                <input type="text" class="form-control" value="@Model.DataRegistro.ToString("dd/MM/yyyy HH:mm")" readonly />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" asp-for="Resumo"></label>
+                <textarea asp-for="Resumo" class="form-control" placeholder="Resumo do atendimento, motivo, conduta..."></textarea>
+                <span asp-validation-for="Resumo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" asp-for="Observacoes"></label>
+                <textarea asp-for="Observacoes" class="form-control" placeholder="Observações adicionais, orientações ao paciente, cuidados em casa..."></textarea>
+                <span asp-validation-for="Observacoes" class="text-danger"></span>
+            </div>
+        </div>
+
+        <!-- COLUNA DIREITA: EXAMES + ARQUIVO -->
+        <div class="panel">
+            <h3>Exames laboratoriais</h3>
+
+            <p class="muted">
+                Você pode registrar vários exames de uma vez (ex.: Hemograma, Sódio, Potássio, Magnésio, Ácido Úrico...).
+            </p>
+
+            <div class="exames-header">
+                <div>Nome do exame</div>
+                <div>Resultado / Valor</div>
+                <div></div>
+            </div>
+
+            <div id="exames-container">
+                <div class="exame-row">
+                    <input type="text" class="form-control" name="ExameNome" placeholder="Ex.: Hemoglobina">
+                    <input type="text" class="form-control" name="ExameValor" placeholder="Ex.: 13,2 g/dL">
+                    <button type="button" class="btn-sm btn-remove" onclick="removerLinha(this)">✕</button>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top:8px;">
+                <button type="button" class="btn-sm btn-add" onclick="adicionarLinha()">+ adicionar exame</button>
+            </div>
+
+            <!-- Campo escondido que vai armazenar o JSON dos exames -->
+            <input type="hidden" asp-for="ExamesJson" id="ExamesJson" />
+
+            <hr />
+
+            <div class="form-group">
+                <label class="form-label">Anexo (PDF, imagem, etc.)</label>
+                <input type="file" name="arquivoExame" class="form-control" />
+                <span class="muted">Opcional – ex.: laudo, imagem do exame, receita...</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <a asp-action="Index" class="btn-secondary">Cancelar</a>
+        <button type="submit" class="btn-primary">Salvar registro</button>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        function adicionarLinha() {
+            const container = document.getElementById('exames-container');
+
+            const row = document.createElement('div');
+            row.className = 'exame-row';
+
+            row.innerHTML = `
+                <input type="text" class="form-control" name="ExameNome" placeholder="Nome do exame">
+                <input type="text" class="form-control" name="ExameValor" placeholder="Resultado / valor">
+                <button type="button" class="btn-sm btn-remove" onclick="removerLinha(this)">✕</button>
+            `;
+
+            container.appendChild(row);
+        }
+
+        function removerLinha(button) {
+            const row = button.closest('.exame-row');
+            const container = document.getElementById('exames-container');
+            if (container.children.length > 1) {
+                row.remove();
+            } else {
+                // se só existir 1, apenas limpa
+                row.querySelector('[name="ExameNome"]').value = '';
+                row.querySelector('[name="ExameValor"]').value = '';
+            }
+        }
+
+        // Antes de enviar, monta o JSON dos exames
+        document.getElementById('registro-form').addEventListener('submit', function () {
+            const rows = document.querySelectorAll('#exames-container .exame-row');
+            const exames = [];
+
+            rows.forEach(r => {
+                const nome = r.querySelector('input[name="ExameNome"]').value.trim();
+                const valor = r.querySelector('input[name="ExameValor"]').value.trim();
+                if (nome || valor) {
+                    exames.push({ nome, valor });
+                }
+            });
+
+            document.getElementById('ExamesJson').value = JSON.stringify(exames);
+        });
+    </script>
+}

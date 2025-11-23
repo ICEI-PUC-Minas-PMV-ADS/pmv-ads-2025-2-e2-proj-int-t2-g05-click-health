@@ -1,0 +1,22 @@
+﻿@model ClickHealth.Dashboard.Models.Notificacao
+@{
+    ViewData["Title"] = "Excluir Notificação";
+    Layout = "_LayoutDashboard";
+}
+
+<h3 class="mb-3">Tem certeza que deseja excluir esta notificação?</h3>
+
+<div class="card p-3 mb-3">
+    <div><strong>Tipo:</strong> @Model.Tipo</div>
+    <div><strong>Título:</strong> @Model.Titulo</div>
+    <div><strong>Mensagem:</strong> @Model.Mensagem</div>
+    <div><strong>Paciente:</strong> @Model.Paciente?.DadosPessoais</div>
+    <div><strong>Data/Hora:</strong> @Model.DataHora.ToString("dd/MM/yyyy HH:mm")</div>
+</div>
+
+<form asp-action="Delete" method="post">
+    @* <<< IMPORTANTE: asp-action = Delete *@
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger"><i class="bi bi-trash me-1"></i>Excluir</button>
+    <a asp-action="Index" class="btn btn-secondary ms-2">Cancelar</a>
+</form>

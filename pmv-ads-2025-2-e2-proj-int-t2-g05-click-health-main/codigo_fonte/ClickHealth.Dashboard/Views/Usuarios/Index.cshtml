@@ -1,0 +1,104 @@
+﻿@model IEnumerable<ClickHealth.Dashboard.Models.Paciente>
+@inject Microsoft.Extensions.Configuration.IConfiguration Config
+
+@{
+    ViewData["Title"] = "Lista de Contas";
+
+    string Mask(string? s)
+    {
+        var n = string.IsNullOrEmpty(s) ? 8 : s!.Length;
+        if (n < 8) n = 8;
+        if (n > 12) n = 12;
+        return new string('•', n);
+    }
+
+    var dashboardUrl = Config?["Dashboard:Url"];
+    var hasDashboardUrl = !string.IsNullOrWhiteSpace(dashboardUrl);
+}
+
+@section Styles {
+    <style>
+        body { background: #f4f6f8; }
+        .page { max-width: 1100px; margin: 28px auto; padding: 0 16px; }
+        .title { font-size: 2rem; font-weight: 800; margin: 0 0 16px; }
+        .toolbar {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 12px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid transparent;
+        }
+        .btn-primary { background: #4a79ff; color: #fff; }
+        .list { background: #fff; border-radius: 16px;
+                box-shadow: 0 8px 28px rgba(0,0,0,.06); padding: 8px; }
+
+        .header, .item {
+            display: grid;
+            grid-template-columns: 1.2fr 1.2fr .7fr auto;
+            gap: 12px; align-items: center;
+            padding: 12px 10px;
+        }
+        .header { font-weight: 700; color: #6c757d; border-bottom: 1px solid #eef1f4; }
+        .item { border-bottom: 1px solid #f2f4f7; }
+        .item:last-child { border-bottom: none; }
+
+        .name { font-weight: 600; color: #111827; }
+        .email { color: #374151; }
+        .pwd { color: #6b7280; letter-spacing: 2px; }
+
+        .actions { display: flex; gap: 8px; justify-content: flex-end; }
+    </style>
+}
+
+<div class="page">
+    <div class="toolbar">
+        <h1 class="title">Lista de Contas</h1>
+        <a asp-action="Create" class="btn btn-primary">Cadastrar nova conta</a>
+    </div>
+
+    <div class="list">
+        <div class="header">
+            <div>Nome</div>
+            <div>E-mail</div>
+            <div>Senha</div>
+            <div style="text-align:right;">Ações</div>
+        </div>
+
+        @if (Model == null || !Model.Any())
+        {
+            <div class="item">
+                <div class="name">—</div>
+                <div class="email">Nenhuma conta cadastrada ainda.</div>
+                <div class="pwd">—</div>
+                <div class="actions">
+                    <a asp-action="Create" class="btn btn-primary">Cadastrar</a>
+                </div>
+            </div>
+        }
+        else
+        {
+            @foreach (var p in Model)
+            {
+                var email = p.IdUsuarioNavigation?.Email ?? "(sem e-mail)";
+                var senha = Mask(p.IdUsuarioNavigation?.SenhaHash);
+
+                <div class="item">
+                    <div class="name">@p.DadosPessoais</div>
+                    <div class="email">@email</div>
+                    <div class="pwd">@senha</div>
+
+                    <div class="actions">
+                        <a asp-action="Edit" asp-route-id="@p.IdPaciente" class="btn btn-warning">Editar</a>
+                        <a asp-action="Details" asp-route-id="@p.IdPaciente" class="btn btn-info">Detalhes</a>
+                        <a asp-action="Delete" asp-route-id="@p.IdPaciente" class="btn btn-danger">Excluir</a>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

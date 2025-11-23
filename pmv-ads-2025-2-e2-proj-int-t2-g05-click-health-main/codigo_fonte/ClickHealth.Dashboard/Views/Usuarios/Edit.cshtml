@@ -1,0 +1,126 @@
+﻿@model ClickHealth.Dashboard.Models.Paciente
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Editar Conta";
+
+    var user = Model.IdUsuarioNavigation; // Facilita leitura
+    var foto = string.IsNullOrWhiteSpace(user?.FotoPath)
+        ? "/img/avatar-placeholder.svg"
+        : user!.FotoPath;
+}
+
+<style>
+    body {
+        background: #f4f6f8;
+    }
+
+    .auth-wrap {
+        min-height: calc(100vh - 56px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+    }
+
+    .auth-card {
+        width: 100%;
+        max-width: 560px;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 8px 30px rgba(0,0,0,.08);
+        padding: 32px 28px;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+        .brand img {
+            width: 64px;
+            height: 64px;
+            object-fit: contain;
+        }
+
+    .auth-title {
+        text-align: center;
+        font-weight: 700;
+        margin: 4px 0 16px;
+    }
+
+    .form-label {
+        font-weight: 600;
+    }
+
+    .btn-primary {
+        background: #4a79ff;
+        border-color: #4a79ff;
+    }
+
+        .btn-primary:hover {
+            filter: brightness(.95);
+        }
+</style>
+
+<div class="auth-wrap">
+    <div class="w-100">
+        <div class="brand">
+            <img src="~/img/logo.png" alt="Click Health" />
+        </div>
+
+        <div class="auth-card mx-auto">
+            <h2 class="auth-title">Editar Conta</h2>
+
+            <form asp-action="Edit" method="post" enctype="multipart/form-data" novalidate>
+                @Html.AntiForgeryToken()
+                <input type="hidden" asp-for="IdPaciente" />
+
+                <!-- FOTO ATUAL -->
+                <div class="text-center mb-3">
+                    <img src="@foto" alt="Foto"
+                         style="width:96px;height:96px;border-radius:50%;object-fit:cover;" />
+                </div>
+
+                <!-- NOVA FOTO -->
+                <div class="mb-3">
+                    <label class="form-label">Trocar foto</label>
+                    <input type="file" name="foto" accept="image/*" class="form-control" />
+                </div>
+
+                <!-- NOME COMPLETO -->
+                <div class="mb-3">
+                    <label asp-for="DadosPessoais" class="form-label">Nome Completo</label>
+                    <input asp-for="DadosPessoais" class="form-control" />
+                </div>
+
+                <!-- EMAIL (do Usuário) -->
+                <div class="mb-3">
+                    <label class="form-label">E-mail</label>
+                    <input name="Email" class="form-control" type="email" value="@user?.Email" />
+                </div>
+
+                <!-- TELEFONE -->
+                <div class="mb-3">
+                    <label asp-for="Telefone" class="form-label">Telefone</label>
+                    <input asp-for="Telefone" class="form-control" />
+                </div>
+
+                <!-- SENHA (opcional) -->
+                <div class="mb-4">
+                    <label class="form-label">Senha</label>
+                    <input name="Senha" class="form-control" type="password" value="" />
+                    <small class="text-muted">Deixe vazio para manter a senha atual.</small>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary py-2">Salvar alterações</button>
+                    <a asp-action="Index" class="btn btn-outline-secondary">Voltar</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

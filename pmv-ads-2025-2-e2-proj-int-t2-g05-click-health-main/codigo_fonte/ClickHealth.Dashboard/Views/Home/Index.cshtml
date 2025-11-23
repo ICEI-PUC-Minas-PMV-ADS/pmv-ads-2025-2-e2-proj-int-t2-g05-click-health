@@ -1,0 +1,71 @@
+﻿@model ClickHealth.Dashboard.Models.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_LayoutDashboard";
+}
+
+<section class="container-fluid py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-dark">Meus Pacientes</h2>
+
+        <div class="d-flex gap-2">
+            <a class="btn btn-outline-secondary"
+               asp-controller="Paciente" asp-action="Index">
+                <i class="bi bi-list-ul me-1"></i> Gerenciar Lista
+            </a>
+
+            <a class="btn btn-success"
+               asp-controller="Paciente" asp-action="CadastroPasso1">
+                <i class="bi bi-plus-lg me-1"></i> Adicionar Novo Paciente
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Cuidador Principal -->
+        <div class="col-md-6 mb-4">
+            <h5 class="fw-semibold text-secondary mb-3">Cuidador Principal</h5>
+            <div class="d-flex flex-column gap-3">
+                @foreach (var paciente in Model.PacientesPrincipais)
+                {
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body d-flex align-items-center justify-content-between">
+                            <div>
+                                <h6 class="mb-1 fw-bold">@paciente.NomePaciente</h6>
+                                <small class="text-muted">@paciente.ProximaAcao</small>
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="badge rounded-pill bg-@(paciente.StatusIndicador == "yellow" ? "warning" : "primary")">&nbsp;</span>
+                                <a asp-controller="Paciente" asp-action="Editar" asp-route-id="@paciente.IdPaciente"
+                                   class="btn btn-outline-primary btn-sm">Gerenciar</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Cuidador Assistente -->
+        <div class="col-md-6 mb-4">
+            <h5 class="fw-semibold text-secondary mb-3">Cuidador Assistente</h5>
+            <div class="d-flex flex-column gap-3">
+                @foreach (var paciente in Model.PacientesAssistentes)
+                {
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body d-flex align-items-center justify-content-between">
+                            <div>
+                                <h6 class="mb-1 fw-bold">@paciente.NomePaciente</h6>
+                                <small class="text-muted">@paciente.ProximaAcao</small>
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="badge rounded-pill bg-@(paciente.StatusIndicador == "yellow" ? "warning" : "primary")">&nbsp;</span>
+                                <a asp-controller="Paciente" asp-action="Editar" asp-route-id="@paciente.IdPaciente"
+                                   class="btn btn-outline-primary btn-sm">Gerenciar</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

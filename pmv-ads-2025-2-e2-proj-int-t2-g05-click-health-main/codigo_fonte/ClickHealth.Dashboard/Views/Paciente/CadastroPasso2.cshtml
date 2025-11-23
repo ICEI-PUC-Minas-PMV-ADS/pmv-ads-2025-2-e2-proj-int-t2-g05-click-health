@@ -1,0 +1,65 @@
+@{
+    ViewData["Title"] = "Cadastro de Paciente - Passo 2";
+}
+
+<main class="form-container">
+    <h1 class="form-title">Cadastrar Novo Paciente</h1>
+    <p class="form-step-title">Passo 2 de 2: Gerenciar Cuidadores</p>
+
+    <form asp-controller="Paciente" asp-action="CadastroPasso2" method="post">
+        @Html.AntiForgeryToken()
+        <div class="form-card">
+
+            <section class="form-section">
+                <h2 class="form-section-title">Convidar Cuidadores</h2>
+                <div class="form-inline">
+                    <div class="form-group">
+                        <label for="cuidador-email-input">E-mail do cuidador</label>
+
+                        <!--
+                          CORREÇÃO ANTERIOR (JÁ APLICADA):
+                          O 'name="emailParaConvidar"' foi removido daqui para evitar conflitos.
+                        -->
+                        <input type="email" id="cuidador-email-input" class="form-control" />
+
+                        <!--
+                          INÍCIO DA CORREÇÃO (A CAUSA DO ERRO ATUAL):
+                          Este elemento <small> estava faltando.
+                          O JavaScript (linha 33) precisa dele para exibir o erro "Digite o e-mail".
+                        -->
+                        <small id="cuidador-error-msg" class="text-danger" style="display: none; width: 100%;"></small>
+                        <!-- FIM DA CORREÇÃO -->
+
+                    </div>
+                    <button type="button" id="btn-convidar-cuidador" class="btn btn-success" style="width: 150px;">Convidar</button>
+                </div>
+            </section>
+
+            <hr class="form-divider">
+
+            <section class="form-section">
+                <h2 class="form-section-title">Cuidadores Convidados</h2>
+                <ul class="caregiver-list">
+                    <!-- A lista será preenchida pelo JS -->
+                </ul>
+            </section>
+
+        </div>
+
+        <div class="form-footer">
+            <a asp-controller="Paciente" asp-action="CadastroPasso1" class="btn btn-secondary" style="width: 120px;">Voltar</a>
+            <button type="submit" class="btn btn-success" style="width: 120px;">Concluir</button>
+        </div>
+    </form>
+</main>
+
+@section Scripts {
+    <!--
+      NOTA: O 'asp-append-version="true"' é adicionado para evitar
+      problemas de cache do navegador ao atualizar o JS.
+    -->
+    <script src="~/js/cadastro-paciente.js" asp-append-version="true"></script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

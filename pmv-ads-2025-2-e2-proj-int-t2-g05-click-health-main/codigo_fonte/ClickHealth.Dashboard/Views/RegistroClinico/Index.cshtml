@@ -1,0 +1,173 @@
+@model IEnumerable<ClickHealth.Dashboard.Models.RegistroClinico>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Histórico Clínico";
+}
+
+@section Styles {
+    <style>
+        .page-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .filters-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            gap: 12px;
+        }
+
+        .filters-bar input {
+            max-width: 260px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        .card-registro {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+            padding: 16px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .card-paciente {
+            font-weight: 600;
+        }
+
+        .card-data {
+            font-size: 12px;
+            color: #6c757d;
+        }
+
+        .card-resumo {
+            font-size: 14px;
+            color: #343a40;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e7f5ff;
+            color: #1c7ed6;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 999px;
+        }
+
+        .card-actions {
+            margin-top: 8px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .btn-link {
+            font-size: 13px;
+            text-decoration: none;
+            padding: 4px 8px;
+            border-radius: 999px;
+        }
+
+        .btn-link-primary {
+            background: #e7f5ff;
+            color: #1c7ed6;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6c757d;
+        }
+    </style>
+}
+
+<h2 class="page-title">Histórico Clínico</h2>
+
+<div class="filters-bar">
+    <div>
+        <a asp-action="Create" class="btn-link btn-link-primary">+ Novo registro</a>
+    </div>
+    <div>
+        <input type="text" id="filtroPaciente" class="form-control" placeholder="Filtrar por paciente..." />
+    </div>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="empty-state">
+        Nenhum registro clínico encontrado.<br />
+        Clique em <strong>+ Novo registro</strong> para começar.
+    </div>
+}
+else
+{
+    <div class="cards-grid" id="cards-container">
+        @foreach (var item in Model)
+        {
+            var nomePaciente = item.Paciente?.DadosPessoais ?? "Paciente";
+            var data = item.DataRegistro.ToString("dd/MM/yyyy HH:mm");
+            var resumoCurto = string.IsNullOrWhiteSpace(item.Resumo)
+                ? "(sem resumo)"
+                : (item.Resumo.Length > 120 ? item.Resumo.Substring(0, 120) + "..." : item.Resumo);
+
+            <div class="card-registro" data-paciente="@nomePaciente.ToLower()">
+                <div class="card-header">
+                    <div class="card-paciente">@nomePaciente</div>
+                    <div class="card-data">@data</div>
+                </div>
+
+                <div class="card-resumo">
+                    @resumoCurto
+                </div>
+
+                @if (!string.IsNullOrWhiteSpace(item.ArquivoPath))
+                {
+                    <div>
+                        <span class="badge">📎 Anexo disponível</span>
+                    </div>
+                }
+
+                <div class="card-actions">
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn-link btn-link-primary">
+                        Ver detalhes
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@section Scripts {
+    <script>
+        const filtro = document.getElementById('filtroPaciente');
+        const cardsContainer = document.getElementById('cards-container');
+
+        if (filtro && cardsContainer) {
+            filtro.addEventListener('input', function () {
+                const termo = this.value.toLowerCase().trim();
+                const cards = cardsContainer.querySelectorAll('.card-registro');
+
+                cards.forEach(card => {
+                    const nome = card.getAttribute('data-paciente') || '';
+                    card.style.display = (!termo || nome.includes(termo)) ? '' : 'none';
+                });
+            });
+        }
+    </script>
+}

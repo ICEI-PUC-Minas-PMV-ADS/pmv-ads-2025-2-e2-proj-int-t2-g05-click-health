@@ -1,0 +1,169 @@
+﻿@* Layout do Dashboard — sem Identity *@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - ClickHealth</title>
+    @RenderSection("Styles", required: false)
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <style>
+        :root {
+            --ch-green-dark: #0b6b40;
+            --ch-green-mid: #1b4332;
+            --ch-green-light: #55c57a;
+        }
+
+        body {
+            background: #f3f5f7;
+        }
+
+        /* ====== TOP BAR ====== */
+        .topbar {
+            background: #fff;
+            border-bottom: 1px solid #e8edf1;
+            height: 72px;
+        }
+
+            .topbar .brand-center {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                align-items: center;
+                gap: .5rem;
+            }
+
+        .brand-word {
+            font-weight: 800;
+            font-size: 24px;
+            letter-spacing: .2px;
+        }
+
+            .brand-word .click {
+                color: var(--ch-green-mid);
+            }
+
+            .brand-word .health {
+                color: var(--ch-green-light);
+            }
+
+        .top-left img {
+            height: 44px;
+        }
+
+        .top-right .nav-link {
+            color: #495057;
+        }
+
+            .top-right .nav-link:hover {
+                color: #212529;
+            }
+
+        /* ====== LAYOUT GRID ====== */
+        .app {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            min-height: calc(100vh - 72px);
+        }
+
+        /* ====== SIDEBAR ====== */
+        .sidebar {
+            background: #ffffff;
+            border-right: 1px solid #e8edf1;
+            padding: 22px 16px;
+        }
+
+            .sidebar .nav-link {
+                color: #4a4a4a;
+                font-weight: 600;
+                border-radius: .6rem;
+                padding: .7rem .9rem;
+            }
+
+                .sidebar .nav-link.active,
+                .sidebar .nav-link:hover {
+                    background: #eef4f0;
+                    color: #0f172a;
+                }
+
+        main {
+            padding: 28px 32px;
+        }
+    </style>
+</head>
+<body>
+    <!-- TOP -->
+    <header class="topbar d-flex align-items-center position-relative px-3">
+        <div class="top-left d-flex align-items-center gap-2">
+            <a asp-controller="Home" asp-action="Index">
+                <img src="~/images/clickhealth-logo.png" alt="ClickHealth" style="height: 44px; width: auto;" />
+            </a>
+        </div>
+
+        <div class="brand-center">
+            <div class="brand-word">
+                <span class="click">Click</span> <span class="health">Health</span>
+            </div>
+        </div>
+
+        <div class="ms-auto top-right d-flex align-items-center gap-2">
+            <a class="nav-link" asp-controller="Notificacoes" asp-action="Index" title="Notificações">
+                <i class="bi bi-bell"></i>
+            </a>
+            <span class="fw-semibold me-2">Olá, @Context.Session.GetString("UserName")</span>
+        </div>
+    </header>
+
+    <!-- GRID -->
+    <div class="app">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <nav class="nav flex-column">
+
+                <a class="nav-link" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-speedometer2 me-2"></i> Dashboard
+                </a>
+
+                <a class="nav-link" asp-controller="Agenda" asp-action="Index">
+                    <i class="bi bi-calendar3 me-2"></i> Agenda
+                </a>
+
+                <a class="nav-link" asp-controller="Medicamentos" asp-action="Index">
+                    <i class="bi bi-capsule me-2"></i> Medicamentos
+                </a>
+
+                <!-- ✔ CRÍTICO: CORRIGIDO -->
+                <a class="nav-link" asp-controller="RegistroClinico" asp-action="Index">
+                    <i class="bi bi-journal-medical me-2"></i> Histórico Clínico
+                </a>
+
+                <a class="nav-link" asp-controller="Feed" asp-action="Index">
+                    <i class="bi bi-activity me-2"></i> Feed
+                </a>
+
+                <!-- ✔ CRÍTICO: CORRIGIDO -->
+                <a class="nav-link" asp-controller="RegistroClinico" asp-action="Create">
+                    <i class="bi bi-clipboard-plus me-2"></i> Registro Clínico
+                </a>
+
+                <a class="nav-link" asp-controller="Notificacoes" asp-action="Index">
+                    <i class="bi bi-bell me-2"></i> Notificações
+                </a>
+            </nav>
+        </aside>
+
+        <!-- MAIN -->
+        <main>
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

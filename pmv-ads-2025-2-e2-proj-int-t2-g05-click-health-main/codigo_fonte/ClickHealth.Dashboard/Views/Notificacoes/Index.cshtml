@@ -1,0 +1,194 @@
+﻿@model IEnumerable<ClickHealth.Dashboard.Models.Notificacao>
+@{
+    ViewData["Title"] = "Notificações";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<style>
+    /* bolinha azul de “nova” */
+    .dot-new {
+        width: 10px;
+        height: 10px;
+        background: #1e78ff;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 12px;
+    }
+    /* ícone do tipo */
+    .type-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #e9f2ff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #d7e3ff;
+        margin-right: 12px;
+        font-size: 18px;
+        color: #2262c6;
+    }
+
+    .card-notif {
+        border: 1px solid #dfe6eb;
+    }
+
+    .notif-actions .btn {
+        padding: .2rem .45rem;
+    }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="fw-bold" style="letter-spacing:.3px;">Notificações</h1>
+    <a asp-action="Create" class="btn btn-success fw-semibold">Nova Notificação</a>
+</div>
+
+<ul class="nav nav-tabs mb-3">
+    <li class="nav-item">
+        <a class="nav-link active" data-bs-toggle="tab" href="#recentes">Recentes</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="tab" href="#anteriores">Anteriores</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+
+    <!-- ============ RECENTES (Lida == false) ============ -->
+    <div id="recentes" class="tab-pane fade show active">
+        @if (Model.Any(n => !n.Lida))
+        {
+            @foreach (var item in Model.Where(n => !n.Lida).OrderByDescending(n => n.DataHora))
+            {
+                <div class="card card-notif mb-3 p-3">
+                    <div class="d-flex align-items-start justify-content-between">
+                        <div class="d-flex">
+                            <span class="dot-new"></span>
+
+                            <div class="type-icon">
+                                @{
+                                    var tipo = (item.Tipo ?? "").Trim().ToLower();
+                                    string icon = tipo switch
+                                    {
+                                        "consulta" => "calendar-event",
+                                        "medicamento" => "capsule",
+                                        "convite" => "person-plus",
+                                        _ => "bell"
+                                    };
+                                }
+                                <i class="bi bi-@icon"></i>
+                            </div>
+
+                            <div>
+                                <div class="fw-semibold">
+                                    <span class="text-capitalize">@item.Tipo</span>: @item.Mensagem —
+                                    <a asp-controller="Pacientes" asp-action="Details" asp-route-id="@item.IdPaciente">
+                                        @item.Paciente?.DadosPessoais
+                                    </a>
+                                </div>
+                                <div class="text-muted small mt-1">
+                                    @item.DataHora.ToString("dd/MM/yyyy HH:mm")
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="notif-actions d-flex gap-1">
+                            <a class="btn btn-outline-primary btn-sm" title="Detalhes" asp-action="Details" asp-route-id="@item.Id">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a class="btn btn-outline-success btn-sm" title="Editar" asp-action="Edit" asp-route-id="@item.Id">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <a class="btn btn-outline-secondary btn-sm" title="Marcar como lida" asp-action="MarcarComoLida" asp-route-id="@item.Id">
+                                <i class="bi bi-check2"></i>
+                            </a>
+                            <a class="btn btn-outline-danger btn-sm" title="Excluir" asp-action="Delete" asp-route-id="@item.Id">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p class="text-muted">Nenhuma notificação recente.</p>
+        }
+    </div>
+
+    <!-- ============ ANTERIORES (Lida == true) ============ -->
+    <div id="anteriores" class="tab-pane fade">
+        @if (Model.Any(n => n.Lida))
+        {
+            @foreach (var item in Model.Where(n => n.Lida).OrderByDescending(n => n.DataHora))
+            {
+                <div class="card card-notif mb-3 p-3">
+                    <div class="d-flex align-items-start justify-content-between">
+                        <div class="d-flex">
+                            <span class="type-icon">
+                                @{
+                                    var tipo = (item.Tipo ?? "").Trim().ToLower();
+                                    string icon = tipo switch
+                                    {
+                                        "consulta" => "calendar-event",
+                                        "medicamento" => "capsule",
+                                        "convite" => "person-plus",
+                                        _ => "bell"
+                                    };
+                                }
+                                <i class="bi bi-@icon"></i>
+                            </span>
+
+                            <div>
+                                <div class="fw-semibold">
+                                    <span class="text-capitalize">@item.Tipo</span>: @item.Mensagem —
+                                    <a asp-controller="Pacientes" asp-action="Details" asp-route-id="@item.IdPaciente">
+                                        @item.Paciente?.DadosPessoais
+                                    </a>
+                                </div>
+                                <div class="text-muted small mt-1">
+                                    @item.DataHora.ToString("dd/MM/yyyy HH:mm")
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="notif-actions d-flex gap-1">
+                            <a class="btn btn-outline-primary btn-sm" title="Detalhes" asp-action="Details" asp-route-id="@item.Id">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a class="btn btn-outline-success btn-sm" title="Editar" asp-action="Edit" asp-route-id="@item.Id">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <a class="btn btn-outline-danger btn-sm" title="Excluir" asp-action="Delete" asp-route-id="@item.Id">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p class="text-muted">Nenhuma notificação anterior.</p>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Corrige comportamento das abas (para alternar sem reload)
+        document.addEventListener("DOMContentLoaded", function () {
+            const tabLinks = document.querySelectorAll('.nav-link');
+            tabLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    tabLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    const target = document.querySelector(this.getAttribute('href'));
+                    document.querySelectorAll('.tab-pane').forEach(tab => tab.classList.remove('show', 'active'));
+                    target.classList.add('show', 'active');
+                });
+            });
+        });
+    </script>
+}

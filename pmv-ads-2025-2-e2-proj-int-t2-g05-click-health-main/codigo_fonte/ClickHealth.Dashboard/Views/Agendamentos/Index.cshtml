@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ClickHealth.Dashboard.Models.AgendamentoMedicacao>
+@{
+    ViewData["Title"] = "Agenda de Medicação";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary fw-bold">Agenda de Medicação</h2>
+        <a asp-action="Adicionar" class="btn btn-success btn-lg">
+            <i class="bi bi-plus-circle"></i> Novo Agendamento
+        </a>
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show">
+            @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (!Model.Any())
+    {
+        <div class="text-center py-5">
+            <i class="bi bi-calendar-x display-1 text-muted"></i>
+            <h4 class="text-muted mt-3">Nenhum agendamento encontrado</h4>
+            <p>Clique no botão acima para criar o primeiro.</p>
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-primary">
+                    <tr>
+                        <th>Paciente</th>
+                        <th>Medicação</th>
+                        <th>Data/Hora</th>
+                        <th>Dose</th>
+                        <th>Status</th>
+                        <th class="text-end">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><strong>@(item.Paciente?.DadosPessoais ?? "—")</strong></td>
+                            <td>@(item.Medicacao?.Nome ?? "—")</td>
+                            <td>@item.DataHora.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td><span class="badge bg-info text-dark">@item.Dose</span></td>
+                            <td>
+                                <span class="badge @(item.Status == "Pendente" ? "bg-warning" : "bg-success")">
+                                    @item.Status
+                                </span>
+                            </td>
+                            <td class="text-end">
+                                <a asp-action="Editar" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">Editar</a>
+                                <a asp-action="Excluir" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Excluir</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

@@ -1,0 +1,49 @@
+﻿@model ClickHealth.Dashboard.Models.Medicacao
+@{
+    ViewData["Title"] = "Adicionar Medicamento";
+    ViewData["HideSidebar"] = true;
+}
+
+<div class="container mt-5">
+    <h2 class="text-primary mb-4">Novo Medicamento</h2>
+
+    <div class="card shadow">
+        <div class="card-body p-5">
+            <form asp-action="Adicionar" method="post">
+                <div class="row g-4">
+                    <div class="col-md-8">
+                        <label class="form-label fw-semibold">Nome do Medicamento *</label>
+                        <input asp-for="Nome" class="form-control form-control-lg" placeholder="Ex: Paracetamol" required />
+                        <span asp-validation-for="Nome" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label fw-semibold">Dosagem</label>
+                        <input asp-for="Dosagem" class="form-control form-control-lg" placeholder="Ex: 750mg" />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Princípio Ativo</label>
+                        <input asp-for="PrincipioAtivo" class="form-control form-control-lg" placeholder="Ex: Paracetamol" />
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label fw-semibold">Instruções de Uso</label>
+                        <textarea asp-for="Instrucoes" class="form-control" rows="4" placeholder="Ex: Tomar 1 comprimido a cada 8 horas..."></textarea>
+                    </div>
+                </div>
+
+                <div class="mt-5 text-end">
+                    <a asp-action="Index" class="btn btn-secondary btn-lg">Cancelar</a>
+                    <button type="submit" class="btn btn-primary btn-lg ms-3">
+                        <i class="fas fa-save me-2"></i> Salvar Medicamento
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

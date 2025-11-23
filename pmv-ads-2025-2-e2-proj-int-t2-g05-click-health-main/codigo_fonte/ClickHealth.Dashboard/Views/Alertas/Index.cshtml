@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ClickHealth.Dashboard.Models.Alerta>
+@{
+    ViewData["Title"] = "Notificações Gerais do Cuidador";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4 fw-bold">🔔 Notificações Gerais do Cuidador</h2>
+
+    <!-- Seção de novas notificações -->
+    <div class="mb-5">
+        <h4 class="text-primary mb-3">Novas</h4>
+
+        @if (Model.Any())
+        {
+            foreach (var alerta in Model)
+            {
+                <div class="card mb-3 border-primary shadow-sm">
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div>
+                            <h5 class="card-title text-primary fw-bold">
+                                <i class="bi bi-calendar-event me-2"></i>@alerta.Mensagem
+                            </h5>
+                            <p class="card-text">@alerta.Mensagem</p>
+                            <small class="text-muted">
+                                <i class="bi bi-clock me-1"></i>@alerta.DataHora.ToString("dd/MM/yyyy HH:mm")
+                                — <strong>@alerta.IdPacienteNavigation.DadosPessoais</strong>
+                            </small>
+                        </div>
+                        <span class="badge bg-success fs-6">Novo</span>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p class="text-muted">Nenhuma notificação nova.</p>
+        }
+    </div>
+
+    <!-- Seção de notificações anteriores -->
+    <div>
+        <h4 class="text-secondary mb-3">Anteriores</h4>
+        <p class="text-muted">Nenhuma notificação anterior.</p>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.js"></script>
+}

@@ -1,0 +1,95 @@
+/* Reset geral inicial */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #F0F2F5;
+    font-family: Arial, sans-serif;
+}
+
+/* Estruturando o cabeçalho */
+header {
+    background-color: #FFFFFF;
+    height: 70px;
+    width: 100%;
+    border-bottom: 1px solid #E0E0E0;
+    display: flex;
+    align-items: center;
+    padding: 0 60px;
+}
+
+.header-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Ajuste nos blocos do cabeçalho */
+.header-left {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+}
+
+.header-center {
+    font-size: 16px;
+    color: #555555;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+/* Ajustar componentes (sino, circulo do avatar) */
+.sino {
+    width: 24px;
+    height: 24px;
+    color: #555555;
+}
+
+.perfil-usuario {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.circulo-avatar {
+    width: 36px;
+    height: 36px;
+    background-color: #D8D8D8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    color: #666;
+    overflow: hidden;
+}
+
+.perfil-usuario span {
+    font-size: 14px;
+    color: #333333;
+}
+
+/* Pra ajustar o tamanho das imagens */
+.header-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.circulo-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.header-left img {
+    height: 65px;
+}

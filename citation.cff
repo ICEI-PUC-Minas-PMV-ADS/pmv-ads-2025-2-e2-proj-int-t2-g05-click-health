@@ -1,29 +1,28 @@
 message: Please cite this software using these metadata.
-title:
+title: ClickHealth
 authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
+  - family-names: Rodrigues Singulano
+    given-names: Eduardo
+  - family-names: Ferreira de Almeida
+    given-names: Carolina Mariana Aparecida
+  - family-names: de Oliveira Xavier da Silva
+    given-names: Karine Luara
+  - family-names: Marques Gadelha
+    given-names: Tainan
+  - family-names: Lagares da Silva
+    given-names: Helen
+  - family-names: Pires de Souza
+    given-names: Marcos Antonio
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
-  - name-suffix: Professor
-    affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: da Costa
+    given-names: José Wilson
+
 keywords:
-  - 
-  - 
-repository-code: 
+  - consultas
+  - medicamentos
+  - exames
+repository-code: https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e2-proj-int-t2-g05-click-health
 version: 1.0.0
+
 date-released: 2023-10-31

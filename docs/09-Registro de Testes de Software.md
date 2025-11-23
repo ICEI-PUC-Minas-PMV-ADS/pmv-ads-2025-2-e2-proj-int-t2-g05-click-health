@@ -6,13 +6,86 @@ Para cada caso de teste definido no Plano de Testes de Software, realize o regis
 
 | **Caso de Teste** 	| **CT01 – Cadastrar perfil** 	|
 |:---:	|:---:	|
-|	Requisito Associado 	| RF-00X - A aplicação deve apresentar, na página principal, a funcionalidade de cadastro de usuários para que esses consigam criar e gerenciar seu perfil. |
-|Registro de evidência | www.teste.com.br/drive/ct-01 |
+|	Requisito Associado 	| RF-001 - Validar se o cuidador consegue cadastrar, visualizar, editar e excluir diversos pacientes |
+|Registro de evidência | ![testerf001](https://github.com/user-attachments/assets/7d2b22c0-edfc-4763-b6d8-5d4bfa6b740e)
+ |
 
-| **Caso de Teste** 	| **CT02 – Realizar login** 	|
+| **Caso de Teste** 	| **CT014 – Cadastrar nova conta** 	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-00 - A aplicação deve permitir o registro de um novo usuário, processo anterior ao cadastro de paciente, ou seja, o cadastro da conta na aplicação. Nesta etapa é possível cadastrar uma nova conta, listar as contas registradas, exibir detalhes, editar e excluir contas. Além disso, ir para a dashboard dos pacientes/cuidadores |
+|Registro de evidência | www.teste.com.br/drive/ct-02 |
+
+| **Caso de Teste** 	| **CT03 – Realizar login** 	|
 |:---:	|:---:	|
 |	Requisito Associado 	| RF-00Y - A aplicação deve permitir que um usuário previamente cadastrado faça login |
 |Registro de evidência | www.teste.com.br/drive/ct-02 |
+
+| **Caso de Teste** 	| **CT04 – Realizar login** 	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-00Y - A aplicação deve permitir que um usuário previamente cadastrado faça login |
+|Registro de evidência | www.teste.com.br/drive/ct-02 |
+
+| **Caso de Teste** 	| **CT05 – Realizar login** 	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-00Y - A aplicação deve permitir que um usuário previamente cadastrado faça login |
+|Registro de evidência | www.teste.com.br/drive/ct-02 |
+
+| **Caso de Teste** 	| **CT06 – Realizar login** 	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-00Y - A aplicação deve permitir que um usuário previamente cadastrado faça login |
+|Registro de evidência | www.teste.com.br/drive/ct-02 |
+
+| **Caso de Teste** 	| **CT07 – Registro de histórico clínico** 	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-RF07 - Registro de histórico clínico |
+|Registro de evidência |<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e2-proj-int-t2-g05-click-health/blob/f277335a0618f65e21717ba838ae8636eaa25243/docs/img/testedeedicao.gif" >  
+<img src= "https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e2-proj-int-t2-g05-click-health/blob/f277335a0618f65e21717ba838ae8636eaa25243/docs/img/testeregistroehistorico.gif">
+<img src= "https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e2-proj-int-t2-g05-click-health/blob/6ba0b7a2b33f808b82ca0b0a657b487278bb4e13/docs/img/bd%20registro%20clinico.png">
+|
+
+| **Caso de Teste** 	| **CT08 – Realizar login** 	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-007 - Testar se é possível registrar alterações no histórico clínico do paciente |
+|Registro de evidência | www.teste.com.br/drive/ct-02 |
+
+| **Caso de Teste** 	| **CT09 – Realizar login** 	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-007 - Testar se é possível registrar alterações no histórico clínico do paciente |
+|Registro de evidência | www.teste.com.br/drive/ct-02 |
+
+| **Caso de Teste** 	| **CT010 – Realizar login** 	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-007 - Testar se é possível registrar alterações no histórico clínico do paciente |
+|Registro de evidência | www.teste.com.br/drive/ct-02 |
+
+| **Caso de Teste** 	| **CT01 – Realizar login** 	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-007 - Testar se é possível registrar alterações no histórico clínico do paciente |
+|Registro de evidência | www.teste.com.br/drive/ct-02 |
+
+| **Caso de Teste** 	| **CT02 – Realizar login** 	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-007 - Testar se é possível registrar alterações no histórico clínico do paciente |
+|Registro de evidência | www.teste.com.br/drive/ct-02 |
+
+| **Caso de Teste** 	| **CT03 – Realizar login** 	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-007 - Testar se é possível registrar alterações no histórico clínico do paciente |
+|Registro de evidência | www.teste.com.br/drive/ct-02 |
+
+| **Caso de Teste** 	| **CT13 – Gerenciar Alertas e Notificações** 	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-013 – Validar o funcionamento completo do CRUD de alertas e a exibição das notificações no painel do cuidador|
+|Registro de evidência | ![testerf001]()
+ |
+
+CT-RF08 – Gerenciar Alertas e Notificações
+
+
+# Registro de Testes de Software - Tela Agendamento
+
+![gifclick](https://github.com/user-attachments/assets/7e24b74f-e9a9-4af4-b96a-d99fbf88b930)
+
 
 ## Relatório de testes de software
 

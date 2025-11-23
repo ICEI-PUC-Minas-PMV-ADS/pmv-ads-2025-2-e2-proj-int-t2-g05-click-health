@@ -1,0 +1,139 @@
+﻿@model ClickHealth.Dashboard.Models.ViewModels.FeedViewModel
+
+@{
+    ViewData["Title"] = "Feed de Atividades";
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">Feed de Atividades</h1>
+    <p class="lead">@Model.MensagemStatus</p>
+
+    <div class="row">
+        <!-- Card de Agendamentos Recentes -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <i class="fas fa-calendar-alt"></i> Próximos Agendamentos (@Model.AgendamentosRecentes.Count() )
+                </div>
+                <div class="card-body">
+                    @if (Model.AgendamentosRecentes.Any())
+                    {
+                        <ul class="list-group list-group-flush">
+                            @foreach (var agendamento in Model.AgendamentosRecentes)
+                            {
+                                <li class="list-group-item">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">Agendamento ID: @agendamento.Id</h5>
+                                        <small class="text-muted">@agendamento.DataHora.ToString("dd/MM/yyyy HH:mm")</small>
+                                    </div>
+                                    <p class="mb-1">Dose: @agendamento.Dose</p>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p class="text-muted">Nenhum agendamento futuro encontrado.</p>
+                    }
+                </div>
+                <div class="card-footer">
+                    <a asp-controller="Agendamentos" asp-action="Index" class="btn btn-sm btn-outline-primary">Ver Todos</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card de Medicamentos Ativos -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <i class="fas fa-pills"></i> Medicamentos Ativos (@Model.MedicamentosAtivos.Count())
+                </div>
+                <div class="card-body">
+                    @if (Model.MedicamentosAtivos.Any())
+                    {
+                        <ul class="list-group list-group-flush">
+                            @foreach (var medicacao in Model.MedicamentosAtivos)
+                            {
+                                <li class="list-group-item">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">@medicacao.Nome</h5>
+                                        <small class="text-muted">ID: @medicacao.IdMedicacao</small>
+                                    </div>
+                                    <p class="mb-1">Início: @medicacao.DataInicio</p>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p class="text-muted">Nenhum medicamento ativo encontrado.</p>
+                    }
+                </div>
+                <div class="card-footer">
+                    <a asp-controller="Medicamentos" asp-action="Index" class="btn btn-sm btn-outline-success">Gerenciar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Linha para Alertas e Histórico -->
+    <div class="row">
+        <!-- Card de Alertas Recentes -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow">
+                <div class="card-header bg-warning text-dark">
+                    <i class="fas fa-exclamation-triangle"></i> Alertas Recentes (@Model.Alertas.Count())
+                </div>
+                <div class="card-body">
+                    @if (Model.Alertas.Any())
+                    {
+                        <ul class="list-group list-group-flush">
+                            @foreach (var alerta in Model.Alertas)
+                            {
+                                <li class="list-group-item">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">Alerta ID: @alerta.IdAlerta</h5>
+                                        <small class="text-muted">Data: @alerta.DataHora</small>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p class="text-muted">Nenhum alerta recente.</p>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Card de Histórico Médico Recente -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow">
+                <div class="card-header bg-info text-white">
+                    <i class="fas fa-history"></i> Histórico Médico Recente (@Model.HistoricoMedicoRecente.Count())
+                </div>
+                <div class="card-body">
+                    @if (Model.HistoricoMedicoRecente.Any())
+                    {
+                        <ul class="list-group list-group-flush">
+                            @foreach (var historico in Model.HistoricoMedicoRecente)
+                            {
+                                <li class="list-group-item">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">Histórico ID: @historico.IdHistorico</h5>
+                                        <small class="text-muted">Data: @historico.AtualizadoEm</small>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p class="text-muted">Nenhum registro de histórico recente.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

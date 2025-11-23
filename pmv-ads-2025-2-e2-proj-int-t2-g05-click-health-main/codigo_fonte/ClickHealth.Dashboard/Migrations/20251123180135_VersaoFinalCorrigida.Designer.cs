@@ -3,6 +3,7 @@ using System;
 using ClickHealth.Dashboard.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClickHealth.Dashboard.Migrations
 {
     [DbContext(typeof(ClickHealthContext))]
-    partial class ClickHealthContextModelSnapshot : ModelSnapshot
+    [Migration("20251123180135_VersaoFinalCorrigida")]
+    partial class VersaoFinalCorrigida
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.10");
@@ -23,7 +26,7 @@ namespace ClickHealth.Dashboard.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("DataCadastro")
+                    b.Property<DateTime>("DataCadastro")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("DataHora")
@@ -31,27 +34,26 @@ namespace ClickHealth.Dashboard.Migrations
 
                     b.Property<string>("Dose")
                         .IsRequired()
-                        .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("IdMedicacao")
-                        .HasColumnType("INTEGER");
+                    b.Property<int>("IdMedicamento")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("id_medicacao");
 
                     b.Property<int>("IdPaciente")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("id_paciente");
 
-                    b.Property<string>("Observacoes")
-                        .HasMaxLength(500)
+                    b.Property<string>("Instrucoes")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdMedicacao");
+                    b.HasIndex("IdMedicamento");
 
                     b.HasIndex("IdPaciente");
 
@@ -208,14 +210,14 @@ namespace ClickHealth.Dashboard.Migrations
                     b.ToTable("LogAuditoria");
                 });
 
-            modelBuilder.Entity("ClickHealth.Dashboard.Models.Medicacao", b =>
+            modelBuilder.Entity("ClickHealth.Dashboard.Models.Medicamento", b =>
                 {
-                    b.Property<int>("IdMedicacao")
+                    b.Property<int>("IdMedicamento")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
                         .HasColumnName("id_medicacao");
 
-                    b.Property<DateTime?>("DataCadastro")
+                    b.Property<DateTime>("DataCadastro")
                         .HasColumnType("TEXT")
                         .HasColumnName("data_cadastro");
 
@@ -252,11 +254,11 @@ namespace ClickHealth.Dashboard.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("principio_ativo");
 
-                    b.HasKey("IdMedicacao");
+                    b.HasKey("IdMedicamento");
 
                     b.HasIndex("IdPaciente");
 
-                    b.ToTable("Medicacao");
+                    b.ToTable("Medicacoes", (string)null);
                 });
 
             modelBuilder.Entity("ClickHealth.Dashboard.Models.MonitoramentoSaude", b =>
@@ -505,9 +507,9 @@ namespace ClickHealth.Dashboard.Migrations
 
             modelBuilder.Entity("ClickHealth.Dashboard.Models.AgendamentoMedicacao", b =>
                 {
-                    b.HasOne("ClickHealth.Dashboard.Models.Medicacao", "Medicacao")
+                    b.HasOne("ClickHealth.Dashboard.Models.Medicamento", "Medicamento")
                         .WithMany("Agendamentos")
-                        .HasForeignKey("IdMedicacao")
+                        .HasForeignKey("IdMedicamento")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -517,7 +519,7 @@ namespace ClickHealth.Dashboard.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Medicacao");
+                    b.Navigation("Medicamento");
 
                     b.Navigation("Paciente");
                 });
@@ -564,10 +566,10 @@ namespace ClickHealth.Dashboard.Migrations
                     b.Navigation("IdUsuarioNavigation");
                 });
 
-            modelBuilder.Entity("ClickHealth.Dashboard.Models.Medicacao", b =>
+            modelBuilder.Entity("ClickHealth.Dashboard.Models.Medicamento", b =>
                 {
                     b.HasOne("ClickHealth.Dashboard.Models.Paciente", "Paciente")
-                        .WithMany("Medicacoes")
+                        .WithMany("Medicamentos")
                         .HasForeignKey("IdPaciente")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -649,7 +651,7 @@ namespace ClickHealth.Dashboard.Migrations
                     b.Navigation("MonitoramentosSaude");
                 });
 
-            modelBuilder.Entity("ClickHealth.Dashboard.Models.Medicacao", b =>
+            modelBuilder.Entity("ClickHealth.Dashboard.Models.Medicamento", b =>
                 {
                     b.Navigation("Agendamentos");
                 });
@@ -662,7 +664,7 @@ namespace ClickHealth.Dashboard.Migrations
 
                     b.Navigation("HistoricoMedico");
 
-                    b.Navigation("Medicacoes");
+                    b.Navigation("Medicamentos");
 
                     b.Navigation("MonitoramentosSaude");
 

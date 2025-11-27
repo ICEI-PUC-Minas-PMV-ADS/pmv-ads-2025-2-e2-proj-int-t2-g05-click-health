@@ -36,8 +36,11 @@
                                     <td>@(item.PrincipioAtivo ?? "—")</td>
                                     <td>@(item.Instrucoes ?? "—")</td>
                                     <td>
-                                        <a asp-action="Editar" asp-route-id="@item.IdMedicacao" class="btn btn-sm btn-outline-warning">
+                                        <a asp-action="Editar" asp-route-id="@item.IdMedicacao" class="btn btn-sm btn-outline-primary">
                                             <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a asp-action="Excluir" asp-route-id="@item.IdMedicacao" class="btn btn-sm btn-outline-danger">
+                                            <i class="fas fa-trash"></i>
                                         </a>
                                     </td>
                                 </tr>

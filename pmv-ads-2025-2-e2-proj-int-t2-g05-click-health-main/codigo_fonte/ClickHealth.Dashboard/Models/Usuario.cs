@@ -31,5 +31,7 @@ namespace ClickHealth.Dashboard.Models
         public virtual ICollection<TentativaLogin> TentativasLogin { get; set; } = new List<TentativaLogin>();
 
         public virtual ICollection<Cuidador> Cuidadores { get; set; } = new List<Cuidador>();
+
+        public bool IsAdmin { get; set; } = false;
     }
 }

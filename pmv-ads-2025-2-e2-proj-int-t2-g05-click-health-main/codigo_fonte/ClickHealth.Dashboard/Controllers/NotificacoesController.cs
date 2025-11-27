@@ -15,13 +15,30 @@ namespace ClickHealth.Controllers
             _context = context;
         }
 
-        // ✅ PÁGINA PRINCIPAL — lista todas as notificações (Recentes / Anteriores)
+        // ✅ PÁGINA PRINCIPAL — lista notificações conforme tipo de usuário
         public IActionResult Index()
         {
-            var notificacoes = _context.Notificacoes
+            // Recupera sessão
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+                return RedirectToAction("Login", "Account");
+
+            bool isAdmin = HttpContext.Session.GetString("IsAdmin") == "true";
+
+            // Base da consulta
+            IQueryable<Notificacao> query = _context.Notificacoes
                 .Include(n => n.Paciente)
-                .OrderByDescending(n => n.DataHora)
-                .ToList();
+                .OrderByDescending(n => n.DataHora);
+
+            // 🔥 SE NÃO FOR ADMIN → filtra apenas notificações do paciente do usuário logado
+            if (!isAdmin)
+            {
+                query = query.Where(n =>
+                    n.Paciente != null &&
+                    n.Paciente.IdUsuario == userId.Value);
+            }
+
+            var notificacoes = query.ToList();
 
             // Evita erro se o paciente estiver nulo
             foreach (var n in notificacoes)

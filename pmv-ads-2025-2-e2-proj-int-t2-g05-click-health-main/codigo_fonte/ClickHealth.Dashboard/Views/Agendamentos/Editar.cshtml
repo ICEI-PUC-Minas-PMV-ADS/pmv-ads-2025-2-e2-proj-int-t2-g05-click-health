@@ -1,0 +1,82 @@
+@model ClickHealth.Dashboard.Models.AgendamentoMedicacao
+@{
+    ViewData["Title"] = "Editar Agendamento";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="bi bi-pencil-square"></i> Editar Agendamento
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Editar" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="DataCadastro" />
+
+                        <div class="mb-3">
+                            <label asp-for="IdPaciente" class="form-label">Paciente</label>
+                            <select asp-for="IdPaciente" class="form-select" asp-items="@ViewBag.Pacientes">
+                                <option value="">-- Selecione um paciente --</option>
+                            </select>
+                            <span asp-validation-for="IdPaciente" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="IdMedicacao" class="form-label">Medicação</label>
+                            <select asp-for="IdMedicacao" class="form-select" asp-items="@ViewBag.Medicacoes">
+                                <option value="">-- Selecione uma medicação --</option>
+                            </select>
+                            <span asp-validation-for="IdMedicacao" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="DataHora" class="form-label">Data e Hora</label>
+                            <input asp-for="DataHora" type="datetime-local" class="form-control" />
+                            <span asp-validation-for="DataHora" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Dose" class="form-label">Dose</label>
+                            <input asp-for="Dose" class="form-control" placeholder="Ex: 1 comprimido, 5ml..." />
+                            <span asp-validation-for="Dose" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Status" class="form-label">Status</label>
+                            <select asp-for="Status" class="form-select">
+                                <option value="Pendente">Pendente</option>
+                                <option value="Agendado">Agendado</option>
+                                <option value="Concluído">Concluído</option>
+                                <option value="Cancelado">Cancelado</option>
+                            </select>
+                            <span asp-validation-for="Status" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Observacoes" class="form-label">Observações</label>
+                            <textarea asp-for="Observacoes" class="form-control" rows="3" placeholder="Observações adicionais (opcional)"></textarea>
+                            <span asp-validation-for="Observacoes" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left"></i> Voltar
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-check-circle"></i> Salvar Alterações
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

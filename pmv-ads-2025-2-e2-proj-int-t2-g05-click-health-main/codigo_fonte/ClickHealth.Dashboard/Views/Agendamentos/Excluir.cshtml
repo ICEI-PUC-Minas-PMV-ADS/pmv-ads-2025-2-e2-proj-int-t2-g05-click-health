@@ -1,0 +1,65 @@
+@model ClickHealth.Dashboard.Models.AgendamentoMedicacao
+@{
+    ViewData["Title"] = "Excluir Agendamento";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">
+                        <i class="bi bi-exclamation-triangle"></i> Confirmar Exclusão
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning">
+                        <i class="bi bi-info-circle"></i>
+                        <strong>Atenção!</strong> Esta ação não pode ser desfeita. Tem certeza que deseja excluir este agendamento?
+                    </div>
+
+                    <h5 class="mb-3">Detalhes do Agendamento:</h5>
+                    
+                    <dl class="row">
+                        <dt class="col-sm-4">Paciente:</dt>
+                        <dd class="col-sm-8">@(Model.Paciente?.DadosPessoais ?? "—")</dd>
+
+                        <dt class="col-sm-4">Medicação:</dt>
+                        <dd class="col-sm-8">@(Model.Medicacao?.Nome ?? "—")</dd>
+
+                        <dt class="col-sm-4">Data e Hora:</dt>
+                        <dd class="col-sm-8">@Model.DataHora.ToString("dd/MM/yyyy HH:mm")</dd>
+
+                        <dt class="col-sm-4">Dose:</dt>
+                        <dd class="col-sm-8">@Model.Dose</dd>
+
+                        <dt class="col-sm-4">Status:</dt>
+                        <dd class="col-sm-8">
+                            <span class="badge @(Model.Status == "Pendente" ? "bg-warning" : "bg-success")">
+                                @Model.Status
+                            </span>
+                        </dd>
+
+                        @if (!string.IsNullOrWhiteSpace(Model.Observacoes))
+                        {
+                            <dt class="col-sm-4">Observações:</dt>
+                            <dd class="col-sm-8">@Model.Observacoes</dd>
+                        }
+                    </dl>
+
+                    <form asp-action="Excluir" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="d-flex justify-content-between mt-4">
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left"></i> Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="bi bi-trash"></i> Confirmar Exclusão
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

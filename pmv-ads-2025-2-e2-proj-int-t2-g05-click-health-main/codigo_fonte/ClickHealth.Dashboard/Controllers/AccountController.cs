@@ -55,10 +55,17 @@ namespace ClickHealth.Dashboard.Controllers
                 return View(model);
             }
 
-            // Salva sessão
+            // ===========================================================
+            // SALVA SESSÃO — AQUI É O ÚNICO PONTO QUE PRECISAVA MUDAR
+            // ===========================================================
             HttpContext.Session.SetInt32("UserId", (int)usuario.IdUsuario);
             HttpContext.Session.SetString("UserEmail", usuario.Email ?? "");
             HttpContext.Session.SetString("UserName", paciente.DadosPessoais ?? "");
+
+            // 🔥 NOVO: salva se é administrador — APENAS ESTA LINHA FOI ADICIONADA
+            HttpContext.Session.SetString("IsAdmin", usuario.IsAdmin ? "true" : "false");
+
+            // ===========================================================
 
             return RedirectToAction("Index", "Home");
         }
@@ -93,3 +100,4 @@ namespace ClickHealth.Dashboard.Controllers
         // pois o form de registro usa UsuarioController
     }
 }
+

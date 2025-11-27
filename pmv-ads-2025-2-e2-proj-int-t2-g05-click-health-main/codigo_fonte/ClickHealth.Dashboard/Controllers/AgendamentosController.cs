@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ClickHealth.Dashboard.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Linq;
 
 namespace ClickHealth.Dashboard.Controllers
 {
@@ -41,6 +42,11 @@ namespace ClickHealth.Dashboard.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Adicionar(AgendamentoMedicacao agendamento)
         {
+            // Correção de Validação: Remove a validação das propriedades de navegação
+            // Paciente e Medicacao, que são obrigatórias no modelo, mas não são enviadas pelo formulário.
+            ModelState.Remove("Paciente");
+            ModelState.Remove("Medicacao");
+
             if (ModelState.IsValid)
             {
                 agendamento.Status = "Pendente";
@@ -49,8 +55,15 @@ namespace ClickHealth.Dashboard.Controllers
                 _context.AgendamentoMedicacao.Add(agendamento);
                 await _context.SaveChangesAsync();
 
-                TempData["Success"] = "Agendamento criado com sucesso!";
+                TempData["Sucesso"] = "Agendamento criado com sucesso!"; // Alterado para "Sucesso" para usar o _Layout
                 return RedirectToAction(nameof(Index));
+            }
+
+            // Adiciona mensagem de erro para o usuário se a validação falhar por outro motivo
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
+            if (errors.Any())
+            {
+                TempData["Erro"] = "Falha na validação do formulário de agendamento. Verifique os campos e tente novamente.";
             }
 
             await CarregarDropdownsAsync();
@@ -79,13 +92,17 @@ namespace ClickHealth.Dashboard.Controllers
             if (id != agendamento.Id)
                 return BadRequest();
 
+            // Correção de Validação: Remove a validação das propriedades de navegação
+            ModelState.Remove("Paciente");
+            ModelState.Remove("Medicacao");
+
             if (ModelState.IsValid)
             {
                 try
                 {
                     _context.Update(agendamento);
                     await _context.SaveChangesAsync();
-                    TempData["Success"] = "Agendamento atualizado com sucesso!";
+                    TempData["Sucesso"] = "Agendamento atualizado com sucesso!"; // Alterado para "Sucesso"
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -125,7 +142,7 @@ namespace ClickHealth.Dashboard.Controllers
             {
                 _context.AgendamentoMedicacao.Remove(agendamento);
                 await _context.SaveChangesAsync();
-                TempData["Success"] = "Agendamento excluído com sucesso!";
+                TempData["Sucesso"] = "Agendamento excluído com sucesso!"; // Alterado para "Sucesso"
             }
 
             return RedirectToAction(nameof(Index));

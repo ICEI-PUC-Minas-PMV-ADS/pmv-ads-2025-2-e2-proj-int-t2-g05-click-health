@@ -152,6 +152,7 @@
         <a asp-controller="Paciente" asp-action="Index">🧑‍⚕️ Pacientes</a>
         <a asp-controller="Cuidador" asp-action="Index">🤝 Cuidadores</a>
         <a asp-controller="Medicacao" asp-action="Index">💊 Medicações</a>
+        <a asp-controller="Agendamentos" asp-action="Index">📅 Agenda</a>
         <a asp-controller="MonitoramentoSaude" asp-action="Index">📊 Monitoramento</a>
 
         <a asp-controller="RegistroClinico" asp-action="Create">📝 Registro Clínico</a>
@@ -163,6 +164,24 @@
     </nav>
 
     <div class="container">
+        <div class="container">
+            @if (TempData["Sucesso"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @TempData["Sucesso"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            @if (TempData["Erro"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @TempData["Erro"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            @RenderBody()
+        </div>
+
         @RenderBody()
     </div>
 

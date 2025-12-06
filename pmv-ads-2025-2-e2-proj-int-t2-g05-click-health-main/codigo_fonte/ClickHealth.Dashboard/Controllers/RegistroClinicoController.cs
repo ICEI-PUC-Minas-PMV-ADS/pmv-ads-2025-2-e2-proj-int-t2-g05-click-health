@@ -10,108 +10,126 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ClickHealth.Dashboard.Controllers
 {
-    public class RegistroClinicoController : Controller
-    {
-        private readonly ClickHealthContext _context;
+	public class RegistroClinicoController : Controller
+	{
+		private readonly ClickHealthContext _context;
 
-        public RegistroClinicoController(ClickHealthContext context)
-        {
-            _context = context;
-        }
+		public RegistroClinicoController(ClickHealthContext context)
+		{
+			_context = context;
+		}
 
-        // 📚 LISTA / HISTÓRICO – cards
-        [HttpGet]
-        public async Task<IActionResult> Index()
-        {
-            var registros = await _context.RegistrosClinicos
-                .Include(r => r.Paciente)
-                .OrderByDescending(r => r.DataRegistro)
-                .ToListAsync();
+		// 🔒 Verificação via Session (substitui o [Authorize])
+		private bool UsuarioNaoLogado()
+		{
+			return HttpContext.Session.GetInt32("UserId") == null;
+		}
 
-            return View(registros);
-        }
+		// 📚 LISTA / HISTÓRICO – cards
+		[HttpGet]
+		public async Task<IActionResult> Index()
+		{
+			if (UsuarioNaoLogado())
+				return RedirectToAction("Login", "Account");
 
-        // 👁 DETALHES de um registro
-        [HttpGet]
-        public async Task<IActionResult> Details(int id)
-        {
-            var registro = await _context.RegistrosClinicos
-                .Include(r => r.Paciente)
-                .FirstOrDefaultAsync(r => r.Id == id);
+			var registros = await _context.RegistrosClinicos
+				.Include(r => r.Paciente)
+				.OrderByDescending(r => r.DataRegistro)
+				.ToListAsync();
 
-            if (registro == null)
-                return NotFound();
+			return View(registros);
+		}
 
-            return View(registro);
-        }
+		// 👁 DETALHES de um registro
+		[HttpGet]
+		public async Task<IActionResult> Details(int id)
+		{
+			if (UsuarioNaoLogado())
+				return RedirectToAction("Login", "Account");
 
-        // 📝 GET – NOVO REGISTRO
-        [HttpGet]
-        public async Task<IActionResult> Create()
-        {
-            await CarregarPacientesAsync();
+			var registro = await _context.RegistrosClinicos
+				.Include(r => r.Paciente)
+				.FirstOrDefaultAsync(r => r.Id == id);
 
-            var model = new RegistroClinico
-            {
-                DataRegistro = DateTime.Now
-            };
+			if (registro == null)
+				return NotFound();
 
-            return View(model);
-        }
+			return View(registro);
+		}
 
-        // 📝 POST – SALVAR REGISTRO
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(RegistroClinico model, IFormFile? arquivoExame)
-        {
-            if (!ModelState.IsValid)
-            {
-                await CarregarPacientesAsync();
-                return View(model);
-            }
+		// 📝 GET – NOVO REGISTRO
+		[HttpGet]
+		public async Task<IActionResult> Create()
+		{
+			if (UsuarioNaoLogado())
+				return RedirectToAction("Login", "Account");
 
-            // Data do registro sempre atual
-            model.DataRegistro = DateTime.Now;
+			await CarregarPacientesAsync();
 
-            // Upload de arquivo (opcional)
-            if (arquivoExame != null && arquivoExame.Length > 0)
-            {
-                var uploadsPath = Path.Combine(
-                    Directory.GetCurrentDirectory(),
-                    "wwwroot", "uploads", "registros"
-                );
+			var model = new RegistroClinico
+			{
+				DataRegistro = DateTime.Now
+			};
 
-                Directory.CreateDirectory(uploadsPath);
+			return View(model);
+		}
 
-                var fileName = $"{Guid.NewGuid()}_{Path.GetFileName(arquivoExame.FileName)}";
-                var filePath = Path.Combine(uploadsPath, fileName);
+		// 📝 POST – SALVAR REGISTRO
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> Create(RegistroClinico model, IFormFile? arquivoExame)
+		{
+			if (UsuarioNaoLogado())
+				return RedirectToAction("Login", "Account");
 
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await arquivoExame.CopyToAsync(stream);
-                }
+			if (!ModelState.IsValid)
+			{
+				await CarregarPacientesAsync();
+				return View(model);
+			}
 
-                model.ArquivoPath = "/uploads/registros/" + fileName;
-            }
+			// A data do registro sempre deve ser atual
+			model.DataRegistro = DateTime.Now;
 
-            _context.RegistrosClinicos.Add(model);
-            await _context.SaveChangesAsync();
+			// 📎 Upload de arquivo (opcional)
+			if (arquivoExame != null && arquivoExame.Length > 0)
+			{
+				var uploadsPath = Path.Combine(
+					Directory.GetCurrentDirectory(),
+					"wwwroot", "uploads", "registros"
+				);
 
-            return RedirectToAction(nameof(Index));
-        }
+				Directory.CreateDirectory(uploadsPath);
 
-        // 🔧 helper para carregar dropdown de pacientes
-        private async Task CarregarPacientesAsync()
-        {
-            var pacientes = await _context.Pacientes
-                .OrderBy(p => p.DadosPessoais)
-                .ToListAsync();
+				var fileName = $"{Guid.NewGuid()}_{Path.GetFileName(arquivoExame.FileName)}";
+				var filePath = Path.Combine(uploadsPath, fileName);
 
-            ViewBag.Pacientes = new SelectList(
-                pacientes,
-                nameof(Paciente.IdPaciente),
-                nameof(Paciente.DadosPessoais)
-            );
-        }
-    }
+				using (var stream = new FileStream(filePath, FileMode.Create))
+				{
+					await arquivoExame.CopyToAsync(stream);
+				}
+
+				model.ArquivoPath = "/uploads/registros/" + fileName;
+			}
+
+			_context.RegistrosClinicos.Add(model);
+			await _context.SaveChangesAsync();
+
+			return RedirectToAction(nameof(Index));
+		}
+
+		// 🔧 Carregar dropdown de pacientes
+		private async Task CarregarPacientesAsync()
+		{
+			var pacientes = await _context.Pacientes
+				.OrderBy(p => p.DadosPessoais)
+				.ToListAsync();
+
+			ViewBag.Pacientes = new SelectList(
+				pacientes,
+				nameof(Paciente.IdPaciente),
+				nameof(Paciente.DadosPessoais)
+			);
+		}
+	}
 }

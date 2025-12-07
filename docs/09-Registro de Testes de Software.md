@@ -42,12 +42,138 @@ Para cada caso de teste definido no Plano de Testes de Software, realize o regis
 
 ## Relatório de testes de software
 
-Apresente e discuta detalhadamente os resultados obtidos nos testes realizados, destacando tanto os pontos fortes quanto as fragilidades identificadas na solução. Explique como os aspectos positivos contribuem para o desempenho e a usabilidade do sistema, e como os pontos fracos impactam sua eficácia.
+1. Introdução
 
-Descreva as principais falhas detectadas durante os testes, fornecendo exemplos concretos e evidências que sustentem essas observações. Explicite os impactos dessas falhas na experiência do usuário, na funcionalidade do sistema e nos objetivos do projeto.
+O presente relatório apresenta a análise detalhada dos testes realizados na aplicação, incluindo a discussão dos resultados obtidos, identificação de pontos fortes e fragilidades, além da descrição das falhas observadas durante a execução dos casos de teste. Com base nas evidências coletadas, são propostas estratégias de melhoria para as próximas iterações do projeto, visando elevar a confiabilidade, a usabilidade e a eficácia da solução.
 
-Com base nessas análises, detalhe as estratégias que o grupo pretende adotar para corrigir as deficiências e aprimorar a solução nas próximas iterações. Inclua ações específicas, como ajustes no código, modificações na interface, otimizações de desempenho ou melhorias na acessibilidade e usabilidade.
+2. Discussão Detalhada dos Resultados
+2.1 Pontos Fortes Identificados
 
-Por fim, apresente e/ou proponha as melhorias a partir dos testes realizados, destacando os ganhos obtidos e como essas alterações contribuem para a evolução do projeto.
+Durante os testes, observou-se que algumas funcionalidades essenciais apresentaram bom desempenho e contribuem positivamente para a experiência do usuário:
+
+- Fluxo de cadastro de medicamentos: apesar de limitado na ausência de alertas, a criação de novos registros funciona corretamente e sem falhas aparentes.
+
+- Visualização de registros no Histórico Clínico: o sistema apresenta as informações completas (data, horário e responsável), permitindo que o usuário consulte os detalhes de forma clara.
+
+- Cadastro inicial de novas contas: a criação das contas é realizada corretamente, com validação básica dos dados e navegação adequada após o salvamento.
+
+Contribuição dos aspectos positivos:
+Essas funcionalidades demonstram estabilidade e coerência nos fluxos principais, garantindo que o usuário consiga realizar operações básicas de forma intuitiva. A clareza na exibição de informações e a simplicidade no cadastro favorecem a usabilidade e reduzem erros durante a navegação.
+
+2.2 Fragilidades da Solução
+
+Apesar dos pontos positivos, algumas fragilidades foram identificadas. Essas inconsistências impactam diretamente a completude dos requisitos e a qualidade da experiência do usuário.
+
+As principais fragilidades observadas foram:
+
+Casos de teste incompatíveis com funcionalidades não implementadas, como:
+
+- cadastro de alertas na tela de Medicamentos;
+
+- tela de perfis de usuários;
+
+- edição de registros no Histórico Clínico;
+
+- Inconsistências na exibição de informações no Feed, impossibilitando validar corretamente o caso CT-RF04.
+
+
+Impacto das fragilidades:
+Fragilidades como ausência de funcionalidades previstas e comportamentos inesperados afetam diretamente a eficácia da solução, gerando insegurança no usuário e comprometendo o atendimento aos requisitos do projeto. Além disso, prejudicam processos críticos, como monitoramento de ações, gerenciamento de contas e rastreamento clínico.
+
+3. Falhas Detectadas – Exemplos e Evidências
+3.1 Falta de suporte a alertas na tela de Medicamentos
+
+Evidência:
+Durante a tentativa de execução do CT correspondente, constatou-se que a tela de "Medicamentos" permite apenas cadastrar medicamentos, e não há opção de criar alertas ou lembretes.
+
+Impacto:
+O caso de teste precisou ser excluído, pois só não é possível configurar "Alertas" na tela de medicamentos, prejudicando a coerência do sistema.
+
+3.2 Função de edição ausente no Histórico Clínico
+
+Evidência:
+Durante a tentativa de execução do CT correspondente, verificou-se que não é possível editar registros, apenas visualizá-los.
+
+Exemplo:
+Após selecionar um registro e clicar em “Ver detalhes”, nenhuma opção de edição é disponibilizada.
+
+Impacto:
+A ausência de edição reduz a funcionalidade da área clínica e limita a capacidade de correção de dados.
+
+3.3 Inconsistências no Feed dos Pacientes
+
+Evidências observadas:
+
+- Feed não exibe dados por paciente;
+
+- Card “Medicamentos do Feed” não está em ordem cronológica;
+
+- Nome do paciente não aparece nos cards;
+
+- Card “Próximos agendamentos” só exibe informações ao clicar em “Ver todos”;
+
+- Card “Alertas” fica vazio, pois não é possível criar alertas na tela de Medicamentos.
+
+Impacto:
+A inconsistência prejudica a visualização de informações importantes e compromete a usabilidade da tela.
+
+4. Estratégias de Correção e Ações Propostas
+
+Com base nas falhas identificadas, o grupo propõe as seguintes ações para as próximas iterações:
+
+4.1 Ajustes futuros no Código
+
+Ajustar o backend para garantir ordenação correta e preenchimento dos cards no Feed.
+
+Implementar edição de registros no Histórico Clínico (caso o requisito seja mantido).
+
+4.2 Melhorias na Interface
+
+Reorganizar telas para que funcionalidades relacionadas (ex.: medicamentos) estejam agrupadas de forma coerente.
+
+Exibir mensagens claras de confirmação e erro, evitando frustração do usuário.
+
+Revisar elementos do Feed para melhorar clareza e navegabilidade.
+
+4.3 Otimizações de Desempenho
+
+Garantir carregamento consistente dos cards na Dashboard.
+
+Validar endpoints com maior tráfego (contas, feed, notificações) para reduzir lentidão e falhas.
+
+4.4 Usabilidade e Acessibilidade
+
+Padronizar botões, ícones e rótulos para reduzir ambiguidades.
+
+Incluir estados visuais para ações indisponíveis (ex.: botões desabilitados ao invés de ocultos).
+
+Melhorar hierarquia visual no histórico clínico e no feed.
+
+5. Melhorias Obtidas e Evolução do Projeto
+
+A partir dos testes realizados, foi possível:
+
+- Revisar e alinhar os casos de teste à realidade atual da aplicação.
+
+- Identificar com clareza quais funcionalidades estão completas, quais precisam de ajustes e quais ainda devem ser desenvolvidas.
+
+- Obter uma visão mais precisa sobre o comportamento do sistema em uso real, permitindo maior maturidade no processo de desenvolvimento.
+
+
+As melhorias propostas têm potencial para:
+
+- Tornar o sistema mais intuitivo e coerente;
+
+- Aumentar sua confiabilidade e consistência;
+
+- Reduzir erros operacionais;
+
+- Melhorar a experiência do usuário final;
+
+- Aproximar o produto dos objetivos definidos no projeto.
+
+6. Conclusão
+
+Os testes foram fundamentais para evidenciar tanto os avanços já alcançados pela aplicação quanto as fragilidades que ainda precisam ser tratadas. As observações coletadas permitiram revisar casos de teste, identificar problemas relevantes e estabelecer um plano de ação concreto para aprimorar o sistema. A partir dos ajustes sugeridos, espera-se uma evolução significativa da solução nas próximas iterações, garantindo maior estabilidade, usabilidade e alinhamento aos requisitos do projeto.
 
 

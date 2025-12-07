@@ -10,10 +10,10 @@ Para cada caso de teste definido no Plano de Testes de Software, realize o regis
 |Registro de evidência | ![testerf001](https://github.com/user-attachments/assets/7d2b22c0-edfc-4763-b6d8-5d4bfa6b740e)
  |
 
-| **Caso de Teste** 	| **CT014 – Cadastrar nova conta** 	|
+| **Caso de Teste** 	| **CT002 – Agenda de Medicação/ listagem de documentos agendados e botão para agendar novos medicamentos** 	|
 |:---:	|:---:	|
-|	Requisito Associado 	| RF-00 - A aplicação deve permitir o registro de um novo usuário, processo anterior ao cadastro de paciente, ou seja, o cadastro da conta na aplicação. Nesta etapa é possível cadastrar uma nova conta, listar as contas registradas, exibir detalhes, editar e excluir contas. Além disso, ir para a dashboard dos pacientes/cuidadores |
-|Registro de evidência | www.teste.com.br/drive/ct-02 |
+|	Requisito Associado 	| RF-002 - Validar se o cuidador pode ver a lista de medicamentos agendados e clicar no botão de adicionar medicação |
+|Registro de evidência | ![testerf002](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e2-proj-int-t2-g05-click-health/blob/main/docs/img/CT002%20%E2%80%93%20Agenda%20de%20Medica%C3%A7%C3%A3o,%20listagem%20de%20documentos%20agendados%20e%20bot%C3%A3o%20para%20agendar%20novos%20medicamentos.gif?raw=true) |
 
 | **Caso de Teste** 	| **CT03 – Realizar login** 	|
 |:---:	|:---:	|

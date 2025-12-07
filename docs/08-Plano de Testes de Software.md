@@ -29,40 +29,5 @@ Por exemplo:
 | CT-RF07 – Gerenciar Alertas e Notificações | RF-007| Validar o funcionamento completo do CRUD de alertas e a exibição das notificações no painel do cuidador, garantindo que os dados sejam salvos, atualizados, excluídos e exibidos corretamente nas seções “Novas” e “Anteriores”. | 1. Acessar a tela “Alertas”<br>2. Clicar em “+ Novo Alerta” e preencher os campos Paciente, Título, Mensagem, Tipo, Status e Data/Hora<br>3. Clicar em “Salvar” e verificar que o alerta aparece na lista<br>4. Editar o alerta e alterar o status para “Lido”<br>5. Visualizar os detalhes do alerta e confirmar as informações<br>6. Excluir o alerta e confirmar sua remoção<br>7. Acessar a tela “Notificações” e verificar os alertas nas seções “Novas” e “Anteriores” | O alerta é criado, exibido, editado e excluído corretamente; notificações aparecem conforme o status e o banco de dados é atualizado sem erros. |
 | CT-RF08 – Cadastrar Nova conta na Aplicação | RF-008| Validar o funcionamento completo do CRUD de processo de criação de uma nova conta e a exibição da lista completa de novas contas criadas, garantindo que os dados sejam salvos, atualizados, excluído5 e exibidos corretamente nas seções “Novas” e “Anteriores”. | 1. Acessar a tela “cadastrar”<br>2. Preencher o formulário para nova conta” e preencher os campos: Nome, Email e Senha<br>3. Clicar em “Salvar” e ser direcionado para a lista completa de contas já cadastradas<br>4. Editar a conta cadastrada”<br>5. Visualizar os detalhes da conta e confirmar as informações<br>6. Excluir a conta e confirmar sua remoção<br>7. 
 
-
-
-
-<img width="1366" height="728" alt="Login" src="https://github.com/user-attachments/assets/6983b712-cc01-4ddf-8683-78c20eb07d7a" />
-
-<img width="1366" height="728" alt="cadastro" src="https://github.com/user-attachments/assets/83240ac4-2183-4506-9512-e30a4dd80bf4" />
-
-<img width="1366" height="728" alt="Pacientes" src="https://github.com/user-attachments/assets/dbf13145-aa8d-4f49-b548-7a2d376561cd" />
-
-<img width="1366" height="760" alt="novo paciente" src="https://github.com/user-attachments/assets/e3ba95f8-f94c-4acb-b93d-a12ccf67fb8e" />
-
-<img width="1366" height="728" alt="dados" src="https://github.com/user-attachments/assets/a9811b2c-dfb8-4899-931c-de04ec885b04" />
-
-<img width="1366" height="728" alt="agenda" src="https://github.com/user-attachments/assets/865c297f-8724-4707-94b6-7843445bd344" />
-
- <img width="1366" height="728" alt="medicação" src="https://github.com/user-attachments/assets/7fb6ca04-19ef-4825-89d6-aa7c638d18b2" />
-
-<img width="1366" height="728" alt="historico" src="https://github.com/user-attachments/assets/74d95fa4-7fe9-4e2f-8800-997f38d6c888" />
-
-<img width="1366" height="728" alt="feed" src="https://github.com/user-attachments/assets/8a479e78-5ea8-4e86-96cb-dd73b0803960" />
-
-<img width="1366" height="728" alt="feedcompartilhamento" src="https://github.com/user-attachments/assets/086a8a2e-e2fd-4dca-866f-6e43f7e10189" />
-
-<img width="1366" height="728" alt="excluir paciente" src="https://github.com/user-attachments/assets/91e00ac1-fbde-428b-98ce-c6532a258e79" />
-
-
 **Link para visualização**
 https://www.figma.com/make/YPo0dePEQeianSUiy62teD/ClickHealth?node-id=0-1&p=f&t=iNQcjheUeWspvHSk-0&fullscreen=1 
- 
-
-> **Links Úteis**:
-> - [IBM - Criação e Geração de Planos de Teste](https://www.ibm.com/developerworks/br/local/rational/criacao_geracao_planos_testes_software/index.html)
-> - [Práticas e Técnicas de Testes Ágeis](http://assiste.serpro.gov.br/serproagil/Apresenta/slides.pdf)
-> -  [Teste de Software: Conceitos e tipos de testes](https://blog.onedaytesting.com.br/teste-de-software/)
-> - [Criação e Geração de Planos de Teste de Software](https://www.ibm.com/developerworks/br/local/rational/criacao_geracao_planos_testes_software/index.html)
-> - [Ferramentas de Test para Java Script](https://geekflare.com/javascript-unit-testing/)
-> - [UX Tools](https://uxdesign.cc/ux-user-research-and-user-testing-tools-2d339d379dc7)

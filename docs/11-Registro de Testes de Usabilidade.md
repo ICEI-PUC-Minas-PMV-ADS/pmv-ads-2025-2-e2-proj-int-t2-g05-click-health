@@ -58,12 +58,12 @@ Critério de sucesso: Medicação criada corretamente.
 
 Objetivo: Avaliar a facilidade em registrar mudanças clínicas após consulta.  
 Tarefas: Acessar "Histórico Clínico" e registrar resultado de exame.  
-Critério de sucesso: Dados salvos corretamente e exibidos no feed.
+Critério de sucesso: Dados salvos corretamente.
 
 | Usuário   | Tempo Total (seg) | Quantidade de cliques | Tarefa concluída? | Erros cometidos | Feedback do usuário |
 |-----------|--------------------|------------------------|-------------------|------------------|----------------------|
 | Usuário 1 | 200                | 22                     | Sim               | 0                | Processo direto, encontrou facilmente o histórico. |
-| Usuário 2 | 210                | 24                     | Sim               | 1                | Não percebeu de primeira onde o exame aparecia no feed. |
+| Usuário 2 | 210                | 24                     | Sim               | 1                | Não percebeu de primeira onde o exame aparecia na tela Detalhes do Registro Clínico. |
 | Usuário 3 | 230                | 27                     | Não               | 2                | Não tinha certeza se o dado havia sido salvo, tentou repetir a ação. |
 | Usuário 4 | 220                | 25                     | Sim               | 0                | Achou a estrutura do formulário adequada. |
 | Usuário 5 | 205                | 23                     | Sim               | 0                | Sugeriu destacar melhor a confirmação de salvamento. |

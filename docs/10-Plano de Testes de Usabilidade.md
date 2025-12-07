@@ -88,9 +88,6 @@ Os cenários representam tarefas reais que os usuários executam no sistema. Nes
   - Dados salvos corretamente.
   - Informações exibidas corretamente no feed.
 
-|<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e2-proj-int-t2-g05-click-health/blob/f277335a0618f65e21717ba838ae8636eaa25243/docs/img/testedeedicao.gif" >  
-<img src= "https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e2-proj-int-t2-g05-click-health/blob/f277335a0618f65e21717ba838ae8636eaa25243/docs/img/testeregistroehistorico.gif">
-
 
   **Cenário 4**
   

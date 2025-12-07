@@ -33,7 +33,7 @@ namespace ClickHealth.Dashboard.Controllers
             // --- INÍCIO DA CORREÇÃO ---
             // Precisamos garantir que o usuário simulado (ID 1) exista no banco 
             // de dados (que está vazio após a recriação).
-            var usuarioSimulado = _context.Usuarios.Find((long)usuarioLogadoId);
+            var usuarioSimulado = _context.Usuarios.Find(usuarioLogadoId);
 
             if (usuarioSimulado == null)
             {

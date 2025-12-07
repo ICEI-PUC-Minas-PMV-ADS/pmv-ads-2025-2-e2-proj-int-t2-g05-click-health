@@ -25,16 +25,7 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ClickHealthContext>();
-    try
-    {
-        db.Database.EnsureCreated();
-        Console.WriteLine("✅ Banco SQLite criado/validado com sucesso.");
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine("⚠️ Erro ao criar o banco SQLite:");
-        Console.WriteLine(ex.Message);
-    }
+    db.Database.EnsureCreated();
 }
 
 // Pipeline
@@ -49,7 +40,38 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// Sessão antes de tudo
 app.UseSession();
+
+// 🔒 Middleware para bloquear páginas protegidas
+app.Use(async (context, next) =>
+{
+    // Páginas que exigem login
+    var requiresLogin = new[]
+    {
+        "/Feed",
+        "/Medicamentos",
+        "/Agenda"
+    };
+
+    var path = context.Request.Path.Value ?? "";
+
+    bool isProtected = requiresLogin.Any(p =>
+        path.StartsWith(p, StringComparison.OrdinalIgnoreCase)
+    );
+
+    // ⚠️ Corrigido: a chave correta é UserId
+    bool isLogged = context.Session.GetInt32("UserId") != null;
+
+    if (isProtected && !isLogged)
+    {
+        context.Response.Redirect("/Account/Login");
+        return;
+    }
+
+    await next();
+});
+
 app.UseAuthorization();
 
 // Rotas

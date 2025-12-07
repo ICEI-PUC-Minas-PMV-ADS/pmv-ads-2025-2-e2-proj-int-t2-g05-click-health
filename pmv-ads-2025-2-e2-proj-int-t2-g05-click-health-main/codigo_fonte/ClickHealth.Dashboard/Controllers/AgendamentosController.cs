@@ -16,9 +16,18 @@ namespace ClickHealth.Dashboard.Controllers
             _context = context;
         }
 
-        // GET: /Agenda → Lista todos os agendamentos (pendentes e agendados)
+        // 🔒 Verificação via Session
+        private bool UsuarioNaoLogado()
+        {
+            return HttpContext.Session.GetInt32("UserId") == null;
+        }
+
+        // GET: /Agenda
         public async Task<IActionResult> Index()
         {
+            if (UsuarioNaoLogado())
+                return RedirectToAction("Login", "Account");
+
             var agendamentos = await _context.AgendamentoMedicacao
                 .Include(a => a.Paciente)
                 .Include(a => a.Medicacao)
@@ -33,6 +42,9 @@ namespace ClickHealth.Dashboard.Controllers
         [HttpGet("Adicionar")]
         public async Task<IActionResult> Adicionar()
         {
+            if (UsuarioNaoLogado())
+                return RedirectToAction("Login", "Account");
+
             await CarregarDropdownsAsync();
             return View(new AgendamentoMedicacao());
         }
@@ -42,8 +54,9 @@ namespace ClickHealth.Dashboard.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Adicionar(AgendamentoMedicacao agendamento)
         {
-            // Correção de Validação: Remove a validação das propriedades de navegação
-            // Paciente e Medicacao, que são obrigatórias no modelo, mas não são enviadas pelo formulário.
+            if (UsuarioNaoLogado())
+                return RedirectToAction("Login", "Account");
+
             ModelState.Remove("Paciente");
             ModelState.Remove("Medicacao");
 
@@ -55,16 +68,13 @@ namespace ClickHealth.Dashboard.Controllers
                 _context.AgendamentoMedicacao.Add(agendamento);
                 await _context.SaveChangesAsync();
 
-                TempData["Sucesso"] = "Agendamento criado com sucesso!"; // Alterado para "Sucesso" para usar o _Layout
+                TempData["Sucesso"] = "Agendamento criado com sucesso!";
                 return RedirectToAction(nameof(Index));
             }
 
-            // Adiciona mensagem de erro para o usuário se a validação falhar por outro motivo
             var errors = ModelState.Values.SelectMany(v => v.Errors);
             if (errors.Any())
-            {
-                TempData["Erro"] = "Falha na validação do formulário de agendamento. Verifique os campos e tente novamente.";
-            }
+                TempData["Erro"] = "Falha na validação do formulário de agendamento.";
 
             await CarregarDropdownsAsync();
             return View(agendamento);
@@ -74,6 +84,9 @@ namespace ClickHealth.Dashboard.Controllers
         [HttpGet("Editar/{id:int}")]
         public async Task<IActionResult> Editar(int id)
         {
+            if (UsuarioNaoLogado())
+                return RedirectToAction("Login", "Account");
+
             var agendamento = await _context.AgendamentoMedicacao
                 .FirstOrDefaultAsync(a => a.Id == id);
 
@@ -89,10 +102,12 @@ namespace ClickHealth.Dashboard.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Editar(int id, AgendamentoMedicacao agendamento)
         {
+            if (UsuarioNaoLogado())
+                return RedirectToAction("Login", "Account");
+
             if (id != agendamento.Id)
                 return BadRequest();
 
-            // Correção de Validação: Remove a validação das propriedades de navegação
             ModelState.Remove("Paciente");
             ModelState.Remove("Medicacao");
 
@@ -102,7 +117,7 @@ namespace ClickHealth.Dashboard.Controllers
                 {
                     _context.Update(agendamento);
                     await _context.SaveChangesAsync();
-                    TempData["Sucesso"] = "Agendamento atualizado com sucesso!"; // Alterado para "Sucesso"
+                    TempData["Sucesso"] = "Agendamento atualizado com sucesso!";
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -110,6 +125,7 @@ namespace ClickHealth.Dashboard.Controllers
                         return NotFound();
                     throw;
                 }
+
                 return RedirectToAction(nameof(Index));
             }
 
@@ -121,6 +137,9 @@ namespace ClickHealth.Dashboard.Controllers
         [HttpGet("Excluir/{id:int}")]
         public async Task<IActionResult> Excluir(int id)
         {
+            if (UsuarioNaoLogado())
+                return RedirectToAction("Login", "Account");
+
             var agendamento = await _context.AgendamentoMedicacao
                 .Include(a => a.Paciente)
                 .Include(a => a.Medicacao)
@@ -137,18 +156,22 @@ namespace ClickHealth.Dashboard.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ExcluirConfirmado(int id)
         {
+            if (UsuarioNaoLogado())
+                return RedirectToAction("Login", "Account");
+
             var agendamento = await _context.AgendamentoMedicacao.FindAsync(id);
+
             if (agendamento != null)
             {
                 _context.AgendamentoMedicacao.Remove(agendamento);
                 await _context.SaveChangesAsync();
-                TempData["Sucesso"] = "Agendamento excluído com sucesso!"; // Alterado para "Sucesso"
+                TempData["Sucesso"] = "Agendamento excluído com sucesso!";
             }
 
             return RedirectToAction(nameof(Index));
         }
 
-        // Carrega pacientes e medicações nos dropdowns
+        // Dropdowns
         private async Task CarregarDropdownsAsync()
         {
             ViewBag.Pacientes = await _context.Pacientes

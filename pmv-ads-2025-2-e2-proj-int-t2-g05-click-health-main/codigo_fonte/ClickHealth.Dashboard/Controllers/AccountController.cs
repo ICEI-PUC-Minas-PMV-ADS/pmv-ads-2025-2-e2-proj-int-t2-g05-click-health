@@ -1,8 +1,9 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using ClickHealth.Dashboard.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ClickHealth.Dashboard.Models;
+using System.Threading.Tasks;
 
 namespace ClickHealth.Dashboard.Controllers
 {
@@ -19,7 +20,9 @@ namespace ClickHealth.Dashboard.Controllers
 		// LOGIN (GET)
 		// ========================================
 		[HttpGet]
-		public IActionResult Login()
+        [AllowAnonymous]
+
+        public IActionResult Login()
 		{
 			return View(new LoginViewModel());
 		}
@@ -28,7 +31,9 @@ namespace ClickHealth.Dashboard.Controllers
 		// LOGIN (POST) — AUTENTICAÇÃO VIA SESSION
 		// ========================================
 		[HttpPost]
-		[ValidateAntiForgeryToken]
+        [AllowAnonymous]
+
+        [ValidateAntiForgeryToken]
 		public async Task<IActionResult> Login(LoginViewModel model)
 		{
 			if (!ModelState.IsValid)
@@ -90,7 +95,9 @@ namespace ClickHealth.Dashboard.Controllers
 		// REGISTER → REDIRECIONA PARA CRIAR USUÁRIO
 		// ========================================
 		[HttpGet]
-		public IActionResult Register()
+        [AllowAnonymous]
+
+        public IActionResult Register()
 		{
 			return RedirectToAction("Create", "Usuarios");
 		}

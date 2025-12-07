@@ -19,36 +19,47 @@ namespace ClickHealth.Dashboard.Controllers
             _context = context;
         }
 
+        // 🔒 Verificação via Session
+        private bool UsuarioNaoLogado()
+        {
+            return HttpContext.Session.GetInt32("UserId") == null;
+        }
+
+        // GET: /Feed
         public async Task<IActionResult> Index()
         {
+            if (UsuarioNaoLogado())
+                return RedirectToAction("Login", "Account");
+
             var viewModel = new FeedViewModel();
             var dataLimite = DateTime.Now.AddDays(7);
 
-            // Agendamentos: Próximos 7 dias (Usando AgendamentoMedicacao)
+            // Agendamentos: Próximos 7 dias (AgendamentoMedicacao)
             viewModel.AgendamentosRecentes = await _context.Set<AgendamentoMedicacao>()
                 .Where(a => a.DataHora >= DateTime.Now && a.DataHora <= dataLimite)
                 .OrderBy(a => a.DataHora)
                 .ToListAsync();
 
-            // Medicamentos: Ativos (DataFim nula ou futura)
+            // Medicamentos ativos
             viewModel.MedicamentosAtivos = await _context.Set<Medicacao>()
                 .Where(m => m.DataFim == null || m.DataFim >= DateTime.Now)
                 .OrderBy(m => m.Nome)
                 .ToListAsync();
 
-            // Alertas: 10 mais recentes (Usando DataHora)
+            // Últimos 10 alertas
             viewModel.Alertas = await _context.Set<Alerta>()
                 .OrderByDescending(a => a.DataHora)
                 .Take(10)
                 .ToListAsync();
 
-            // Histórico Médico: 5 registros mais recentes (Usando AtualizadoEm)
+            // 5 registros de histórico médico mais recentes
             viewModel.HistoricoMedicoRecente = await _context.Set<HistoricoMedico>()
                 .OrderByDescending(h => h.AtualizadoEm)
                 .Take(5)
                 .ToListAsync();
 
-            viewModel.MensagemStatus = $"Bem-vindo(a) ao seu Feed! Você tem {viewModel.AgendamentosRecentes.Count()} agendamentos próximos.";
+            viewModel.MensagemStatus =
+                $"Bem-vindo(a) ao seu Feed! Você tem {viewModel.AgendamentosRecentes.Count()} agendamentos próximos.";
 
             return View(viewModel);
         }

@@ -46,33 +46,30 @@ Os cenários representam tarefas reais que os usuários executam no sistema. Nes
 
 **Cenário 1**
 
-- **Objetivo:** Avaliar se o cuidador consegue cadastrar um paciente <s>e compartilhar o acesso com outro usuário.</s>
-- **Contexto:** Um cuidador inicia o uso do sistema e precisa adicionar um novo paciente, <s>concedendo acesso ao familiar.</s>
+- **Objetivo:** Avaliar se o cuidador consegue cadastrar um paciente.
+- **Contexto:** Um cuidador inicia o uso do sistema e precisa adicionar um novo paciente.
 - **Tarefas:**
 
   **1** Fazer login.  
   **2** Cadastrar paciente.  
-  **3** <s>Compartilhar o acesso com um familiar (modo leitura).</s>
   
 - **Critério de Sucesso:**
-  - Cadastro <s>e compartilhamento</s> realizados com sucesso, sem ajuda externa.
+  - Cadastro realizados com sucesso, sem ajuda externa.
   - Familiar consegue visualizar o paciente.
 
 
   
  **Cenário 2**
-- **Objetivo:** Verificar a clareza no agendamento de medicamentos <s>e configuração de alertas.</s>
-- **Contexto:** Um cuidador precisa agendar medicamentos <s>e lembretes diários</s> para um paciente.
+- **Objetivo:** Verificar a clareza no agendamento de medicamentos. 
+- **Contexto:** Um cuidador precisa agendar medicamentos.
 - **Tarefas:**
 
   **1** Acessar a aba "Medicação".  
   **2** Adicionar medicamento com dose, horários e duração.  
-  **3** <s>Configurar lembrete.</s>
+
   
 - **Critério de Sucesso:**
-  - Medicação <s>e alertas</s> criada corretamente.  
-  - <s>Lembretes são recebidos no tempo definido.</s>
-
+  - Medicação criada corretamente.  
  
 
 **Cenário 3**
@@ -89,55 +86,7 @@ Os cenários representam tarefas reais que os usuários executam no sistema. Nes
   - Dados salvos corretamente.
   - Informações exibidas corretamente no feed.
 
-
-  <s>**Cenário 4**
   
-**Objetivo:** Avaliar a eficiência e clareza da funcionalidade de exportação de dados do paciente para diferentes formatos.
-
-**Contexto:** Um cuidador precisa gerar um relatório completo de um paciente para compartilhar com um médico especialista ou para arquivamento pessoal.
-
-**Tarefas:**
-
- **1** Fazer login.
-
- **2** Acessar o perfil de um paciente que contenha histórico de medicações, compromissos e anotações.
-
- **3** Selecionar a opção "Exportar Dados".
-
- **4** Escolher o formato PDF e iniciar o download.
-
- **5** Escolher o formato CSV e iniciar o download.
-
- **6** Abrir os arquivos exportados e verificar se o conteúdo está completo e organizado.
-
-**Critério de Sucesso:**
-
-- Os arquivos são gerados e baixados com sucesso para os formatos PDF e CSV.
-
-- O conteúdo dos arquivos reflete todos os dados relevantes do paciente (histórico, medicações, compromissos).
-
-- A interface de exportação é intuitiva e o processo é concluído sem erros.
-
-**Cenário 5**
-
-**Objetivo:** Verificar a usabilidade e a precisão da trilha de auditoria para monitorar ações críticas do cuidador.
-
-**Contexto:** Um cuidador realiza uma alteração importante nos dados cadastrais de um paciente e precisa confirmar que essa ação foi devidamente registrada para fins de conformidade ou verificação posterior.
-
-**Tarefas:**
-
-**1** Fazer login.
-
-**2** Acessar o perfil de um paciente.
-
-**3** Editar um dado cadastral básico (ex: mudar o sobrenome ou a data de nascimento) e salvar a alteração.
-
-**4** Navegar até a área de "Trilha de Auditoria" ou "Logs de Atividade" (localizada, por exemplo, nas configurações ou em uma seção de administração).
-
-**5** Localizar o registro da alteração recém-realizada.
-
-**6** Verificar os detalhes do registro, incluindo quem fez, o que foi alterado, quando e os valores antes e depois da modificação.</s>
-
 
 **Critério de Sucesso:**
 

@@ -46,32 +46,33 @@ Os cenários representam tarefas reais que os usuários executam no sistema. Nes
 
 **Cenário 1**
 
-- **Objetivo:** Avaliar se o cuidador consegue cadastrar um paciente e compartilhar o acesso com outro usuário.
-- **Contexto:** Um cuidador inicia o uso do sistema e precisa adicionar um novo paciente, concedendo acesso ao familiar.
+- **Objetivo:** Avaliar se o cuidador consegue cadastrar um paciente <s>e compartilhar o acesso com outro usuário.</s>
+- **Contexto:** Um cuidador inicia o uso do sistema e precisa adicionar um novo paciente, <s>concedendo acesso ao familiar.</s>
 - **Tarefas:**
 
-  **1** Fazer login.
-  **2** Cadastrar paciente.
-  **3** Compartilhar o acesso com um familiar (modo leitura).
+  **1** Fazer login.  
+  **2** Cadastrar paciente.  
+  **3** <s>Compartilhar o acesso com um familiar (modo leitura).</s>
   
 - **Critério de Sucesso:**
-  - Cadastro e compartilhamento realizados com sucesso, sem ajuda externa.
+  - Cadastro <s>e compartilhamento</s> realizados com sucesso, sem ajuda externa.
   - Familiar consegue visualizar o paciente.
 
 
   
  **Cenário 2**
-- **Objetivo:** Verificar a clareza no agendamento de medicamentos e configuração de alertas.
-- **Contexto:** Um cuidador precisa agendar medicamentos e lembretes diários para um paciente.
+- **Objetivo:** Verificar a clareza no agendamento de medicamentos <s>e configuração de alertas.</s>
+- **Contexto:** Um cuidador precisa agendar medicamentos <s>e lembretes diários</s> para um paciente.
 - **Tarefas:**
-- 
-  **1** Acessar a aba "Medicação".
-  **2** Adicionar medicamento com dose, horários e duração.
-  **3** Configurar lembrete.
+
+  **1** Acessar a aba "Medicação".  
+  **2** Adicionar medicamento com dose, horários e duração.  
+  **3** <s>Configurar lembrete.</s>
   
 - **Critério de Sucesso:**
-  - Medicação e alertas criados corretamente.
-  - Lembretes são recebidos no tempo definido.
+  - Medicação <s>e alertas</s> criada corretamente.  
+  - <s>Lembretes são recebidos no tempo definido.</s>
+
  
 
 **Cenário 3**
@@ -89,7 +90,7 @@ Os cenários representam tarefas reais que os usuários executam no sistema. Nes
   - Informações exibidas corretamente no feed.
 
 
-  **Cenário 4**
+  <s>**Cenário 4**
   
 **Objetivo:** Avaliar a eficiência e clareza da funcionalidade de exportação de dados do paciente para diferentes formatos.
 
@@ -135,7 +136,8 @@ Os cenários representam tarefas reais que os usuários executam no sistema. Nes
 
 **5** Localizar o registro da alteração recém-realizada.
 
-**6** Verificar os detalhes do registro, incluindo quem fez, o que foi alterado, quando e os valores antes e depois da modificação.
+**6** Verificar os detalhes do registro, incluindo quem fez, o que foi alterado, quando e os valores antes e depois da modificação.</s>
+
 
 **Critério de Sucesso:**
 

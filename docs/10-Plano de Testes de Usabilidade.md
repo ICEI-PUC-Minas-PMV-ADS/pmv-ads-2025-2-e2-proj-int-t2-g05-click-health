@@ -150,15 +150,6 @@ Os cenários representam tarefas reais que os usuários executam no sistema. Nes
 
 - A trilha de auditoria é de fácil acesso e compreensão.
 
-
-<img width="1366" height="728" alt="dados" src="https://github.com/user-attachments/assets/eeed85c4-2f16-49c6-a3de-d05716eb0f01" />
-
-<img width="1366" height="760" alt="novo paciente" src="https://github.com/user-attachments/assets/9bb42d2d-9140-4337-8b96-f82cc2aec963" />
-
-<img width="1366" height="728" alt="feed" src="https://github.com/user-attachments/assets/90c578b6-bb4a-4c93-8ccb-b4588f72ede1" />
-
-<img width="1366" height="728" alt="dados" src="https://github.com/user-attachments/assets/f717db58-26b6-47d5-84b0-73cfc45003c5" />
-
 ## Métodos de coleta de dados
 
 | **Métrica**                  | **Descrição**                                                                 |

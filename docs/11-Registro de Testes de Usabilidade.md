@@ -142,6 +142,10 @@ Uma taxa de 20% é aceitável para testes iniciais, mas indica que ainda há bar
 
 ---
 
+![testerf005](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2025-2-e2-proj-int-t2-g05-click-health/blob/main/docs/img/Testes%20de%20usabilidade%20-%20parte%201.gif?raw=true)
+
+---
+
 ## 5. Feedback Qualitativo Geral
 
 Principais pontos levantados pelos usuários:

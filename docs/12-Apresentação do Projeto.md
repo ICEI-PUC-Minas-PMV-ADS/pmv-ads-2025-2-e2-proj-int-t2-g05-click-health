@@ -42,7 +42,7 @@ Inclua aqui o vídeo de APRESENTAÇÃO FINAL do projeto produzido na Etapa 05.
 
 
 
-https://github.com/user-attachments/assets/f41fd933-7c0c-42ef-91fc-1b22dd7bc11c
+
 
 
 

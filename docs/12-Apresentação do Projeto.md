@@ -38,7 +38,6 @@ https://github.com/user-attachments/assets/5ee8601d-7c97-46dc-8639-2d66d32f9adf
 
 ## Vídeo de apresentação - Etapa 05
 
-Inclua aqui o vídeo de APRESENTAÇÃO FINAL do projeto produzido na Etapa 05.
 
 
 

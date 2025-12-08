@@ -29,9 +29,22 @@ O grupo deve distribuir de forma coerente o conteúdo a ser apresentado, dentro 
 
 Inclua aqui o vídeo de APRESENTAÇÃO INICIAL do projeto produzido na Etapa 01.
 
+
+
+https://github.com/user-attachments/assets/5ee8601d-7c97-46dc-8639-2d66d32f9adf
+
+
+
+
 ## Vídeo de apresentação - Etapa 05
 
 Inclua aqui o vídeo de APRESENTAÇÃO FINAL do projeto produzido na Etapa 05.
+
+
+
+https://github.com/user-attachments/assets/f41fd933-7c0c-42ef-91fc-1b22dd7bc11c
+
+
 
 ### Orientações para Produção do Vídeo Pitch (Etapa 05)
 
